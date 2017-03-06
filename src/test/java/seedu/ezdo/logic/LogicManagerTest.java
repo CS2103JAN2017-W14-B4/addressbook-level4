@@ -418,7 +418,7 @@ public class LogicManagerTest {
             Name name = new Name("Adam Brown");
             Priority privatePriority = new Priority("1");
             Email email = new Email("adam@gmail.com");
-            StartDate privateStartDate = new StartDate("111, alpha street");
+            StartDate privateStartDate = new StartDate("3-3-2017");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -437,7 +437,7 @@ public class LogicManagerTest {
                     new Name("Person " + seed),
                     new Priority("1"),
                     new Email(seed + "@email"),
-                    new StartDate("House of " + seed),
+                    new StartDate("01-01-2000"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -536,7 +536,7 @@ public class LogicManagerTest {
                     new Name(name),
                     new Priority("1"),
                     new Email("1@email"),
-                    new StartDate("House of 1"),
+                    new StartDate("1-1-2017"),
                     new UniqueTagList(new Tag("tag"))
             );
         }
