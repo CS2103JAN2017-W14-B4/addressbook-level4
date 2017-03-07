@@ -437,7 +437,7 @@ public class LogicManagerTest {
                     new Name("Person " + seed),
                     new Priority("1"),
                     new Email(seed + "@email"),
-                    new StartDate("01/01/2000"),
+                    new StartDate("01/01/2017"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
