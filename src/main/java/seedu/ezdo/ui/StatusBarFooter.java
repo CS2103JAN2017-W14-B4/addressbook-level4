@@ -49,9 +49,9 @@ public class StatusBarFooter extends UiPart<Region> {
     }
 
     @Subscribe
-    public void handleAddressBookChangedEvent(EzDoChangedEvent abce) {
+    public void handleEzDoChangedEvent(EzDoChangedEvent ezce) {
         String lastUpdated = (new Date()).toString();
-        logger.info(LogsCenter.getEventHandlingLogMessage(abce, "Setting last updated status to " + lastUpdated));
+        logger.info(LogsCenter.getEventHandlingLogMessage(ezce, "Setting last updated status to " + lastUpdated));
         setSyncStatus("Last Updated: " + lastUpdated);
     }
 }

@@ -3,55 +3,55 @@
     <tasks>
         <name>Hans Muster</name>
         <priority isPrivate="false">9482424</priority>
-        <email isPrivate="false">hans@google.com</email>
         <startDate isPrivate="false">4th street</startDate>
+        <dueDate isPrivate="false">4th street</dueDate>
     </tasks>
     <tasks>
         <name>Ruth Mueller</name>
         <priority isPrivate="false">87249245</priority>
-        <email isPrivate="false">ruth@google.com</email>
         <startDate isPrivate="false">81th street</startDate>
+        <dueDate isPrivate="false">81th street</dueDate>
     </tasks>
     <tasks>
         <name>Heinz Kurz</name>
         <priority isPrivate="false">95352563</priority>
-        <email isPrivate="false">heinz@yahoo.com</email>
         <startDate isPrivate="false">wall street</startDate>
+        <dueDate isPrivate="false">wall street</dueDate>
     </tasks>
     <tasks>
         <name>Cornelia Meier</name>
         <priority isPrivate="false">87652533</priority>
-        <email isPrivate="false">cornelia@google.com</email>
         <startDate isPrivate="false">10th street</startDate>
+        <dueDate isPrivate="false">10th street</dueDate>
     </tasks>
     <tasks>
         <name>Werner Meyer</name>
         <priority isPrivate="false">9482224</priority>
-        <email isPrivate="false">werner@gmail.com</email>
         <startDate isPrivate="false">michegan ave</startDate>
+        <dueDate isPrivate="false">michegan ave</dueDate>
     </tasks>
     <tasks>
         <name>Lydia Kunz</name>
         <priority isPrivate="false">9482427</priority>
-        <email isPrivate="false">lydia@gmail.com</email>
         <startDate isPrivate="false">little tokyo</startDate>
+        <dueDate isPrivate="false">little tokyo</dueDate>
     </tasks>
     <tasks>
         <name>Anna Best</name>
         <priority isPrivate="false">9482442</priority>
-        <email isPrivate="false">anna@google.com</email>
         <startDate isPrivate="false">4th street</startDate>
+        <dueDate isPrivate="false">4th street</dueDate>
     </tasks>
     <tasks>
         <name>Stefan Meier</name>
         <priority isPrivate="false">8482424</priority>
-        <email isPrivate="false">stefan@mail.com</email>
         <startDate isPrivate="false">little india</startDate>
+        <dueDate isPrivate="false">little india</dueDate>
     </tasks>
     <tasks>
         <name>Martin Mueller</name>
         <priority isPrivate="false">8482131</priority>
-        <email isPrivate="false">hans@google.com</email>
         <startDate isPrivate="false">chicago ave</startDate>
+        <dueDate isPrivate="false">chicago ave</dueDate>
     </tasks>
 </ezDo>

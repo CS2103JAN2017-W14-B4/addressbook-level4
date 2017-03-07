@@ -3,19 +3,15 @@ package seedu.ezdo.model.todo;
 import seedu.ezdo.commons.exceptions.IllegalValueException;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a Task's name in ezDo.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
 
     public static final String MESSAGE_NAME_CONSTRAINTS =
-            "Person names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Task names should contain at least one alphanumeric character.";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String NAME_VALIDATION_REGEX = ".*\\w.*";
 
     public final String fullName;
 
@@ -34,7 +30,7 @@ public class Name {
     }
 
     /**
-     * Returns true if a given string is a valid person name.
+     * Returns true if a given string is a valid task name.
      */
     public static boolean isValidName(String test) {
         return test.matches(NAME_VALIDATION_REGEX);

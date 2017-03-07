@@ -9,7 +9,7 @@ import guitests.guihandles.TaskCardHandle;
 import seedu.ezdo.commons.core.Messages;
 import seedu.ezdo.logic.commands.EditCommand;
 import seedu.ezdo.model.tag.Tag;
-import seedu.ezdo.model.todo.Email;
+import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.StartDate;
@@ -25,11 +25,12 @@ public class EditCommandTest extends EzDoGuiTest {
 
     @Test
     public void edit_allFieldsSpecified_success() throws Exception {
-        String detailsToEdit = "Bobby p/1 e/bobby@gmail.com s/1/3/2017 t/husband";
+        String detailsToEdit = "Bobby p/1 s/01-01-2016 d/08/09/2003 t/husband";
         int ezDoIndex = 1;
 
         TestTask editedTask = new TaskBuilder().withName("Bobby").withPriority("1")
-                .withEmail("bobby@gmail.com").withStartDate("1/3/2017").withTags("husband").build();
+                .withStartDate("01-01-2016")
+                .withDueDate("08/09/2003").withTags("husband").build();
 
         assertEditSuccess(ezDoIndex, ezDoIndex, detailsToEdit, editedTask);
     }
@@ -96,9 +97,6 @@ public class EditCommandTest extends EzDoGuiTest {
         commandBox.runCommand("edit 1 p/abcd");
         assertResultMessage(Priority.MESSAGE_PRIORITY_CONSTRAINTS);
 
-        commandBox.runCommand("edit 1 e/yahoo!!!");
-        assertResultMessage(Email.MESSAGE_EMAIL_CONSTRAINTS);
-
         commandBox.runCommand("edit 1 s/");
         assertResultMessage(StartDate.MESSAGE_STARTDATE_CONSTRAINTS);
 
@@ -109,7 +107,7 @@ public class EditCommandTest extends EzDoGuiTest {
     @Test
     public void edit_duplicateTask_failure() {
         commandBox.runCommand("edit 3 Alice Pauline p/1 e/alice@gmail.com "
-                                + "s/1/6/2017 t/friends");
+                                + "s/1/6/2017 d/14/03/2015 t/friends");
         assertResultMessage(EditCommand.MESSAGE_DUPLICATE_TASK);
     }
 
@@ -118,7 +116,7 @@ public class EditCommandTest extends EzDoGuiTest {
      *
      * @param filteredTaskListIndex index of task to edit in filtered list
      * @param ezDoIndex index of task to edit in ezDo.
-     *      Must refer to the same person as {@code filteredTaskListIndex}
+     *      Must refer to the same task as {@code filteredTaskListIndex}
      * @param detailsToEdit details to edit the task with as input to the edit command
      * @param editedTask the expected task after editing the task's details
      */

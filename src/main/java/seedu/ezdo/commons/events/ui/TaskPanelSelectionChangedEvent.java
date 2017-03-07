@@ -4,7 +4,7 @@ import seedu.ezdo.commons.events.BaseEvent;
 import seedu.ezdo.model.todo.ReadOnlyTask;
 
 /**
- * Represents a selection change in the Person List Panel
+ * Represents a selection change in the Task List Panel
  */
 public class TaskPanelSelectionChangedEvent extends BaseEvent {
 

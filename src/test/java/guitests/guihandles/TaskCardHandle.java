@@ -18,7 +18,7 @@ public class TaskCardHandle extends GuiHandle {
     private static final String NAME_FIELD_ID = "#name";
     private static final String STARTDATE_FIELD_ID = "#startDate";
     private static final String PRIORITY_FIELD_ID = "#priority";
-    private static final String EMAIL_FIELD_ID = "#email";
+    private static final String DUEDATE_FIELD_ID = "#dueDate";
     private static final String TAGS_FIELD_ID = "#tags";
 
     private Node node;
@@ -40,12 +40,16 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(STARTDATE_FIELD_ID);
     }
 
+    public String getDueDate() {
+        return getTextFromLabel(DUEDATE_FIELD_ID);
+    }
+
     public String getPriority() {
         return getTextFromLabel(PRIORITY_FIELD_ID);
     }
 
     public String getEmail() {
-        return getTextFromLabel(EMAIL_FIELD_ID);
+        return getTextFromLabel(DUEDATE_FIELD_ID);
     }
 
     public List<String> getTags() {
@@ -80,8 +84,8 @@ public class TaskCardHandle extends GuiHandle {
 
         return getFullName().equals(task.getName().fullName)
                 && getPriority().equals(task.getPriority().value)
-                && getEmail().equals(task.getEmail().value)
                 && getStartDate().equals(task.getStartDate().value)
+                && getDueDate().equals(task.getDueDate().value)
                 && equalTags;
     }
 

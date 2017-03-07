@@ -92,7 +92,7 @@ public class StorageManagerTest {
         }
 
         @Override
-        public void saveEzDo(ReadOnlyEzDo addressBook, String filePath) throws IOException {
+        public void saveEzDo(ReadOnlyEzDo ezDo, String filePath) throws IOException {
             throw new IOException("dummy exception");
         }
     }

@@ -30,7 +30,7 @@ public class StartDate {
     }
 
     /**
-     * Returns true if a given string is a valid person email.
+     * Returns true if a given string is a valid task start date.
      */
     public static boolean isValidStartDate(String test) {
         return test.matches(STARTDATE_VALIDATION_REGEX);

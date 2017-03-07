@@ -7,7 +7,7 @@ import seedu.ezdo.commons.exceptions.IllegalValueException;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
 import seedu.ezdo.model.tag.Tag;
 import seedu.ezdo.model.tag.UniqueTagList;
-import seedu.ezdo.model.todo.Email;
+import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.StartDate;
@@ -36,7 +36,7 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name, String priority, String email, String startDate, Set<String> tags)
+    public AddCommand(String name, String priority, String startDate, String dueDate, Set<String> tags)
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
@@ -45,8 +45,8 @@ public class AddCommand extends Command {
         this.toAdd = new Task(
                 new Name(name),
                 new Priority(priority),
-                new Email(email),
                 new StartDate(startDate),
+                new DueDate(dueDate),
                 new UniqueTagList(tagSet)
         );
     }

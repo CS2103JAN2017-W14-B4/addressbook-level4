@@ -7,7 +7,7 @@ import seedu.ezdo.model.todo.ReadOnlyTask;
 import seedu.ezdo.model.todo.UniqueTaskList.TaskNotFoundException;
 
 /**
- * Deletes a task identified using it's last displayed index from the address book.
+ * Deletes a task identified using its last displayed index from ezDo.
  */
 public class DeleteCommand extends Command {
 

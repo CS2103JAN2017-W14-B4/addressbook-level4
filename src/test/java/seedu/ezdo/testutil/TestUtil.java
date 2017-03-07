@@ -32,7 +32,7 @@ import seedu.ezdo.commons.util.XmlUtil;
 import seedu.ezdo.model.EzDo;
 import seedu.ezdo.model.tag.Tag;
 import seedu.ezdo.model.tag.UniqueTagList;
-import seedu.ezdo.model.todo.Email;
+import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.ReadOnlyTask;
@@ -75,15 +75,15 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-                new Task(new Name("Ali Muster"), new Priority("1"), new Email("hans@google.com"), new StartDate("1/1/2016"), new UniqueTagList()),
-                new Task(new Name("Boris Mueller"), new Priority("1"), new Email("ruth@google.com"), new StartDate("12/1/2016"), new UniqueTagList()),
-                new Task(new Name("Carl Kurz"), new Priority("1"), new Email("heinz@yahoo.com"), new StartDate("14/1/2016"), new UniqueTagList()),
-                new Task(new Name("Daniel Meier"), new Priority("1"), new Email("cornelia@google.com"), new StartDate("1/1/2016"), new UniqueTagList()),
-                new Task(new Name("Elle Meyer"), new Priority("1"), new Email("werner@gmail.com"), new StartDate("21/1/2016"), new UniqueTagList()),
-                new Task(new Name("Fiona Kunz"), new Priority("1"), new Email("lydia@gmail.com"), new StartDate("23/1/2016"), new UniqueTagList()),
-                new Task(new Name("George Best"), new Priority("1"), new Email("anna@google.com"), new StartDate("24/1/2016"), new UniqueTagList()),
-                new Task(new Name("Hoon Meier"), new Priority("1"), new Email("stefan@mail.com"), new StartDate("28/1/2016"), new UniqueTagList()),
-                new Task(new Name("Ida Mueller"), new Priority("1"), new Email("hans@google.com"), new StartDate("21/2/2016"), new UniqueTagList())
+                new Task(new Name("Complete CS2103T project"), new Priority("1"), new StartDate("01/01/2001"), new DueDate("02/02/2002"), new UniqueTagList()),
+                new Task(new Name("Attend Comp Club meeting"), new Priority("1"), new StartDate("02/02/2002"), new DueDate("03/03/2003"), new UniqueTagList()),
+                new Task(new Name("Discuss MA1101R Assignment 1"), new Priority("1"), new StartDate("03/03/2003"), new DueDate("04/04/2004"), new UniqueTagList()),
+                new Task(new Name("Wash clothes"), new Priority("1"), new StartDate("04/04/2004"), new DueDate("05/05/2005"), new UniqueTagList()),
+                new Task(new Name("Pay school fees"), new Priority("1"), new StartDate("05/05/2005"), new DueDate("06/06/2006"), new UniqueTagList()),
+                new Task(new Name("Buy dinner"), new Priority("1"), new StartDate("06/06/2006"), new DueDate("07/07/2007"), new UniqueTagList()),
+                new Task(new Name("Repair my computer"), new Priority("1"), new StartDate("07/07/2007"), new DueDate("08/08/2008"), new UniqueTagList()),
+                new Task(new Name("Study for ST2334 test"), new Priority("1"), new StartDate("08/08/2008"), new DueDate("09/09/2009"), new UniqueTagList()),
+                new Task(new Name("Dream about getting A+ for CS2103T"), new Priority("1"), new StartDate("09/09/2009"), new DueDate("10/10/2010"), new UniqueTagList())
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {

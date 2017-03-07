@@ -22,7 +22,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label startDate;
     @FXML
-    private Label email;
+    private Label dueDate;
     @FXML
     private FlowPane tags;
 
@@ -32,7 +32,7 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         priority.setText(task.getPriority().value);
         startDate.setText(task.getStartDate().value);
-        email.setText(task.getEmail().value);
+        dueDate.setText(task.getDueDate().value);
         initTags(task);
     }
 

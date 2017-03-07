@@ -1,7 +1,7 @@
 package seedu.ezdo.testutil;
 
 import seedu.ezdo.model.tag.UniqueTagList;
-import seedu.ezdo.model.todo.Email;
+import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.ReadOnlyTask;
@@ -15,10 +15,11 @@ public class TestTask implements ReadOnlyTask {
     private static final String PREFIX_EMAIL = "e/";
     private static final String PREFIX_PRIORITY = "p/";
     private static final String PREFIX_STARTDATE = "s/";
+    private static final String PREFIX_DUEDATE = "d/";
 
     private Name name;
     private StartDate startDate;
-    private Email email;
+    private DueDate dueDate;
     private Priority priority;
     private UniqueTagList tags;
 
@@ -32,8 +33,8 @@ public class TestTask implements ReadOnlyTask {
     public TestTask(TestTask taskToCopy) {
         this.name = taskToCopy.getName();
         this.priority = taskToCopy.getPriority();
-        this.email = taskToCopy.getEmail();
         this.startDate = taskToCopy.getStartDate();
+        this.dueDate = taskToCopy.getDueDate();
         this.tags = taskToCopy.getTags();
     }
 
@@ -45,8 +46,8 @@ public class TestTask implements ReadOnlyTask {
         this.startDate = startDate;
     }
 
-    public void setEmail(Email email) {
-        this.email = email;
+    public void setDueDate(DueDate dueDate) {
+        this.dueDate = dueDate;
     }
 
     public void setPriority(Priority priority) {
@@ -68,13 +69,13 @@ public class TestTask implements ReadOnlyTask {
     }
 
     @Override
-    public Email getEmail() {
-        return email;
+    public StartDate getStartDate() {
+        return startDate;
     }
 
     @Override
-    public StartDate getStartDate() {
-        return startDate;
+    public DueDate getDueDate() {
+        return dueDate;
     }
 
     @Override
@@ -91,8 +92,8 @@ public class TestTask implements ReadOnlyTask {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getName().fullName + " ");
         sb.append(PREFIX_STARTDATE + this.getStartDate().value + " ");
+        sb.append(PREFIX_DUEDATE + this.getDueDate().value + " ");
         sb.append(PREFIX_PRIORITY + this.getPriority().value + " ");
-        sb.append(PREFIX_EMAIL + this.getEmail().value + " ");
         this.getTags().asObservableList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }

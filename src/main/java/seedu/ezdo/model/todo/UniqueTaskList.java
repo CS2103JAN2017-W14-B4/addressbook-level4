@@ -22,7 +22,7 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent task as the given argument.
      */
     public boolean contains(ReadOnlyTask toCheck) {
         assert toCheck != null;

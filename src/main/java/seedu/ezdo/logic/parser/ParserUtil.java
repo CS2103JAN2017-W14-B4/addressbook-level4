@@ -15,8 +15,7 @@ import seedu.ezdo.commons.exceptions.IllegalValueException;
 import seedu.ezdo.commons.util.StringUtil;
 import seedu.ezdo.model.tag.Tag;
 import seedu.ezdo.model.tag.UniqueTagList;
-import seedu.ezdo.model.todo.Address;
-import seedu.ezdo.model.todo.Email;
+import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.StartDate;
@@ -84,14 +83,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Optional<String> address} into an {@code Optional<Address>} if {@code address} is present.
-     */
-    public static Optional<Address> parseAddress(Optional<String> address) throws IllegalValueException {
-        assert address != null;
-        return address.isPresent() ? Optional.of(new Address(address.get())) : Optional.empty();
-    }
-
-    /**
      * Parses a {@code Optional<String> startDate} into an {@code Optional<StartDate>} if {@code startDate} is present.
      */
     public static Optional<StartDate> parseStartDate(Optional<String> startDate) throws IllegalValueException {
@@ -100,11 +91,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
+     * Parses a {@code Optional<String> dueDate} into an {@code Optional<DueDate>} if {@code dueDate} is present.
      */
-    public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
-        assert email != null;
-        return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
+    public static Optional<DueDate> parseDueDate(Optional<String> dueDate) throws IllegalValueException {
+        assert dueDate != null;
+        return dueDate.isPresent() ? Optional.of(new DueDate(dueDate.get())) : Optional.empty();
     }
 
     /**

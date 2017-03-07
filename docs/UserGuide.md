@@ -60,7 +60,7 @@ Examples:
 
 
 #### Finding all tasks containing any keyword in their name or deadline: `find / f`
-Finds persons whose names contain any of the given keywords.<br>
+Finds tasks whose names contain any of the given keywords.<br>
 Format: `find KEYWORD [MORE_KEYWORDS] [d/DEADLINE] [p/PRIORITY] [t/TAGNAME]`
 
 > * The search is case insensitive. e.g `milk` will match `Milk`
