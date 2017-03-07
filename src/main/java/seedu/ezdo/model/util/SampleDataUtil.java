@@ -16,22 +16,22 @@ public class SampleDataUtil {
         try {
             return new Task[] {
                 new Task(new Name("Buy one cherry"), new Priority("1"), new Email("1alexyeoh@gmail.com"),
-                    new StartDate("11-01-2017"),
+                    new StartDate("11/01/2017"),
                     new UniqueTagList("groceries")),
                 new Task(new Name("Study for two midterms"), new Priority("2"), new Email("2berniceyu@gmail.com"),
-                    new StartDate("12-02-2017"),
+                    new StartDate("12/02/2017"),
                     new UniqueTagList("school", "exams")),
                 new Task(new Name("Buy ps three"), new Priority("3"), new Email("3charlotte@yahoo.com"),
-                    new StartDate("13-03-2017"),
+                    new StartDate("13/03/2017"),
                     new UniqueTagList("personal")),
                 new Task(new Name("Visit four neighbours"), new Priority("2"), new Email("4lidavid@google.com"),
-                    new StartDate("14-04-2017"),
+                    new StartDate("14/04/2017"),
                     new UniqueTagList("personal")),
                 new Task(new Name("Prepare for five finals"), new Priority("3"), new Email("5irfan@outlook.com"),
-                    new StartDate("15-05-2017"),
+                    new StartDate("15/05/2017"),
                     new UniqueTagList("school", "exams")),
                 new Task(new Name("Prepare six presentations"), new Priority("3"), new Email("6royb@gmail.com"),
-                    new StartDate("16-06-2017"),
+                    new StartDate("16/06/2017"),
                     new UniqueTagList("school", "exams"))
             };
         } catch (IllegalValueException e) {

@@ -15,28 +15,28 @@ public class TypicalTestTasks {
     public TypicalTestTasks() {
         try {
             alice = new TaskBuilder().withName("Alice Pauline")
-                    .withStartDate("1-6-2017").withEmail("alice@gmail.com")
+                    .withStartDate("1/6/2017").withEmail("alice@gmail.com")
                     .withPriority("1")
                     .withTags("friends").build();
-            benson = new TaskBuilder().withName("Benson Meier").withStartDate("12-12-2017")
+            benson = new TaskBuilder().withName("Benson Meier").withStartDate("12/12/2017")
                     .withEmail("johnd@gmail.com").withPriority("1")
                     .withTags("owesMoney", "friends").build();
             carl = new TaskBuilder().withName("Carl Kurz").withPriority("2")
-                    .withEmail("heinz@yahoo.com").withStartDate("02-12-2017").build();
+                    .withEmail("heinz@yahoo.com").withStartDate("02/12/2017").build();
             daniel = new TaskBuilder().withName("Daniel Meier").withPriority("2")
-                    .withEmail("cornelia@google.com").withStartDate("2-12-2017").build();
+                    .withEmail("cornelia@google.com").withStartDate("2/12/2017").build();
             elle = new TaskBuilder().withName("Elle Meyer").withPriority("3")
-                    .withEmail("werner@gmail.com").withStartDate("1-12-2017").build();
+                    .withEmail("werner@gmail.com").withStartDate("1/12/2017").build();
             fiona = new TaskBuilder().withName("Fiona Kunz").withPriority("2")
-                    .withEmail("lydia@gmail.com").withStartDate("13-12-2017").build();
+                    .withEmail("lydia@gmail.com").withStartDate("13/12/2017").build();
             george = new TaskBuilder().withName("George Best").withPriority("3")
-                    .withEmail("anna@google.com").withStartDate("21-12-2017").build();
+                    .withEmail("anna@google.com").withStartDate("21/12/2017").build();
 
             // Manually added
             hoon = new TaskBuilder().withName("Hoon Meier").withPriority("1")
-                    .withEmail("stefan@mail.com").withStartDate("1-1-2020").build();
+                    .withEmail("stefan@mail.com").withStartDate("1/1/2020").build();
             ida = new TaskBuilder().withName("Ida Mueller").withPriority("2")
-                    .withEmail("hans@google.com").withStartDate("1-1-2020").build();
+                    .withEmail("hans@google.com").withStartDate("1/1/2020").build();
         } catch (IllegalValueException e) {
             e.printStackTrace();
             assert false : "not possible";
