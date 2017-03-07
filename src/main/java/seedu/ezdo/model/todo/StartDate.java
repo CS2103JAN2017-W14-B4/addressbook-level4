@@ -12,7 +12,7 @@ public class StartDate {
     public static final String MESSAGE_STARTDATE_CONSTRAINTS =
             "Start dates should be in the format DD-MM-YYYY, and it should not be blank";
 
-    public static final String STARTDATE_VALIDATION_REGEX = "^\\d{1,2}-\\d{1,2}-\\d{4}$";
+    public static final String STARTDATE_VALIDATION_REGEX = "^\\d{1,2}/\\d{1,2}/\\d{4}$";
 
     public final String value;
 
