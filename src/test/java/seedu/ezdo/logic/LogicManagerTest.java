@@ -418,7 +418,7 @@ public class LogicManagerTest {
         private Task adam() throws Exception {
             Name name = new Name("Adam Brown");
             Priority privatePriority = new Priority("1");
-            StartDate privateStartDate = new StartDate("111, alpha street");
+            StartDate privateStartDate = new StartDate("3/3/2017");
             DueDate privateDueDate = new DueDate("16/06/2016");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("longertag2");
@@ -437,7 +437,7 @@ public class LogicManagerTest {
             return new Task(
                     new Name("Task " + seed),
                     new Priority("1"),
-                    new StartDate("House of " + seed),
+                    new StartDate("01/01/2017"),
                     new DueDate("07/07/2007"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
@@ -536,8 +536,8 @@ public class LogicManagerTest {
             return new Task(
                     new Name(name),
                     new Priority("1"),
-                    new StartDate("House of 1"),
-                    new DueDate("09/09/2009"),
+                    new StartDate("1/1/2017"),
+                    new DueDate("09/09/2018"),
                     new UniqueTagList(new Tag("tag"))
             );
         }
