@@ -7,8 +7,8 @@ import org.junit.Test;
 
 public class UserPrefsTest {
 
-    UserPrefs first = new UserPrefs();
-    UserPrefs second = new UserPrefs();
+    private UserPrefs first = new UserPrefs();
+    private UserPrefs second = new UserPrefs();
 
     @Test
     public void bothEquals_assertTrue() {

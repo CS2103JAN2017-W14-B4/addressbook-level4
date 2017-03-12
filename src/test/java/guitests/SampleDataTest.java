@@ -69,6 +69,7 @@ public class SampleDataTest extends EzDoGuiTest {
             PowerMockito.mock(EzDo.class);
             PowerMockito.whenNew(EzDo.class).withNoArguments().thenThrow(new DuplicateTaskException());
             ReadOnlyEzDo ezdo = SampleDataUtil.getSampleEzDo();
+            ezdo.toString();
         } catch (DuplicateTaskException dte) {
             thrown.expect(AssertionError.class);
         }
