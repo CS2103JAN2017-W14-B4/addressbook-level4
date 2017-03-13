@@ -1,5 +1,6 @@
 package guitests;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Rule;
@@ -12,6 +13,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import seedu.ezdo.commons.exceptions.IllegalValueException;
 import seedu.ezdo.model.EzDo;
+import seedu.ezdo.model.ReadOnlyEzDo;
 import seedu.ezdo.model.todo.Task;
 import seedu.ezdo.model.todo.UniqueTaskList.DuplicateTaskException;
 import seedu.ezdo.model.util.SampleDataUtil;
@@ -58,4 +60,9 @@ public class SampleDataTest extends EzDoGuiTest {
         SampleDataUtil.getSampleEzDo();
     }
 
+    @Test
+    public void getSampleEzDo_notNull() {
+        ReadOnlyEzDo sampleEzDo = SampleDataUtil.getSampleEzDo();
+        assertNotNull(sampleEzDo);
+    }
 }
