@@ -17,10 +17,8 @@ import seedu.ezdo.logic.commands.IncorrectCommand;
 import seedu.ezdo.logic.commands.KillCommand;
 import seedu.ezdo.logic.commands.ListCommand;
 import seedu.ezdo.logic.commands.QuitCommand;
-import seedu.ezdo.logic.commands.RedoCommand;
 import seedu.ezdo.logic.commands.SaveCommand;
 import seedu.ezdo.logic.commands.SelectCommand;
-import seedu.ezdo.logic.commands.UndoCommand;
 
 /**
  * Parses user input.
@@ -89,14 +87,6 @@ public class Parser {
 
         case SaveCommand.COMMAND_WORD:
             return new SaveCommandParser().parse(arguments);
-
-        case UndoCommand.COMMAND_WORD:
-        case UndoCommand.SHORT_COMMAND_WORD:
-            return new UndoCommand();
-
-        case RedoCommand.COMMAND_WORD:
-        case RedoCommand.SHORT_COMMAND_WORD:
-            return new RedoCommand();
 
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
