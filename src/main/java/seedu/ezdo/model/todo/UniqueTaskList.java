@@ -124,7 +124,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
     public static class DuplicateTaskException extends DuplicateDataException {
-        protected DuplicateTaskException() {
+        public DuplicateTaskException() {
             super("Operation would result in duplicate tasks");
         }
     }
