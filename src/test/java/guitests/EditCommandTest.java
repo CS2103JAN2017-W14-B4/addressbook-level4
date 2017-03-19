@@ -153,9 +153,6 @@ public class EditCommandTest extends EzDoGuiTest {
 
         commandBox.runCommand("edit 1 t/*&");
         assertResultMessage(Tag.MESSAGE_TAG_CONSTRAINTS);
-
-        commandBox.runCommand("edit 1 s/01/01/2017 00:00 d/01/01/2016 00:00");
-        assertResultMessage(Messages.MESSAGE_TASK_DATES_INVALID);
     }
 
     @Test

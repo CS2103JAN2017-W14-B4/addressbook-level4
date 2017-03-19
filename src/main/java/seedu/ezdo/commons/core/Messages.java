@@ -11,6 +11,5 @@ public class Messages {
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_WRONG_LIST = "Please return to the task list "
                                                   + "if you want to mark a task as done.";
-    public static final String MESSAGE_TASK_DATES_INVALID = "Start date is after due date!";
 
 }

@@ -3,8 +3,6 @@ package seedu.ezdo.logic.commands;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.ezdo.commons.core.Messages;
-import seedu.ezdo.commons.exceptions.DateException;
 import seedu.ezdo.commons.exceptions.IllegalValueException;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
 import seedu.ezdo.model.tag.Tag;
@@ -62,8 +60,6 @@ public class AddCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        } catch (DateException de) {
-            throw new CommandException(Messages.MESSAGE_TASK_DATES_INVALID);
         }
 
     }
