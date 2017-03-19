@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.ezdo.commons.core.Messages;
-import seedu.ezdo.commons.exceptions.DateException;
 import seedu.ezdo.commons.util.CollectionUtil;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
 import seedu.ezdo.model.tag.UniqueTagList;
@@ -66,10 +65,7 @@ public class EditCommand extends Command {
             model.updateTask(filteredTaskListIndex, editedTask);
         } catch (UniqueTaskList.DuplicateTaskException dte) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        } catch (DateException de) {
-            throw new CommandException(Messages.MESSAGE_TASK_DATES_INVALID);
         }
-
         model.updateFilteredListToShowAll();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
