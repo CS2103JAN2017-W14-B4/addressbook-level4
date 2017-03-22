@@ -39,7 +39,7 @@
                               <HBox.margin>
                                  <Insets right="200.0" />
                               </HBox.margin></Label>
-                                 <Label fx:id="priority" alignment="TOP_LEFT" maxWidth="0.0" styleClass="cell_big_label" text="\$priority" wrapText="true">
+                                 <Label fx:id="priority" alignment="TOP_LEFT" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" styleClass="cell_big_label" text="\$priority" wrapText="true">
                               <HBox.margin>
                                  <Insets right="30.0" />
                               </HBox.margin></Label>
