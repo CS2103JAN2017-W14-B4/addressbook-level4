@@ -41,6 +41,7 @@
                   </Menu>
                </menus>
             </MenuBar>
+            <AnchorPane fx:id="statusbarPlaceholder" styleClass="status-bar-with-border" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <AnchorPane fx:id="commandBoxPlaceholder" styleClass="anchor-pane-with-border" VBox.vgrow="NEVER">
@@ -70,6 +71,5 @@
             </AnchorPane>
          </items>
       </SplitPane>
-      <AnchorPane fx:id="statusbarPlaceholder" styleClass="status-bar-with-border" />
    </children>
 </VBox>

@@ -142,7 +142,8 @@
 }
 
 .status-bar-with-border .label {
-    -fx-text-fill: white;
+    -fx-text-fill: brown;
+    -fx-font-weight: bold;
 }
 
 .grid-pane {
