@@ -8,5 +8,6 @@ import seedu.ezdo.model.todo.ReadOnlyTask;
  *
  */
 public interface MultipleIndexCommand {
+    /** checks if the indexes specified are all smaller than the size of the list and not 0 i.e. valid */
     boolean isIndexValid(UnmodifiableObservableList<ReadOnlyTask> lastShownList);
 }
