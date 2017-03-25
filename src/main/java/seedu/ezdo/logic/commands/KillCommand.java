@@ -11,7 +11,7 @@ import seedu.ezdo.model.todo.UniqueTaskList.TaskNotFoundException;
 /**
  * Deletes a task identified using its last displayed index from ezDo.
  */
-public class KillCommand extends Command {
+public class KillCommand extends Command implements MultipleIndexCommand {
 
     public static final String COMMAND_WORD = "kill";
     public static final String SHORT_COMMAND_WORD = "k";
@@ -56,7 +56,8 @@ public class KillCommand extends Command {
         return new CommandResult(String.format(MESSAGE_KILL_TASK_SUCCESS, tasksToKill));
     }
 
-    private boolean isIndexValid(UnmodifiableObservableList<ReadOnlyTask> lastShownList) {
+    @Override
+    public boolean isIndexValid(UnmodifiableObservableList<ReadOnlyTask> lastShownList) {
         return targetIndexes.stream().allMatch(index -> index <= lastShownList.size() && index != 0);
     }
 }
