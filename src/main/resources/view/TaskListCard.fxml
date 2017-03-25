@@ -30,7 +30,10 @@
                         <HBox alignment="CENTER_LEFT" spacing="5">
                             <children>
                                 <HBox spacing="10.0">
-                           <AnchorPane fx:id="priorityColor" minWidth="10.0" prefWidth="10.0" styleClass="anchor-pane" />
+                           <AnchorPane fx:id="priorityColor" minWidth="10.0" prefWidth="10.0" styleClass="anchor-pane">
+                              <children>
+                                       <Label fx:id="priority" alignment="TOP_LEFT" maxWidth="0.0" styleClass="priority_number" wrapText="true" />
+                              </children></AnchorPane>
                                     <Label fx:id="id" alignment="TOP_LEFT" minWidth="30.0" styleClass="cell_big_label" text="\$id" textAlignment="RIGHT" wrapText="true">
                               <HBox.margin>
                                  <Insets left="30.0" />
@@ -38,10 +41,6 @@
                                     <Label fx:id="name" alignment="TOP_LEFT" minWidth="200.0" prefWidth="300.0" styleClass="cell_big_label" text="\$first" wrapText="true">
                               <HBox.margin>
                                  <Insets right="200.0" />
-                              </HBox.margin></Label>
-                                 <Label fx:id="priority" alignment="TOP_LEFT" maxWidth="0.0" styleClass="cell_big_label" text="\$priority" wrapText="true">
-                              <HBox.margin>
-                                 <Insets right="30.0" />
                               </HBox.margin></Label>
                                  <Label fx:id="startDate" alignment="TOP_LEFT" minWidth="120.0" prefWidth="180.0" styleClass="cell_big_label" text="\$startDate" wrapText="true">
                               <HBox.margin>

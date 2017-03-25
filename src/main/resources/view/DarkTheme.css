@@ -111,6 +111,11 @@
      -fx-font-size: 12px;
 }
 
+.anchor-pane .priority_number {
+    -fx-font-size: 0px;
+    -fx-text-fill: transparent;
+}
+
 .anchor-pane-with-border {
     -fx-font-size: 16px;
 }
