@@ -29,7 +29,7 @@ public class TaskCard extends UiPart<Region> {
     private static final String FXML = "TaskListCard.fxml";
     private static final String CSS_BACKGROUND_COLOR = "-fx-background-color: ";
 
-    public static final HashMap<String, String> priorityColorHashMap = new HashMap<>(3);
+    public static final HashMap<String, String> PRIORITY_COLOR_HASHMAP = new HashMap<>(3);
 
     @FXML
     private HBox cardPane;
@@ -50,7 +50,7 @@ public class TaskCard extends UiPart<Region> {
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
-        setPriorityColorHashMap();
+        setPRIORITY_COLOR_HASHMAP();
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         setPriority(task);
@@ -63,18 +63,18 @@ public class TaskCard extends UiPart<Region> {
         this.priorityInString = priorityInString;
     }
 
-    private void setPriorityColorHashMap() {
-        priorityColorHashMap.put(DEFAULT_PRIORITY_NUMBER, DEFAULT_PRIORITY_COLOR);
-        priorityColorHashMap.put(LOW_PRIORITY_NUMBER, LOW_PRIORITY_COLOR);
-        priorityColorHashMap.put(MEDIUM_PRIORITY_NUMBER, MEDIUM_PRIORITY_COLOR);
-        priorityColorHashMap.put(HIGH_PRIORITY_NUMBER, HIGH_PRIORITY_COLOR);
+    private void setPRIORITY_COLOR_HASHMAP() {
+        PRIORITY_COLOR_HASHMAP.put(DEFAULT_PRIORITY_NUMBER, DEFAULT_PRIORITY_COLOR);
+        PRIORITY_COLOR_HASHMAP.put(LOW_PRIORITY_NUMBER, LOW_PRIORITY_COLOR);
+        PRIORITY_COLOR_HASHMAP.put(MEDIUM_PRIORITY_NUMBER, MEDIUM_PRIORITY_COLOR);
+        PRIORITY_COLOR_HASHMAP.put(HIGH_PRIORITY_NUMBER, HIGH_PRIORITY_COLOR);
     }
 
     private void setPriority(ReadOnlyTask task) {
         setPriorityInString(task.getPriority().value);
         priority.setText(priorityInString); // Invisible in UI (for testing
                                             // purposes)
-        priorityColor.setStyle(CSS_BACKGROUND_COLOR + priorityColorHashMap.get(priorityInString));
+        priorityColor.setStyle(CSS_BACKGROUND_COLOR + PRIORITY_COLOR_HASHMAP.get(priorityInString));
     }
 
     private void initTags(ReadOnlyTask task) {
