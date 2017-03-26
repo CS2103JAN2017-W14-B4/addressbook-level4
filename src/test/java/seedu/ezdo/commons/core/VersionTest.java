@@ -1,6 +1,7 @@
 package seedu.ezdo.commons.core;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Rule;
@@ -130,6 +131,18 @@ public class VersionTest {
         one = new Version(100, 191, 275, true);
         another = new  Version(100, 191, 275, true);
         assertTrue(one.equals(another));
+    }
+
+    @Test
+    public void equalsMethod_null() {
+        Version one = new Version(0, 0, 0, false);
+        assertFalse(one.equals(null));
+    }
+
+    @Test
+    public void equalsMethod_notVersion() {
+        Version one = new Version(0, 0, 0, false);
+        assertFalse(one.equals("notVersion"));
     }
 
     private void verifyVersionParsedCorrectly(String versionString,
