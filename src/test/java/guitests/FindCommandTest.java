@@ -46,6 +46,8 @@ public class FindCommandTest extends EzDoGuiTest {
         assertResultMessage(Messages.MESSAGE_UNKNOWN_COMMAND);
         commandBox.runCommand("find s/10a");
         assertResultMessage("Please enter a date in this form: DD/MM/YYYY");
+        commandBox.runCommand("find d/10a");
+        assertResultMessage("Please enter a date in this form: DD/MM/YYYY");
     }
 
     private void assertFindResult(String command, TestTask... expectedHits) {
