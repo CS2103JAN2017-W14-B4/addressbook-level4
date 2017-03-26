@@ -50,7 +50,7 @@ public class TaskCard extends UiPart<Region> {
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
-        setPRIORITY_COLOR_HASHMAP();
+        setPriorityColorHashMap();
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         setPriority(task);
@@ -63,7 +63,7 @@ public class TaskCard extends UiPart<Region> {
         this.priorityInString = priorityInString;
     }
 
-    private void setPRIORITY_COLOR_HASHMAP() {
+    private void setPriorityColorHashMap() {
         PRIORITY_COLOR_HASHMAP.put(DEFAULT_PRIORITY_NUMBER, DEFAULT_PRIORITY_COLOR);
         PRIORITY_COLOR_HASHMAP.put(LOW_PRIORITY_NUMBER, LOW_PRIORITY_COLOR);
         PRIORITY_COLOR_HASHMAP.put(MEDIUM_PRIORITY_NUMBER, MEDIUM_PRIORITY_COLOR);

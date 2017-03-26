@@ -41,7 +41,7 @@ public class TaskCardHandle extends GuiHandle {
 
     public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
         super(guiRobot, primaryStage, null);
-        setTEST_PRIORITY_COLOR_HASHMAP();
+        setTestPriorityColorHashMap();
         this.node = node;
     }
 
@@ -87,7 +87,7 @@ public class TaskCardHandle extends GuiHandle {
         return guiRobot.from(node).lookup(TAGS_FIELD_ID).query();
     }
 
-    private void setTEST_PRIORITY_COLOR_HASHMAP() {
+    private void setTestPriorityColorHashMap() {
         TEST_PRIORITY_COLOR_HASHMAP.put(TEST_DEFAULT_PRIORITY_NUMBER, TEST_DEFAULT_PRIORITY_COLOR);
         TEST_PRIORITY_COLOR_HASHMAP.put(TEST_LOW_PRIORITY_NUMBER, TEST_LOW_PRIORITY_COLOR);
         TEST_PRIORITY_COLOR_HASHMAP.put(TEST_MEDIUM_PRIORITY_NUMBER, TEST_MEDIUM_PRIORITY_COLOR);
