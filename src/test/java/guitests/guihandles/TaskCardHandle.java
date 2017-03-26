@@ -35,13 +35,13 @@ public class TaskCardHandle extends GuiHandle {
     private static final String TEST_HIGH_PRIORITY_COLOR = "red";
     private static final String TEST_HIGH_PRIORITY_NUMBER = "3";
 
-    public static final HashMap<String, String> testPriorityColorHashMap = new HashMap<>(3);
+    public static final HashMap<String, String> TEST_PRIORITY_COLOR_HASHMAP = new HashMap<>(3);
 
     private Node node;
 
     public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
         super(guiRobot, primaryStage, null);
-        setTestPriorityColorHashMap();
+        setTEST_PRIORITY_COLOR_HASHMAP();
         this.node = node;
     }
 
@@ -66,7 +66,7 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     public String getTaskPriorityColor() {
-        return TaskCard.priorityColorHashMap.get(getPriority());
+        return TaskCard.PRIORITY_COLOR_HASHMAP.get(getPriority());
     }
 
     public List<String> getTags() {
@@ -87,11 +87,11 @@ public class TaskCardHandle extends GuiHandle {
         return guiRobot.from(node).lookup(TAGS_FIELD_ID).query();
     }
 
-    private void setTestPriorityColorHashMap() {
-        testPriorityColorHashMap.put(TEST_DEFAULT_PRIORITY_NUMBER, TEST_DEFAULT_PRIORITY_COLOR);
-        testPriorityColorHashMap.put(TEST_LOW_PRIORITY_NUMBER, TEST_LOW_PRIORITY_COLOR);
-        testPriorityColorHashMap.put(TEST_MEDIUM_PRIORITY_NUMBER, TEST_MEDIUM_PRIORITY_COLOR);
-        testPriorityColorHashMap.put(TEST_HIGH_PRIORITY_NUMBER, TEST_HIGH_PRIORITY_COLOR);
+    private void setTEST_PRIORITY_COLOR_HASHMAP() {
+        TEST_PRIORITY_COLOR_HASHMAP.put(TEST_DEFAULT_PRIORITY_NUMBER, TEST_DEFAULT_PRIORITY_COLOR);
+        TEST_PRIORITY_COLOR_HASHMAP.put(TEST_LOW_PRIORITY_NUMBER, TEST_LOW_PRIORITY_COLOR);
+        TEST_PRIORITY_COLOR_HASHMAP.put(TEST_MEDIUM_PRIORITY_NUMBER, TEST_MEDIUM_PRIORITY_COLOR);
+        TEST_PRIORITY_COLOR_HASHMAP.put(TEST_HIGH_PRIORITY_NUMBER, TEST_HIGH_PRIORITY_COLOR);
     }
 
     public boolean isSameTask(ReadOnlyTask task) {
@@ -100,7 +100,7 @@ public class TaskCardHandle extends GuiHandle {
         boolean equalTags = taskTags.containsAll(cardTags) && cardTags.containsAll(taskTags);
 
         return getFullName().equals(task.getName().fullName) && getPriority().equals(task.getPriority().value)
-                && getTaskPriorityColor().equals(testPriorityColorHashMap.get(getPriority()))
+                && getTaskPriorityColor().equals(TEST_PRIORITY_COLOR_HASHMAP.get(getPriority()))
                 && getStartDate().equals(task.getStartDate().value) && getDueDate().equals(task.getDueDate().value)
                 && equalTags;
     }
@@ -110,7 +110,7 @@ public class TaskCardHandle extends GuiHandle {
         if (obj instanceof TaskCardHandle) {
             TaskCardHandle handle = (TaskCardHandle) obj;
             return getFullName().equals(handle.getFullName()) && getPriority().equals(handle.getPriority())
-                    && getTaskPriorityColor().equals(testPriorityColorHashMap.get(getPriority()))
+                    && getTaskPriorityColor().equals(TEST_PRIORITY_COLOR_HASHMAP.get(getPriority()))
                     && getStartDate().equals(handle.getStartDate()) && getTags().equals(handle.getTags());
         }
         return super.equals(obj);
