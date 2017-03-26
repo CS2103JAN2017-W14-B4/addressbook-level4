@@ -14,7 +14,7 @@ public class TaskCard extends UiPart<Region> {
 
     private String priorityInString;
 
-    private static final String DEFAULT_PRIORITY_NUMBER = new String();
+    private static final String DEFAULT_PRIORITY_NUMBER = "";
     private static final String DEFAULT_PRIORITY_COLOR = "transparent";
 
     private static final String LOW_PRIORITY_NUMBER = "1";

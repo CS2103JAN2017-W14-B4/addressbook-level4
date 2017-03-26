@@ -23,7 +23,7 @@ public class TaskCardHandle extends GuiHandle {
     private static final String DUEDATE_FIELD_ID = "#dueDate";
     private static final String TAGS_FIELD_ID = "#tags";
 
-    private static final String TEST_DEFAULT_PRIORITY_NUMBER = new String();
+    private static final String TEST_DEFAULT_PRIORITY_NUMBER = "";
     private static final String TEST_DEFAULT_PRIORITY_COLOR = "transparent";
 
     private static final String TEST_LOW_PRIORITY_NUMBER = "1";
