@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -53,6 +54,33 @@
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
            </padding>
        </AnchorPane>
+      <GridPane styleClass="grid-pane">
+        <columnConstraints>
+          <ColumnConstraints maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+          <ColumnConstraints minWidth="90.0" />
+            <ColumnConstraints minWidth="460.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints minWidth="250.0" />
+            <ColumnConstraints minWidth="250.0" />
+            <ColumnConstraints minWidth="100.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" minWidth="20.0" text="Index" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></Label>
+            <Label minWidth="290.0" text="Task" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></Label>
+            <Label maxWidth="180.0" minWidth="180.0" text="Start Date" GridPane.columnIndex="4" />
+            <Label maxWidth="180.0" minWidth="180.0" text="Due Date" GridPane.columnIndex="5" />
+            <Label maxWidth="400.0" minWidth="400.0" prefWidth="400.0" text="Tags" GridPane.columnIndex="6" />
+         </children>
+      </GridPane>
       <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="1.0" VBox.vgrow="ALWAYS">
          <items>
             <VBox fx:id="taskList" minWidth="340" prefWidth="340">
