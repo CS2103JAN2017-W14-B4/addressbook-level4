@@ -1,5 +1,6 @@
 package guitests.guihandles;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.ezdo.model.tag.UniqueTagList;
 import seedu.ezdo.model.todo.ReadOnlyTask;
+import seedu.ezdo.ui.TaskCard;
 
 /**
  * Provides a handle to a task card in the task list panel.
@@ -21,10 +23,25 @@ public class TaskCardHandle extends GuiHandle {
     private static final String DUEDATE_FIELD_ID = "#dueDate";
     private static final String TAGS_FIELD_ID = "#tags";
 
+    private static final String TEST_DEFAULT_PRIORITY_NUMBER = new String();
+    private static final String TEST_DEFAULT_PRIORITY_COLOR = "transparent";
+
+    private static final String TEST_LOW_PRIORITY_NUMBER = "1";
+    private static final String TEST_LOW_PRIORITY_COLOR = "green";
+
+    private static final String TEST_MEDIUM_PRIORITY_NUMBER = "2";
+    private static final String TEST_MEDIUM_PRIORITY_COLOR = "orange";
+
+    private static final String TEST_HIGH_PRIORITY_COLOR = "red";
+    private static final String TEST_HIGH_PRIORITY_NUMBER = "3";
+
+    public static final HashMap<String, String> testPriorityColorHashMap = new HashMap<>(3);
+
     private Node node;
 
     public TaskCardHandle(GuiRobot guiRobot, Stage primaryStage, Node node) {
         super(guiRobot, primaryStage, null);
+        setTestPriorityColorHashMap();
         this.node = node;
     }
 
@@ -48,8 +65,8 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(PRIORITY_FIELD_ID);
     }
 
-    public String getEmail() {
-        return getTextFromLabel(DUEDATE_FIELD_ID);
+    public String getTaskPriorityColor() {
+        return TaskCard.priorityColorHashMap.get(getPriority());
     }
 
     public List<String> getTags() {
@@ -57,24 +74,24 @@ public class TaskCardHandle extends GuiHandle {
     }
 
     private List<String> getTags(Region tagsContainer) {
-        return tagsContainer
-                .getChildrenUnmodifiable()
-                .stream()
-                .map(node -> ((Labeled) node).getText())
+        return tagsContainer.getChildrenUnmodifiable().stream().map(node -> ((Labeled) node).getText())
                 .collect(Collectors.toList());
     }
 
     private List<String> getTags(UniqueTagList tags) {
-        return tags
-                .asObservableList()
-                .stream()
-                .sorted((f1, f2) -> f1.tagName.compareTo(f2.tagName))
-                .map(tag -> tag.tagName)
-                .collect(Collectors.toList());
+        return tags.asObservableList().stream().sorted((f1, f2) -> f1.tagName.compareTo(f2.tagName))
+                .map(tag -> tag.tagName).collect(Collectors.toList());
     }
 
     private Region getTagsContainer() {
         return guiRobot.from(node).lookup(TAGS_FIELD_ID).query();
+    }
+
+    private void setTestPriorityColorHashMap() {
+        testPriorityColorHashMap.put(TEST_DEFAULT_PRIORITY_NUMBER, TEST_DEFAULT_PRIORITY_COLOR);
+        testPriorityColorHashMap.put(TEST_LOW_PRIORITY_NUMBER, TEST_LOW_PRIORITY_COLOR);
+        testPriorityColorHashMap.put(TEST_MEDIUM_PRIORITY_NUMBER, TEST_MEDIUM_PRIORITY_COLOR);
+        testPriorityColorHashMap.put(TEST_HIGH_PRIORITY_NUMBER, TEST_HIGH_PRIORITY_COLOR);
     }
 
     public boolean isSameTask(ReadOnlyTask task) {
@@ -82,10 +99,9 @@ public class TaskCardHandle extends GuiHandle {
         List<String> cardTags = getTags();
         boolean equalTags = taskTags.containsAll(cardTags) && cardTags.containsAll(taskTags);
 
-        return getFullName().equals(task.getName().fullName)
-                && getPriority().equals(task.getPriority().value)
-                && getStartDate().equals(task.getStartDate().value)
-                && getDueDate().equals(task.getDueDate().value)
+        return getFullName().equals(task.getName().fullName) && getPriority().equals(task.getPriority().value)
+                && getTaskPriorityColor().equals(testPriorityColorHashMap.get(getPriority()))
+                && getStartDate().equals(task.getStartDate().value) && getDueDate().equals(task.getDueDate().value)
                 && equalTags;
     }
 
@@ -93,11 +109,9 @@ public class TaskCardHandle extends GuiHandle {
     public boolean equals(Object obj) {
         if (obj instanceof TaskCardHandle) {
             TaskCardHandle handle = (TaskCardHandle) obj;
-            return getFullName().equals(handle.getFullName())
-                    && getPriority().equals(handle.getPriority())
-                    && getEmail().equals(handle.getEmail())
-                    && getStartDate().equals(handle.getStartDate())
-                    && getTags().equals(handle.getTags());
+            return getFullName().equals(handle.getFullName()) && getPriority().equals(handle.getPriority())
+                    && getTaskPriorityColor().equals(testPriorityColorHashMap.get(getPriority()))
+                    && getStartDate().equals(handle.getStartDate()) && getTags().equals(handle.getTags());
         }
         return super.equals(obj);
     }
