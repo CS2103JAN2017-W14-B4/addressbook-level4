@@ -48,6 +48,13 @@ public class ArgumentTokenizer {
     }
 
     /**
+     * Returns a list of all prefixes
+     */
+    public List<Prefix> getAllValue() {
+        return this.prefixes;
+    }
+
+    /**
      * Returns all values of given prefix.
      */
     public Optional<List<String>> getAllValues(Prefix prefix) {

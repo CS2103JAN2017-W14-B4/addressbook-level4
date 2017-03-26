@@ -41,19 +41,23 @@ public class FindCommandParser implements CommandParser {
         ArgumentTokenizer argsTokenizer = new ArgumentTokenizer(PREFIX_PRIORITY, PREFIX_STARTDATE, PREFIX_DUEDATE,
                 PREFIX_TAG);
         argsTokenizer.tokenize(args);
-        String namesToMatch = argsTokenizer.getPreamble().orElse(""); //eat sleep rave relax
+        String namesToMatch = argsTokenizer.getPreamble().orElse("");
         String[] splitNames = namesToMatch.split("\\s+");
 
         Optional<Priority> findPriority;
-        Optional<TaskDate> findStartDate;
-        Optional<TaskDate> findDueDate;
+        Optional<TaskDate> findStartDate = null;
+        Optional<TaskDate> findDueDate = null;
         Set<String> findTags;
 
         try {
-            findPriority = ParserUtil.parsePriority(getOptionalValue(argsTokenizer, PREFIX_PRIORITY));
-            findStartDate = ParserUtil.parseStartDate(getOptionalValue(argsTokenizer, PREFIX_STARTDATE), true);
-            findDueDate = ParserUtil.parseDueDate(getOptionalValue(argsTokenizer, PREFIX_DUEDATE), true);
+
+            boolean isFind = true;
+            Optional<String> optionalStartDate = getOptionalValue(argsTokenizer, PREFIX_STARTDATE);
+            Optional<String> optionalDueDate = getOptionalValue(argsTokenizer, PREFIX_DUEDATE);
+            findStartDate = ParserUtil.parseStartDate(optionalStartDate, isFind);
+            findDueDate = ParserUtil.parseDueDate(optionalDueDate, isFind);
             findTags = ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG));
+            findPriority = ParserUtil.parsePriority(getOptionalValue(argsTokenizer, PREFIX_PRIORITY));
 
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
@@ -72,5 +76,6 @@ public class FindCommandParser implements CommandParser {
         }
         return optionalString;
     }
+
 
 }

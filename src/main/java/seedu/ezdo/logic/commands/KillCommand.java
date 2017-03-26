@@ -44,7 +44,6 @@ public class KillCommand extends Command implements MultipleIndexCommand {
         for (int i = 0; i < targetIndexes.size(); i++) {
             ReadOnlyTask taskToKill = lastShownList.get(targetIndexes.get(i) - 1);
             tasksToKill.add(taskToKill);
-            System.out.println(tasksToKill);
         }
 
         try {

@@ -1,9 +1,10 @@
 package seedu.ezdo.logic.parser;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.joestelmach.natty.DateGroup;
 import com.joestelmach.natty.Parser;
@@ -12,33 +13,33 @@ public class DateParser {
 
     public String value;
 
-    public static final String USER_DATE_INPUT_FORMAT = "dd/MM/yyyy HH:mm";
     public static final String USER_DATE_OUTPUT_FORMAT = "dd/MM/yyyy HH:mm";
-    public static final String NATTY_DATE_FORMAT = "MM/dd/yyyy HH:mm";
 
-    public final SimpleDateFormat userInputDateFormat = new SimpleDateFormat(USER_DATE_INPUT_FORMAT);
+    public static final String DAY_MONTH_YEAR_FORMAT = "^([0-9]{1,2}[-/])([0-9]{1,2}[-/])([0-9]{4}.*)";
+
     public final SimpleDateFormat userOutputDateFormat = new SimpleDateFormat(USER_DATE_OUTPUT_FORMAT);
-    public final SimpleDateFormat nattyDateFormat = new SimpleDateFormat(NATTY_DATE_FORMAT);
+
 
     public DateParser(String input) {
-        try {
-            // Format input string to suit Natty dependency
-            String formattedInitialTaskDate = changeToNattyDateFormat(input);
-            this.value = nattyManipulation(formattedInitialTaskDate);
-        } catch (ParseException pe) {
-            this.value = nattyManipulation(input);
+        // swap day and month as natty only accepts the MM/DD/YYYY format
+        if (input.matches(DAY_MONTH_YEAR_FORMAT)) {
+            input = swapDayAndMonth(input);
         }
+        this.value = nattyManipulation(input);
     }
 
     /**
-     * Changes the initial date format of a string input for Natty.
+     * Swaps the day and month of a date in DD/MM/YYYY format for natty to parse.
+     *
+     * @param input A string representing a date in the DD/MM/YYYY format.
+     * @return A string equal to the input date but in MM/DD/YYYY format.
      */
-    private String changeToNattyDateFormat(String input) throws ParseException {
+    private String swapDayAndMonth(String input) {
+        Pattern dayMonthYearPattern = Pattern.compile(DAY_MONTH_YEAR_FORMAT);
+        Matcher matcher = dayMonthYearPattern.matcher(input);
 
-        Date userDateObject = userInputDateFormat.parse(input);
-        String output = nattyDateFormat.format(userDateObject);
-
-        return output;
+        matcher.matches();
+        return matcher.group(2) + matcher.group(1) + matcher.group(3);
     }
 
     /**
@@ -46,7 +47,6 @@ public class DateParser {
      * input in String.
      */
     private String nattyManipulation(String taskDate) {
-
         try {
             // Initialises Natty parser
             Parser parser = new Parser();
@@ -58,14 +58,12 @@ public class DateParser {
             Date parsedDate = dateGroupList.get(0).getDates().get(0);
 
             // Format parsed date to suit the UI
-            String formattedFinalTaskDate = userOutputDateFormat.format(parsedDate);
 
-            return formattedFinalTaskDate;
+            return userOutputDateFormat.format(parsedDate);
 
         } catch (IndexOutOfBoundsException e) {
             return taskDate;
         }
-
     }
 
 }
