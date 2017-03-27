@@ -9,7 +9,12 @@ import com.google.common.eventbus.Subscribe;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import seedu.ezdo.commons.core.Config;
 import seedu.ezdo.commons.core.EventsCenter;
 import seedu.ezdo.commons.core.LogsCenter;
@@ -167,6 +172,27 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting EzDo " + MainApp.VERSION);
         ui.start(primaryStage);
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+
+                // consume event
+                event.consume();
+
+                // show close dialog
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("ezDo");
+                alert.setHeaderText("Exit Confirmation");
+                alert.setContentText("Click OK to exit the application.");
+                alert.initOwner(primaryStage);
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    stop();
+                }
+            }
+        });
     }
 
     @Override
