@@ -46,6 +46,7 @@ public class EditCommandTest extends EzDoGuiTest {
         assertEditSuccess(true, ezDoIndex, ezDoIndex, detailsToEdit, editedTask);
     }
 
+    //@@author A0138907W
     @Test
     public void edit_eachFieldSpecified_success() throws Exception {
 
@@ -85,6 +86,8 @@ public class EditCommandTest extends EzDoGuiTest {
 
         assertEditSuccess(false, ezDoIndex, ezDoIndex, detailsToEdit, editedTask);
     }
+
+    //@@author
 
     @Test
     public void edit_notAllFieldsSpecified_success() throws Exception {

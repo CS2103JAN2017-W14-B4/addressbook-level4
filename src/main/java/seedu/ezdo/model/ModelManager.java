@@ -408,6 +408,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     }
 
+    //@@author A0138907W
     @Override
     public void sortTasks(SortCriteria sortCriteria, Boolean isSortedAscending) {
         if (!this.currentSortCriteria.equals(sortCriteria)) {

@@ -27,7 +27,8 @@ public class DateUtil {
         Date dueDate = df.parse(task.getDueDate().toString());
         return (startDate.compareTo(dueDate) <= 0);
     }
-  //@@author
+
+    //@@author A0138907W
     /**
      * Compares two dates strings. Both strings must be in the format dd/MM/yyyy hh:mm.
      * Empty strings are considered to be of lower value than non-empty strings.

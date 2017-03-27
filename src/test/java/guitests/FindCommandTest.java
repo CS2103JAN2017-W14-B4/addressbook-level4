@@ -40,6 +40,7 @@ public class FindCommandTest extends EzDoGuiTest {
         assertFindResult("find Meier", td.benson, td.daniel);
     }
 
+    //@@author A0138907W
     @Test
     public void find_shortCommand() {
         assertFindResult("f Mark"); // no results
@@ -50,6 +51,7 @@ public class FindCommandTest extends EzDoGuiTest {
         assertFindResult("f Meier", td.daniel);
     }
 
+    //@@author
     @Test
     public void find_emptyList() {
         commandBox.runCommand("clear");

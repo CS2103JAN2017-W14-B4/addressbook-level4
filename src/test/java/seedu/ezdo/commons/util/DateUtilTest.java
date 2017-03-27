@@ -61,6 +61,7 @@ public class DateUtilTest {
         assertTrue(DateUtil.isTaskDateValid(task));
     }
 
+    //@@author A0138907W
     @Test
     public void noDates_pass() throws Exception {
         TestTask task = new TaskBuilder().withName("Alson").withPriority("3").withStartDate("")
@@ -69,6 +70,7 @@ public class DateUtilTest {
         assertTrue(DateUtil.isTaskDateValid(task));
     }
 
+    //@@author
     @Test
     public void twoDates_equal_pass() throws Exception {
         TestTask task = new TaskBuilder().withName("Alson").withPriority("3")
