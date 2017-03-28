@@ -1,5 +1,5 @@
+//@@author A0139177W
 package guitests.guihandles;
-
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,3 +1,4 @@
+//@@author A0139177W
 package seedu.ezdo.ui;
 
 import javafx.event.ActionEvent;
@@ -200,5 +201,5 @@ public class MainWindow extends UiPart<Region> {
     public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
     }
-
+ //@@author A0139177W
 }
