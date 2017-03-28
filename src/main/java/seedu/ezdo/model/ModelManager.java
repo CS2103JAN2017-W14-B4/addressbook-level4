@@ -77,7 +77,7 @@ public class ModelManager extends ComponentManager implements Model {
         ezDo.resetData(newData);
         indicateEzDoChanged();
     }
-  //@@author A0139248X
+  //@@author
     @Override
     public ReadOnlyEzDo getEzDo() {
         return ezDo;
@@ -110,6 +110,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateEzDoChanged();
     }
+
   //@@author A0141010L
     @Override
     public synchronized void doneTasks(ArrayList<Task> doneTasks) {
@@ -169,7 +170,8 @@ public class ModelManager extends ComponentManager implements Model {
             throw new DateException("Error parsing dates!");
         }
     }
-  //@@author A0141010L
+
+    //@@author A0141010L
     // =========== Filtered Task List Accessors
     // =============================================================
 
