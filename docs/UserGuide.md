@@ -15,11 +15,12 @@
 	3.6. [Finding tasks: **`find / f`**](#36-finding-tasks-find--f)<br>
 	3.7. [Listing all tasks: **`list / l`**](#37-listing-all-tasks-list--l)<br>
 	3.8. [Reverts the command: **`undo / u`**](#38-reverting-the-last-action-undo--u)<br>
-	3.9. [Clearing all entries: **`clear /c `**](#39-clearing-all-entries-clear--c)<br>
-	3.10. [Moving the save file: **`save`**](#310-moving-the-save-file-save)<br>
-	3.11. [Aliasing a command: **`alias`**](#311-aliasing-a-command)<br>
-	3.12. [Exiting the program: **`quit / q`**](#312-exiting-the-program-quit--q)<br>
-	3.13. [Viewing help: **`help / h`**](#313-viewing-help-help--h)<br>
+	3.9. [Redoing the last undone command: **`redo / r`**](#39-redoing-the-last-undone-action-redo--r)<br>
+	3.10. [Clearing all entries: **`clear /c `**](#310-clearing-all-entries-clear--c)<br>
+	3.11. [Moving the save file: **`save`**](#311-moving-the-save-file-save)<br>
+	3.12. [Aliasing a command: **`alias`**](#312-aliasing-a-command-alias)<br>
+	3.13. [Exiting the program: **`quit / q`**](#313-exiting-the-program-quit--q)<br>
+	3.14. [Viewing help: **`help / h`**](#314-viewing-help-help--h)<br>
 4. [Frequently Asked Questions](#4-frequently-asked-questions)<br>
 5. [Command Summary](#5-command-summary)<br>
 
@@ -360,7 +361,7 @@ _**Reverts the last command.**_<br>
 <br>
 
 > - Only the following commands can be undone: **`add`**, **`clear`**, **`done`**, **`edit`**, **`kill`**.<br><br>
-> -	The command **`undo`** can only be used up to <u>5 times</u> consecutively
+> -	The command **`undo`** can only be used up to <u>5 times</u> consecutively.
 
 <br>
 
@@ -371,7 +372,29 @@ Revert the task **`buy milk`** that was just deleted by typing **`undo`**
 <br>
 
 
-### 3.9 Clearing all entries: `clear / c`
+### 3.9 Redoing the last undone action: `redo / r`
+---
+_**Redoes the last undone command.**_<br>
+
+#### Format:
+
+**`redo`**
+
+<br>
+
+> - Only commands that can be undone can be redone.<br><br>
+> - The command **`redo`** can only be used up to <u>5 times</u> consecutively.
+
+<br>
+
+#### Example:
+
+Redo the last undone deletion of the task **`buy milk`** i.e. delete it again, by typing **`redo`**
+
+<br>
+
+
+### 3.10 Clearing all entries: `clear / c`
 ---
 _**Clears all entries from ezDo.**_<br>
 
@@ -382,7 +405,7 @@ _**Clears all entries from ezDo.**_<br>
 <br>
 
 
-### 3.10 Moving the save file: `save`
+### 3.11 Moving the save file: `save`
 ---
 _**Moves the save file of ezDo to a specified directory.**_<br>
 
@@ -403,7 +426,7 @@ _**Moves the save file of ezDo to a specified directory.**_<br>
 
 <br>
 
-### 3.11 Aliasing a command: `alias`
+### 3.12 Aliasing a command: `alias`
 ---
 _**Maps a command to the shortcut specified.**_<br>
 
@@ -427,7 +450,7 @@ Now you can quit ezDo by entering **`boom`**<br>
 <br>
 
 
-### 3.12 Exiting the program: `quit / q`
+### 3.13 Exiting the program: `quit / q`
 ---
 _**Exits the program.**_<br>
 
@@ -442,7 +465,7 @@ _**Exits the program.**_<br>
 <br>
 
 
-### 3.13 Viewing help: `help / h`
+### 3.14 Viewing help: `help / h`
 ---
 _**Brings up the help guide in a separate window.**_<br>
 
@@ -468,19 +491,20 @@ For your convenience, the parameters for every command available in ezDo are sum
 
 |Command|Parameters                                               |
 |:-----:|---------------------------------------------------------|
-|[add / a](#1-adding-a-task-add--a)             |**`add TASKNAME [p/PRIORITY] [s/STARTDATE] [d/DUEDATE] [t/TAGNAME...]`**             |
-|[edit / e](#2-editing-a-task-edit--e)          |**`edit INDEX [NEWTASKNAME] [p/NEWPRIORITY] [s/NEWSTARTDATE] [d/NEWDUEDATE] [t/NEWTAGNAME...]`**            |
-|[done / d](#3-marking-a-task-as-done-done--d)  |**`done INDEX`**    |
-|[kill / k](#4-deleting-a-task-kill--k)         |**`kill INDEX`**          |
-|[sort / s](#5-sorting-a-list-of-tasks-sort--s) |**`sort FIELD [ORDER]`** |
-|[find / f](#6-finding-tasks-find--f)           |**`find [KEYWORD] [MORE_KEYWORDS] [p/PRIORITY] [s/STARTDATE] [d/DUEDATE] [t/TAGNAME...]`**      |
-|[list / l](#7-listing-all-tasks-list--l)       |**`list`**         |
-|[undo / u](#8-undoing-the-last-action-undo--u) |**`undo`** |
-|[clear / c](#9-clearing-all-entries-clear--c)  |**`clear`**       |
-|[save](#10-moving-the-save-file-save)      |**`save DIRECTORY`**    |
-|[alias](#11-aliasing-a-command)      |**`alias COMMAND SHORTCUT`**    |
-|[quit / q](#12-exiting-the-program-quit--q)    |**`quit`**              |
-|[help / h](#13-viewing-help-help--h)           |**`help`**    |
+|[add / a](#31-adding-a-task-add--a)             |**`add TASKNAME [p/PRIORITY] [s/STARTDATE] [d/DUEDATE] [t/TAGNAME...]`**             |
+|[edit / e](#32-editing-a-task-edit--e)         |**`edit INDEX [NEWTASKNAME] [p/NEWPRIORITY] [s/NEWSTARTDATE] [d/NEWDUEDATE] [t/NEWTAGNAME...]`**            |
+|[done / d](#33-marking-a-task-as-done-done--d)  |**`done INDEX`**    |
+|[kill / k](#34-deleting-a-task-kill--k)        |**`kill INDEX`**          |
+|[sort / s](#35-sorting-a-list-of-tasks-sort--s) |**`sort FIELD [ORDER]`** |
+|[find / f](#36-finding-tasks-find--f)           |**`find [KEYWORD] [MORE_KEYWORDS] [p/PRIORITY] [s/STARTDATE] [d/DUEDATE] [t/TAGNAME...]`**      |
+|[list / l](#37-listing-all-tasks-list--l)       |**`list`**         |
+|[undo / u](#38-reverting-the-last-action-undo--u) |**`undo`** |
+|[redo / r](#39-redoing-the-last-undone-action-redo--r)|**`redo`**|
+|[clear / c](#310-clearing-all-entries-clear--c)  |**`clear`**       |
+|[save](#311-moving-the-save-file-save)      |**`save DIRECTORY`**    |
+|[alias](#312-aliasing-a-command-alias)      |**`alias COMMAND SHORTCUT`**    |
+|[quit / q](#313-exiting-the-program-quit--q)    |**`quit`**              |
+|[help / h](#314-viewing-help-help--h)           |**`help`**    |
 
 <h5 align="center">Table 3: Command Summary</h5>
 
