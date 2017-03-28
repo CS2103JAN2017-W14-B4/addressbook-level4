@@ -110,7 +110,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateEzDoChanged();
     }
-  //@@author A0139248X
+  //@@author A0141010L
     @Override
     public synchronized void doneTasks(ArrayList<Task> doneTasks) {
         updateStacks();
@@ -118,7 +118,7 @@ public class ModelManager extends ComponentManager implements Model {
         updateFilteredListToShowAll();
         indicateEzDoChanged();
     }
-
+  //@@author
     @Override
     public void updateTask(int filteredTaskListIndex, ReadOnlyTask editedTask)
             throws UniqueTaskList.DuplicateTaskException, DateException {
@@ -169,7 +169,7 @@ public class ModelManager extends ComponentManager implements Model {
             throw new DateException("Error parsing dates!");
         }
     }
-  //@@author A0139248X
+  //@@author A0141010L
     // =========== Filtered Task List Accessors
     // =============================================================
 
@@ -409,7 +409,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
 
     }
-
+    //@@author
     @Override
     public void sortTasks(SortCriteria sortCriteria, Boolean isSortedAscending) {
         if (!this.currentSortCriteria.equals(sortCriteria)) {
