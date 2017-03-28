@@ -7,7 +7,7 @@ import seedu.ezdo.commons.core.UnmodifiableObservableList;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
 import seedu.ezdo.model.todo.ReadOnlyTask;
 import seedu.ezdo.model.todo.Task;
-
+//@@author A0141010L
 /**
  * Marks a task as identified using its last displayed index from ezDo as done
  */
@@ -68,6 +68,7 @@ public class DoneCommand extends Command implements MultipleIndexCommand {
 
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, tasksToDone));
     }
+  //@@author
   //@@author A0139248X
     private boolean isAnyTaskDone(UnmodifiableObservableList<ReadOnlyTask> lastShownList) {
         for (int i = 0; i < targetIndexes.size(); i++) {
@@ -84,3 +85,4 @@ public class DoneCommand extends Command implements MultipleIndexCommand {
         return targetIndexes.stream().allMatch(index -> index <= lastShownList.size() && index != 0);
     }
 }
+//@author
