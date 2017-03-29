@@ -1,8 +1,13 @@
 package seedu.ezdo.ui;
 
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -194,7 +199,17 @@ public class MainWindow extends UiPart<Region> {
      */
     @FXML
     private void handleExit() {
-        raise(new ExitAppRequestEvent());
+        // show close dialog
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("ezDo");
+        alert.setHeaderText("Exit Confirmation");
+        alert.setContentText("Click OK to exit the application.");
+        alert.initOwner(primaryStage);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            raise(new ExitAppRequestEvent());
+        }
     }
 
     public TaskListPanel getTaskListPanel() {
