@@ -20,8 +20,18 @@ Responsibilities: Deliverables and Deadlines, Scheduling and Tracking
 
 #### [Chen Zhi Liang](http://github.com/chenzhiliang94)
 <img src="images/chenzhiliang94.png" width="150"><br>
+
+* Components in charge of: [Model](https://github.com/CS2103JAN2017-W14-B4/main/tree/master/src/main/java/seedu/ezdo/model)
+* Aspects/tools in charge of: Task searching
+* Features implemented:
+   * [Done task](https://github.com/CS2103JAN2017-W14-B4/main/blob/master/docs/UserGuide.md#3-marking-a-task-as-done-done--d)
+   * [Find task](https://github.com/CS2103JAN2017-W14-B4/main/blob/master/docs/UserGuide.md#6-finding-tasks-find--f)
+* Code written: [[functional code](A0141010L.md)][[test code](A0141010L.md)]
+* Other major contributions:
+  * Did the initial refactoring from Email to Priority
+  * In charge of debugging and task searching
 Role: Developer <br>
-Responsibilities: Code Quality, Integration
+Responsibilities: Algorithm regarding task searching, Integration
 
 -----
 
