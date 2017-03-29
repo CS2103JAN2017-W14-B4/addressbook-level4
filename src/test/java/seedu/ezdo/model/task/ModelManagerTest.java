@@ -46,6 +46,7 @@ public class ModelManagerTest {
     }
   //@@author
 
+    //@@author A0138907W
     @Test
     public void compareDate_parseFail() {
         String dateStringOne = "12345";
@@ -61,6 +62,5 @@ public class ModelManagerTest {
 
         assertTrue(parsingFailed);
     }
-
 
 }

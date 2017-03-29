@@ -20,6 +20,7 @@ public class DateParser {
     public final SimpleDateFormat userOutputDateFormat = new SimpleDateFormat(USER_DATE_OUTPUT_FORMAT);
 
 
+    //@@author A0138907W
     public DateParser(String input) {
         // swap day and month as natty only accepts the MM/DD/YYYY format
         if (input.matches(DAY_MONTH_YEAR_FORMAT)) {
@@ -42,6 +43,7 @@ public class DateParser {
         return matcher.group(2) + matcher.group(1) + matcher.group(3);
     }
 
+    //@@author
     /**
      * Uses Natty dependency (natural language date parser) to manipulate date
      * input in String.

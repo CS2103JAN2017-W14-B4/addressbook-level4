@@ -1,3 +1,4 @@
+//@@author A0138907W
 package seedu.ezdo.logic.parser;
 
 import static seedu.ezdo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -8,7 +9,7 @@ import seedu.ezdo.logic.commands.IncorrectCommand;
 
 
 /**
- * Parses input arguments and creates a new DoneCommand object
+ * Parses input arguments and creates a new AliasCommand object
  */
 public class AliasCommandParser {
 

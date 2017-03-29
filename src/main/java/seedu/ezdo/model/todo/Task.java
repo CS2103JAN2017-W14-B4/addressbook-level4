@@ -52,7 +52,7 @@ public class Task implements ReadOnlyTask {
     public void setDone() {
         this.done = true;
     }
-    //@@author 
+    //@@author
     @Override
     public Name getName() {
         return name;

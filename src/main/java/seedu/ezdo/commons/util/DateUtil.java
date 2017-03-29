@@ -10,8 +10,10 @@ import seedu.ezdo.model.todo.ReadOnlyTask;
  * Checks for dates
  */
 public class DateUtil {
+
     /**
      * Checks whether a task's dates are valid
+     *
      * @return true if the start date is earlier than or equal to the due date OR if either date is empty
      * @throws ParseException if any task date cannot be parsed
      */
@@ -25,7 +27,8 @@ public class DateUtil {
         Date dueDate = df.parse(task.getDueDate().toString());
         return (startDate.compareTo(dueDate) <= 0);
     }
-  //@@author
+
+    //@@author A0138907W
     /**
      * Compares two dates strings. Both strings must be in the format dd/MM/yyyy hh:mm.
      * Empty strings are considered to be of lower value than non-empty strings.
@@ -37,7 +40,7 @@ public class DateUtil {
         Date date1 = null;
         Date date2 = null;
 
-        // empty dates are considered lower in value so that they show at the bottom of the list
+        // empty dates are always considered lower in value so that they show at the bottom of the list
         if (dateString1.isEmpty() && dateString2.isEmpty()) {
             return 0;
         } else if (dateString1.isEmpty()) {
@@ -55,4 +58,5 @@ public class DateUtil {
         int result = date1.compareTo(date2);
         return isSortedAscending ? result : -result;
     }
+
 }

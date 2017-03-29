@@ -66,7 +66,8 @@ public class ParserUtil {
         }
         return indexes;
     }
-  //@@author
+
+    //@@author A0138907W
     /**
      * Returns the specified sorting criteria in the {@code command} if it is present.
      * Returns an {@code Optional.empty()} otherwise.
@@ -99,6 +100,7 @@ public class ParserUtil {
         return new String[] {commandToAlias, alias};
     }
 
+    //@@author
     /**
      * Returns a new Set populated by all elements in the given list of strings
      * Returns an empty set if the given {@code Optional} is empty,
