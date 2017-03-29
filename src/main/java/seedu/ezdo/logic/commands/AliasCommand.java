@@ -6,7 +6,7 @@ import seedu.ezdo.commons.exceptions.IllegalValueException;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
 
 /**
- * Aliases a command to a string of the user's choice.
+ * Aliases a command to a shortcut string of the user's choice.
  */
 public class AliasCommand extends Command {
 

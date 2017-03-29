@@ -8,7 +8,7 @@ import seedu.ezdo.logic.commands.IncorrectCommand;
 
 
 /**
- * Parses input arguments and creates a new DoneCommand object
+ * Parses input arguments and creates a new AliasCommand object
  */
 public class AliasCommandParser {
 
