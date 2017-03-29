@@ -3,11 +3,17 @@ package seedu.ezdo.model.task;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
+import seedu.ezdo.commons.exceptions.IllegalValueException;
 import seedu.ezdo.model.todo.DueDate;
-
+//@@author A0139248X
 public class DueDateTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void isValidDueDate() {
@@ -22,6 +28,13 @@ public class DueDateTest {
         assertTrue(DueDate.isValidTaskDate("31/12/1993 20:02")); // month with 31 days
         assertTrue(DueDate.isValidTaskDate("30/04/2016 11:11")); // month with 30 days
         assertTrue(DueDate.isValidTaskDate("29/02/2016 00:01")); // leap year
+    }
+
+    @Test
+    public void invalidDate_IllegalValueException() throws Exception {
+        thrown.expect(IllegalValueException.class);
+        DueDate one = new DueDate("asdf", true);
+        one.toString();
     }
 }
 

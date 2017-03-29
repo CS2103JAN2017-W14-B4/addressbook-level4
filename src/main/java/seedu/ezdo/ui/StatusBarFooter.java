@@ -1,5 +1,6 @@
 package seedu.ezdo.ui;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -51,11 +52,11 @@ public class StatusBarFooter extends UiPart<Region> {
 
     @Subscribe
     public void handleEzDoChangedEvent(EzDoChangedEvent ezce) {
-        String lastUpdated = (new Date()).toString();
+        String lastUpdated = (new SimpleDateFormat("dd/MM/YYYY (E) h:mm:ss a")).format(new Date());
         logger.info(LogsCenter.getEventHandlingLogMessage(ezce, "Setting last updated status to " + lastUpdated));
         setSyncStatus("Last Updated: " + lastUpdated);
     }
-
+  //@@author A0139248X
     @Subscribe
     public void handleEzDoDirectoryChangedEvent(EzDoDirectoryChangedEvent ezce) {
         String lastUpdated = (new Date()).toString();

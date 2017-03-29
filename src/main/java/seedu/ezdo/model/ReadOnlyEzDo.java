@@ -1,6 +1,5 @@
 package seedu.ezdo.model;
 
-
 import javafx.collections.ObservableList;
 import seedu.ezdo.model.tag.Tag;
 import seedu.ezdo.model.todo.ReadOnlyTask;

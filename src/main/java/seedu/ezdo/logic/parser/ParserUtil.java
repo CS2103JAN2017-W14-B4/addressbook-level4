@@ -28,8 +28,9 @@ import seedu.ezdo.model.todo.TaskDate;
 public class ParserUtil {
 
     private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
-    private static final Pattern SORT_CRITERIA_ARGS_FORMAT = Pattern.compile("(?<sortCriteria>.+)");
+    private static final Pattern SORT_CRITERIA_ARGS_FORMAT = Pattern.compile("(?<sortCriteria>.) ?(?<sortOrder>.)?");
     private static final Pattern INDEXES_ARGS_FORMAT = Pattern.compile("^([0-9]*\\s+)*[0-9]*$");
+    private static final Pattern COMMAND_ALIAS_ARGS_FORMAT = Pattern.compile("(?<command>.+) (?<alias>.+)");;
 
     /**
      * Returns the specified index in the {@code command} if it is a positive unsigned integer
@@ -48,7 +49,7 @@ public class ParserUtil {
         return Optional.of(Integer.parseInt(index));
 
     }
-
+  //@@author A0139248X
     /**
      * Returns the specified indexes in the {@code command} if they are
      * positive unsigned integers separated by whitespaces.
@@ -66,21 +67,37 @@ public class ParserUtil {
         return indexes;
     }
 
+    //@@author A0138907W
     /**
-     *
      * Returns the specified sorting criteria in the {@code command} if it is present.
      * Returns an {@code Optional.empty()} otherwise.
      */
-    public static Optional<String> parseSortCriteria(String command) {
+    public static Optional<String[]> parseSortCriteria(String command) {
         final Matcher matcher = SORT_CRITERIA_ARGS_FORMAT.matcher(command.trim());
         if (!matcher.matches()) {
             return Optional.empty();
         }
-
         String sortCriteria = matcher.group("sortCriteria");
-        return Optional.of(sortCriteria);
+        String sortOrder = matcher.group("sortOrder");
+        String[] resultPair = new String[] {sortCriteria, sortOrder};
+        return Optional.of(resultPair);
     }
 
+    /**
+     * Returns a string array of the specified command and alias in the {@code command} if both are present.
+     * Returns an empty String {@code Array} otherwise.
+     */
+    public static String[] parseCommandAlias(String command) {
+        final Matcher matcher = COMMAND_ALIAS_ARGS_FORMAT.matcher(command.trim());
+        if (!matcher.matches()) {
+            return new String[0];
+        }
+        String commandToAlias = matcher.group("command");
+        String alias = matcher.group("alias");
+        return new String[] {commandToAlias, alias};
+    }
+
+    //@@author
     /**
      * Returns a new Set populated by all elements in the given list of strings
      * Returns an empty set if the given {@code Optional} is empty,
@@ -101,7 +118,7 @@ public class ParserUtil {
                 .map(Optional::ofNullable)
                 .collect(Collectors.toList());
     }
-
+//@@author A0141010L
     /**
      * Parses a {@code Optional<String> name} into an {@code Optional<Name>} if {@code name} is present.
      */
@@ -148,7 +165,7 @@ public class ParserUtil {
         assert dueDate != null;
         return dueDate.isPresent() ? Optional.of(new DueDate(dueDate.get(), isFind)) : Optional.empty();
     }
-
+//@@author
     /**
      * Parses {@code Collection<String> tags} into an {@code UniqueTagList}.
      */

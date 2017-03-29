@@ -25,6 +25,9 @@ public class TestApp extends MainApp {
     protected Supplier<ReadOnlyEzDo> initialDataSupplier = () -> null;
     protected String saveFileLocation = SAVE_LOCATION_FOR_TESTING;
 
+    private static final double MIN_HEIGHT = 820;
+    private static final double MIN_WIDTH = 1400;
+
     public TestApp() {
     }
 
@@ -56,7 +59,7 @@ public class TestApp extends MainApp {
         UserPrefs userPrefs = super.initPrefs(config);
         double x = Screen.getPrimary().getVisualBounds().getMinX();
         double y = Screen.getPrimary().getVisualBounds().getMinY();
-        userPrefs.updateLastUsedGuiSetting(new GuiSettings(600.0, 600.0, (int) x, (int) y));
+        userPrefs.updateLastUsedGuiSetting(new GuiSettings(MIN_WIDTH, MIN_HEIGHT, (int) x, (int) y));
         return userPrefs;
     }
 

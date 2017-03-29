@@ -61,8 +61,8 @@ public class EzDo implements ReadOnlyEzDo {
         this.tags.setTags(tags);
     }
 
-    public void sortTasks(SortCriteria sortCriteria) {
-        tasks.sortTasks(sortCriteria);
+    public void sortTasks(SortCriteria sortCriteria, Boolean isSortedAscending) {
+        tasks.sortTasks(sortCriteria, isSortedAscending);
     }
 
     public void resetData(ReadOnlyEzDo newData) {
@@ -144,14 +144,10 @@ public class EzDo implements ReadOnlyEzDo {
     private void syncMasterTagListWith(UniqueTaskList tasks) {
         tasks.forEach(this::syncMasterTagListWith);
     }
-
+//@@author A0139248X
     public boolean removeTasks(ArrayList<ReadOnlyTask> tasksToKill) throws UniqueTaskList.TaskNotFoundException {
         for (int i = 0; i < tasksToKill.size(); i++) {
-            if (tasks.remove(tasksToKill.get(i))) {
-                continue;
-            } else {
-                throw new UniqueTaskList.TaskNotFoundException();
-            }
+            tasks.remove(tasksToKill.get(i));
         }
         return true;
     }
@@ -161,7 +157,7 @@ public class EzDo implements ReadOnlyEzDo {
             p.get(i).setDone();
         }
     }
-
+//@@author
 //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {

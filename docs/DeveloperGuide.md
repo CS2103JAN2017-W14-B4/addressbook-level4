@@ -1,40 +1,52 @@
 # Developer Guide
 <br>
 
-* [Setting Up](#setting-up)
-    * [Prerequisites](#prerequisites)
-    * [Importing the Project into Eclipse](#importing-the-project-into-eclipse)
-* [Design](#design)
-    * [Architecture](#architecture)
-    * [UI](#ui)
-    * [Logic](#logic)
-    * [Model](#model)
-    * [Storage](#storage)
-    * [Common classes](#common-classes)
-* [Target Users](#target-users)
-* [Testing](#testing)
-* [Dev Ops](#dev-ops)
-    * [Build Automation](#build-automation)
-    * [Continuous Integration](#continuous-integration)
-    * [Publishing Documentation](#publishing-documentation)
-    * [Making a Release](#making-a-release)
-    * [Converting Documentation to pdf format](#converting-documentation-to-pdf-format)
-    * [Managing Dependencies](#managing-dependencies)
-* [Appendix A: User Stories](#appendix-a--user-stories)
-* [Appendix B: Use Cases](#appendix-b--use-cases)
-* [Appendix C: Non Functional Requirements](#appendix-c--non-functional-requirements)
-* [Appendix D: Glossary](#appendix-d--glossary)
-* [Appendix E: Product Surveys](#appendix-e--product-surveys)
-    * [Trello](#trello)
-    * [Sticky Notes](#sticky-notes)
-    * [Wunderlist](#wunderlist)
-    * [Nirvana for GTD](#nirvana-for-gtd)
+1. [Introduction](#1-introduction)<br>
+2. [Setting Up](#2-setting-up)<br>
+    2.1 [Prerequisites](#21-prerequisites)<br>
+    2.2 [Importing the Project into Eclipse](#22-importing-the-project-into-eclipse)<br>
+3. [Design](#3-design)<br>
+    3.1 [Architecture](#31-architecture)<br>
+    3.2 [UI](#32-ui)<br>
+    3.3 [Logic](#33-logic)<br>
+    3.4 [Model](#34-model)<br>
+    3.5 [Storage](#35-storage)<br>
+    3.6 [Common classes](#36-common-classes)<br>
+4. [Target Users](#4-target-users)<br>
+5. [Testing](#5-testing)<br>
+   5.1 [Types of Tests](#51-types-of-tests)<br>
+   5.2 [How to Test](#52-how-to-test)<br>
+6. [Dev Ops](#6-dev-ops)<br>
+    6.1 [Build Automation](#61-build-automation)<br>
+    6.2 [Continuous Integration](#62-continuous-integration)<br>
+    6.3 [Publishing Documentation](#63-publishing-documentation)<br>
+    6.4 [Making a Release](#64-making-a-release)<br>
+    6.5 [Converting Documentation to pdf format](#65-converting-documentation-to-pdf-format)<br>
+    6.6 [Managing Dependencies](#66-managing-dependencies)<br>
+7. [Appendix A: User Stories](#7-appendix-a--user-stories)<br>
+8. [Appendix B: Use Cases](#8-appendix-b--use-cases)<br>
+9. [Appendix C: Non Functional Requirements](#9-appendix-c--non-functional-requirements)<br>
+10. [Appendix D: Glossary](#10-appendix-d--glossary)<br>
+11. [Appendix E: Product Surveys](#11-appendix-e--product-surveys)<br>
+    11.1 [Trello](#111-trello)<br>
+    11.2 [Sticky Notes](#112-sticky-notes)<br>
+    11.3 [Wunderlist](#113-wunderlist)<br>
+    11.4 [Nirvana for GTD](#114-nirvana-for-gtd)<br>
 
 <br><br>
 
-## Setting up
+## 1. Introduction
+ezDo is the eziest™ way to keep track of all the user's tasks efficiently with command line style inputs. It is a Java desktop application with a user-friendly GUI implemented with JavaFX.
 
-### Prerequisites
+ezDo is written in Java and is designed in an Object Oriented Programming (OOP) manner. As such, this guide describes the class design and technical implementation of ezDo. It will help developers (like you) understand how classes within ezDo interact with each other and how you can contribute to its development.
+
+We have organized this guide in a top-down manner so that you can understand the general framework of ezDo before moving on to the more detailed sections of ezDo's components. Each sub-section is mostly self-contained to provide ease of reference.
+
+
+
+## 2. Setting Up
+
+### 2.1 Prerequisites
 * [**Java Development Kit (JDK) 8**](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or later
 * [**Eclipse**](http://www.eclipse.org/downloads/eclipse-packages/) IDE
 * [**e(fx)clipse Plug-in**](https://wiki.eclipse.org/Efxclipse/Tutorials/AddingE(fx)clipse_to_eclipse_) for Eclipse
@@ -43,7 +55,7 @@
 
 <br>
 
-### Importing the project into Eclipse
+### 2.2 Importing the Project into Eclipse
 1. From [this repository](https://github.com/CS2103JAN2017-W14-B4/main), ___fork___ and ___clone___ it to your computer.
 
 2. Open your ___Eclipse IDE___.
@@ -59,84 +71,81 @@
 
 <br><br>
 
-## Design
+## 3. Design
 <br>
 
-### Architecture
+### 3.1 Architecture
 ---
 <br>
 <p align="center"><img src="images/Architecture.png" width="600"></p>
-<h5 align="center">Figure 1 : Architecture Diagram</h5>
+<h5 align="center">Figure 1: Architecture Diagram</h5>
 <br><br>
 
-The **_Architecture Diagram_** in Figure 1 explains the high-level design of ezDo.
-A quick overview of each component is given below.
-<br>
+Figure 1 explains the high-level design of ezDo.
 
 > * The `.pptx` files used to create diagrams in this document can be found in the [diagrams](diagrams/) folder.
 >
-> * To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
+> * To update a diagram, modify the diagram in the `.pptx` file, select the objects of the diagram, and choose `Save as picture`.
 
 <br>
 
-`Main` has only one class called [`MainApp`](../src/main/java/seedu/ezdo/MainApp.java).
+`Main` has only one class called [`MainApp`](../src/main/java/seedu/ezdo/MainApp.java):
 
-* At ezDo launch, it is responsible for initializing the components in the correct sequence, and connecting them up with each other.
+* At ezDo launch, it is responsible for initializing the components in the correct sequence and connecting them up with each other.
 
 * At shut down, it is responsible for shutting down the components and invoking cleanup methods where necessary.
 
 <br>
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-Two of those classes play important roles at the architecture level.
+Two of those classes play important roles at the architecture level:
 
-* `EventsCenter` : This class (written using [Google's Event Bus library](https://github.com/google/guava/wiki/EventBusExplained))
-  is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design).
+* `EventsCenter` : This class (written using [Google's Event Bus library](https://github.com/google/guava/wiki/EventBusExplained)) is used by components to communicate with other components using events (i.e. a form of Event Driven design).
 
-* `LogsCenter` : Used by many classes to write log messages to ezDo's log file.
+* `LogsCenter` : This class is used by many classes to write log messages to ezDo's log file.
 
 <br>
 
-The rest of ezDo consists of four components.
+The rest of ezDo consists of four components:
 
 * [**`UI`**](#ui-component) : The UI of ezDo.
 * [**`Logic`**](#logic-component) : The command executor.
-* [**`Model`**](#model-component) : Holds the data of ezDo in-memory.
-* [**`Storage`**](#storage-component) : Reads data from, and writes data to, the hard disk.
+* [**`Model`**](#model-component) : The data of ezDo in-memory.
+* [**`Storage`**](#storage-component) : The handler of read-write operations to disk.
 
 <br>
 
 Each of the four components
 
-* Defines its _API_ in an `interface` with the same name as the component.
+* Defines its API in an `interface` with the same name as the component.
 * Exposes its functionality using a `{Component Name} Manager` class.<br>
 
-For example, the **`Logic`** component (as shown in the class diagram labelled as Figure 2) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.<br><br>
+For example, **`Logic`** (see Figure 2) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.<br><br>
 
 <p align="center"><img src="images/LogicClassDiagram.png" width="800"></p>
 <h5 align="center">Figure 2: Class Diagram of the Logic Component</h5>
 
 <br><br>
 
-### Events-Driven nature of the design
+### Events-Driven Nature of the Design
 
-The _sequence diagram_ in Figure 3 shows how the components interact for the scenario where the user issues the command `kill 1`.<br><br>
+Figure 3 shows how the components interact for the scenario where the user issues the command `kill 1`.<br><br>
 
 <p align="center"><img src="images/SDforDeletePerson.png" width="800"></p>
 <h5 align="center">Figure 3: Component Interactions for kill 1 Command (Part 1)</h5>
 <br><br>
 
->Note how the **`Model`** simply raises a `EzDoChangedEvent` when ezDo data is changed, instead of asking the **`Storage`** to save the updates to the hard disk.
+> Note how **`Model`** simply raises a `EzDoChangedEvent` when ezDo data is changed, instead of asking **`Storage`** to save the updates to the hard disk.
 
 <br>
 
-The diagram in Figure 4 shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time. <br><br>
+Figure 4 shows how `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time. <br><br>
 
 <p align="center"><img src="images/SDforDeletePersonEventHandling.png" width="800"></p>
 <h5 align="center">Figure 4: Component Interactions for kill 1 Command (Part 2)</h5>
 <br><br>
 
-> Note how the event is propagated through the `EventsCenter` to the **`Storage`** and **`UI`** without **`Model`** having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
+> Note how the event is propagated through `EventsCenter` to **`Storage`** and **`UI`** without **`Model`** having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
 
 <br>
 
@@ -144,7 +153,7 @@ The sections below give more details on each component.
 
 <br><br>
 
-### UI
+### 3.2 UI
 ---
 <br>
 <p align="center"><img src="images/UiClassDiagram.png" width="800"></p>
@@ -153,25 +162,25 @@ The sections below give more details on each component.
 **API** : [`Ui.java`](../src/main/java/seedu/ezdo/ui/Ui.java)
 <br>
 
-As shown in Figure 5, the **`UI`** component consists of a `MainWindow` that consists of several parts. _For example: `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel`._ All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+As shown in Figure 5, **`UI`** consists of a `MainWindow` that consists of several parts. _For example: `CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` and `TaskCardtHeader`._ All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The **`UI`** component uses `JavaFX UI` framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.<br>
+**`UI`** uses the `JavaFX UI` framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.<br>
  For example, the layout of the [`MainWindow`](../src/main/java/seedu/ezdo/ui/MainWindow.java) is specified in [`MainWindow.fxml`](../src/main/resources/view/MainWindow.fxml).
 
  <br>
 
 The **`UI`** component:
 
-* Executes user commands using the **`Logic`** component.
+* Executes user commands using **`Logic`**.
 
-* Binds itself to some data in the **`Model`** so that the UI can auto-update when data in the **`Model`** changes.
+* Binds itself to some data in **`Model`** so that the UI can auto-update when data in **`Model`** changes.
 
 * Responds to events raised from various parts of ezDo and updates the UI accordingly.
- 
+
 <br><br>
 
 
-### Logic
+### 3.3 Logic
 ---
 <br>
 <p align="center"><img src="images/LogicClassDiagram.png" width="800"></p>
@@ -181,16 +190,16 @@ The **`UI`** component:
 <br>
 
 As shown in Figure 6,
-* The **`Logic`** component uses the `Parser` class to parse the user command.
+* **`Logic`** uses the `Parser` class to parse the user command.
 
 * A `Command` object is executed by the `LogicManager`.
 
-* The command execution can affect the **`Model`** (e.g. adding a task) and/or raise events.
+* The command execution can affect **`Model`** (e.g. adding a task) and/or raise events.
 
-* The result of the command execution is encapsulated as a  `CommandResult` object which is passed back to the **`UI`**.
+* The result of the command execution is encapsulated as a `CommandResult` object which is passed back to **`UI`**.
 <br>
 
-The _sequence diagram_ (shown in Figure 7) shows the interactions within the `Logic` component for the _`execute("kill 1")`_ API call.<br>
+The _sequence diagram_ (shown in Figure 7) shows the interactions within **`Logic`** for the _`execute("kill 1")`_ API call.<br>
 
 <p align="center"><img src="images/DeletePersonSdForLogic.png" width="800"></p>
 <h5 align="center">Figure 7: Interactions Inside the Logic Component</h5>
@@ -198,7 +207,7 @@ The _sequence diagram_ (shown in Figure 7) shows the interactions within the `Lo
 <br><br>
 
 
-### Model
+### 3.4 Model
 ---
 <br>
 <p align="center"><img src="images/ModelClassDiagram.png" width="800"></p>
@@ -207,17 +216,30 @@ The _sequence diagram_ (shown in Figure 7) shows the interactions within the `Lo
 **API** : [`Model.java`](../src/main/java/seedu/ezdo/model/Model.java)
 <br>
 
-As shown in Figure 8, the **`Model`** component:
+As shown in Figure 8, **`Model`**:
 * Stores a `UserPref` object that represents the user's preferences.
 
-* Stores `ezDo` data which includes `Tag` list and `Task` list.
+* Stores `ezDo` data which includes the `Tag` list and `Task` list.
 
-* Exposes a `UnmodifiableObservableList<ReadOnlyTask>` object that can only be 'observed' i.e the **`UI`** can be bound to this list so that the displayed list on the interface displays changes when the data in the list changes.
- 
+* Exposes a `UnmodifiableObservableList<ReadOnlyTask>` object that can only be 'observed' i.e **`UI`** can be bound to this list so that the displayed list on the interface displays changes when the data in the list changes.
+
+#### Design Choices
+ezDo supports undo/redo commands. We saw two ways of doing it:
+* Save history states.
+
+* Remember what actions were taken, and do the logical reverse of them when the undo command is called.
+
+After consideration, we decided to go with saving history states. In a task manager, tasks can be deleted and cleared. We can specify a 'de-clear' action, but since data is already lost, we can never actually return to the original state.
+
+As such, our undo/redo functionality is designed similar to the Memento pattern. The `ModelManager` class that implements **`Model`** holds two custom fixed-capacity array-based stacks of size 5. One stack holds history states for the undo command, while the other is for the redo command. We decided to limit the size of the stack in order to prevent stack overflow. This is a real possibility when the task manager holds a lot of data, and the user inputs many commands that keep accumulating history states in the undo stack. We felt that 5 is a good number of history states to save, in that users can undo up to 5 undo-able commands. If the stack is full, the newest history state overwrites the oldest one in the stack, thereby maintaining its size of 5.
+
+Before any undo-able command is fully executed, a copy of the current history state is saved onto the undo stack and the redo stack is cleared.
+
+If a user executes the undo command, the current state would be saved onto the redo stack, and the previous state in the undo stack popped off so that `ModelManager` can rollback to it.
 <br><br>
 
 
-### Storage
+### 3.5 Storage
 ---
 <br>
 <p align="center"><img src="images/StorageClassDiagram.png" width="800"></p>
@@ -226,36 +248,39 @@ As shown in Figure 8, the **`Model`** component:
 **API** : [`Storage.java`](../src/main/java/seedu/ezdo/storage/Storage.java)
 <br>
 
-As shown in Figure 9, the **`Storage`** component can:
-* Save `UserPref` objects in `.json` format and read it back.
+As shown in Figure 9, **`Storage`**:
+* Saves `UserPref` objects in `.json` format and read it back.
 
-* Save ezDo data in `.xml` format and read it back.
+* Saves ezDo data in `.xml` format and read it back.
+
+#### Design Choices
+ezDo allows users to specify a new location to save their data. Instead of populating a user's machine with many duplicates of the saved data by simply copying the old file and creating a new copy, we move the current savefile to the new location specified. This new location is saved in `Config` so that ezDo knows where to retrieve the right savefile in the next session.
 <br><br>
 
 
-### Common classes
+### 3.6 Common classes
 ---
 Classes used by multiple components are in the `seedu.ezdo.commons` package.<br>
 
 <br><br><br>
 
-## Target Users
+## 4. Target Users
 <br>
 
 Similar to [Jim](http://www.comp.nus.edu.sg/~cs2103/AY1617S2/contents/handbook.html#handbook-project), our main target users have the following characteristics:
 * They are office workers and [power users](http://www.dictionary.com/browse/power-user).
-* They are willing to use a task manager in advanced and complicated ways.
+* They are willing to use a task manager in advanced ways.
 * They have many tasks at hand with varying deadlines.
 * They prefer not to use a mouse.
 
 <br><br><br>
 
-## Testing
+## 5. Testing
 <br>
 
 All tests can be found in the `./src/test/java` folder.
 
-### Types of Tests:
+### 5.1 Types of Tests:
 
 1. **GUI Tests** - These are _system tests_ that test the entire application by simulating user actions on the GUI. These are in the `guitests` package.
 
@@ -271,42 +296,37 @@ All tests can be found in the `./src/test/java` folder.
    * ___Hybrids of unit and integration tests___
       These tests check the multiple code units (i.e. how they are connected together).
       _For example: `seedu.ezdo.logic.LogicManagerTest`_
+3. **Headless GUI Testing** - With compliments to the [TestFX](https://github.com/TestFX/TestFX) library we use, our GUI tests can be run in the ___headless_ mode__. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the computer while the tests are running.<br>
+See [UsingGradle.md](UsingGradle.md#running-tests) to learn how to run tests in headless mode.
 
-<br>
 
-### In Eclipse:
+### 5.2 How to Test
+
+#### In Eclipse:
 
 * To run ___all tests___, right-click on the `src/test/java` folder and choose `Run as` > `JUnit Test`.
 
-* To run ___a subset of tests___, you can right-click on a test package, test class, or a test and choose `Run as` > `JUnit Test`.
+* To run ___a subset of tests___, right-click on a test package, test class, or a test and choose `Run as` > `JUnit Test`.
+
 
 <br>
 
-### Headless GUI Testing
-
-With compliments to the [TestFX](https://github.com/TestFX/TestFX) library we use, our GUI tests can be run in the ___headless_ mode__.
- In the headless mode, GUI tests do not show up on the screen.
- That means the developer can do other things on the computer while the tests are running.<br>
-See [UsingGradle.md](UsingGradle.md#running-tests) to learn how to run tests in headless mode.
-
-<br><br>
-
-## Dev Ops
+## 6. Dev Ops
 <br>
 
-### Build Automation
+### 6.1 Build Automation
 See [UsingGradle.md](UsingGradle.md) to learn how to use Gradle for build automation.
 <br>
-### Continuous Integration
+### 6.2 Continuous Integration
 We use [Travis CI](https://travis-ci.org/) and [AppVeyor](https://www.appveyor.com/) to perform _Continuous Integration_ on our projects.
+
 See [UsingTravis.md](UsingTravis.md) and [UsingAppVeyor.md](UsingAppVeyor.md) for more details.
 <br>
-### Publishing Documentation
+### 6.3 Publishing Documentation
 See [UsingGithubPages.md](UsingGithubPages.md) to learn how to use GitHub Pages to publish documentation to the project site.
-
 <br>
 
-### Making a Release
+### 6.4 Making a Release
 
 #### To create a new release,
 
@@ -315,10 +335,9 @@ See [UsingGithubPages.md](UsingGithubPages.md) to learn how to use GitHub Pages 
  2. ___Tag the repo___ with the version number. _(For example: `v0.1`)_
 
  3. [___Create a new release___ using GitHub](https://help.github.com/articles/creating-releases/) and ___upload the JAR file you created___.
-
 <br>
 
-### Converting Documentation to PDF format
+### 6.5 Converting Documentation to PDF format
 We use [Google Chrome](https://www.google.com/chrome/browser/desktop/) for converting documentation to PDF format, as Google Chrome's PDF engine preserves hyperlinks used in webpages.
 
 #### To convert a project documentation file to a PDF format,
@@ -332,12 +351,9 @@ We use [Google Chrome](https://www.google.com/chrome/browser/desktop/) for conve
     For best results, use the settings indicated in the screenshot (as shown in Figure 10).<br>
     <p align="center"><img src="images/chrome_save_as_pdf.png" width="300"></p>
 <h5 align="center">Figure 10: Saving Documentation as a PDF File in Google Chrome</h5>
-
 <br><br>
 
-### Managing Dependencies
-<br>
-
+### 6.6 Managing Dependencies
 A project often depends on third-party libraries. For example, ezDo depends on the [Jackson library](http://wiki.fasterxml.com/JacksonHome) for XML parsing. Gradle can automate downloading the dependencies, which is better than these alternatives. <br><br>
 
 > 1. Include those libraries in the repo (this bloats the repo size). <br>
@@ -345,13 +361,13 @@ A project often depends on third-party libraries. For example, ezDo depends on t
 
 <br><br>
 
-## Appendix A : User Stories
+## 7. Appendix A : User Stories
 <br>
 
 Table 1 describes the user stories relevant to ezDo.
 <br>
 
-> **Priorities:** 
+> **Priorities:**
 > * High (must have) - `* * *`
 > * Medium (nice to have)  - `* *`
 > * Low (unlikely to have) - `*`
@@ -366,7 +382,7 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | delete a task | get rid of tasks I no longer want to track
 `* * *` | user | check a task as done (not deleted) | know I have finished it
 `* * *` | user | view a history of all the tasks I have done | check what I have done
-`* * *` | new user | view the help guide | know more about the different commands there are and how to use them
+`* * *` | new user | view the help guide | know the different commands there are and how to use them
 `* * *` | user | edit my tasks | update them
 `* * *` | user | undo my last command | undo mistakes/typos
 `* * *` | user | add events that have a start and end time | know what my day will be like
@@ -375,20 +391,20 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | power user | set tags to tasks | group related tasks by tags
 `* * *` | power user | search by tags | know everything I have to do related to that tag
 `* *` | user | sort tasks by name, deadline, priority, start date or due date | quickly see what tasks I have to finish first
-`* *` | user | list tasks that don't currently have deadlines | add deadlines to tasks without deadlines
+`* *` | user | list tasks | add deadlines to tasks without deadlines
 `* *` | power user | use shortened versions of commands | save time when inputting tasks
 `* *` | user | add different priorities to my tasks | know which tasks need to be done first
 `* *` | user | list my tasks in priority order | see which tasks have different priorities
-`* *` | user | undo multiple commands | remove changes done by a few wrong commands
-`* *` | user | enter recurring tasks | not have to enter the same tasks repeatedly
-`* *` | power user | map standard commands to my preferred shortcut commands | be familiar with my own  modified commands
-`* *` | user | make tasks that have very close deadlines to appear as special priority | be reminded to complete them
-`* *` | user | set notifications for deadlines for my tasks | get reminded to do it.
-`* *` | power user | set roughly how much time it requires to finish a task | know how long I need to start and finish a task and not leave it halfway
+`* *` | user | undo multiple commands | revert changes
+`* *` | user | enter recurring tasks | enter it just once
+`* *` | power user | assign standard commands to my preferred shortcut commands | be familiar with my own  modified commands
+`* *` | user | make tasks that have very close deadlines to appear as special priority | remember to complete them
+`* *` | user | set notifications for deadlines for my tasks | be notified
+`* *` | power user | set how much time it requires to finish a task | know how long I need to start and finish a task and not leave it halfway
 `* *` | power user | tell the program how much time I have right now | the program can assign me a task to complete in that time
-`* *` | user | set tasks that are currently underway | be aware of what are the tasks I am working on right now
+`* *` | user | set tasks that are currently underway | be aware of the tasks I am working on
 `* *` | user | redo my last action | reverse accidental undo commands
-`*` | user | list the tasks that are due soon | minimize chance of me missing my deadline
+`*` | user | list the tasks that are due soon | meet my deadlines
 `*` | paranoid user | set password | protect my privacy
 `*` | power user | sync tasks and events to Google Calendar | see my tasks and events alongside Google Calendar
 
@@ -396,22 +412,22 @@ Priority | As a ... | I want to ... | So that I can...
 
 <br><br>
 
-## Appendix B : Use Cases
+## 8. Appendix B : Use Cases
 <br>
 
-___For all use cases below, the **System** is `ezDo` and the **Actor** is the `user`, unless specified otherwise.___
+___For all use cases below, the **System** is `ezDo` and the **Actor** is the `user`, unless otherwise specfied.___
 
 <br>
 
-### Use case: Adding a task
+### Use Case: Adding a Task
 ---
 
 
 **MSS**
 
-1. User enters command to add task, along with relevant arguments.
+1. User enters command to add task along with relevant arguments.
 2. ezDo adds the task and returns a confirmation message.
-Use case ends.
+3. Use case ends.
 
 <br>
 
@@ -419,109 +435,109 @@ Use case ends.
 
 1a. The user enters an invalid command.
 
-> 1a1. ezDo shows an error message and prompts the user to retry.
-  Use case resumes at step 1.
+> 1a1. ezDo shows an error message and prompts the user to retry. <br>
+  1a2. Use case resumes at step 1.
 
 <br>
 
-### Use case: Updating a task
+### Use Case: Updating a Task
 ---
 
 **MSS**
 
 1. User specifies task to update by index along with relevant fields and corresponding information.
 2. ezDo updates the task and returns a confirmation message.
-Use case ends.
+3. Use case ends.
 <br>
 
 **Extensions**
 
 1a. The user enters an invalid command.
 
-> 1a1. ezDo shows an error message and prompts the user to retry.
-Use case resumes at step 1.
+> 1a1. ezDo shows an error message and prompts the user to retry.<br>
+> 1a2. Use case resumes at step 1.
 
 1b. The indexed task does not exist.
 
-> 1b1. ezDo shows an error message and prompts the user to select another index.
-Use case resumes at step 1.
+> 1b1. ezDo shows an error message and prompts the user to select another index.<br>
+> 1b2. Use case resumes at step 1.
 
 <br>
 
-### Use case: Deleting a task
+### Use Case: Deleting a Task
 ---
 
 **MSS**
 
 1. User enters index of task to delete.
 2. ezDo deletes the task and returns a  confirmation message.
-Use case ends.
+3. Use case ends.
 <br>
 
 **Extensions**
 
 1a. The indexed task does not exist.
 
-> 1a1. ezDo shows an error message and prompts the user to select another index.
-Use case resumes at step 1.
+> 1a1. ezDo shows an error message and prompts the user to select another index.<br>
+> 1a2. Use case resumes at step 1.
 
 <br>
 
-### Use case: Marking a task as done
+### Use Case: Marking a Task as Done
 ---
 
 **MSS**
 
 1. User enters index of undone task to mark as done.
 2. ezDo marks the specified undone task as done and returns the list of done task and a confirmation message.
-Use case ends.
+3. Use case ends.
 <br>
 
 **Extensions**
 
 1a. The indexed task does not exist.
 
-> 1a1. ezDo shows an error message and prompts the user to select another index.
-Use case resumes at step 1.
+> 1a1. ezDo shows an error message and prompts the user to select another index.<br>
+> 1b1. Use case resumes at step 1.
 
 <br>
 
-### Use case: Specifying save location
+### Use Case: Specifying Save Location
 ---
 
 **MSS**
 
 1. User enters command to change save location, along with the new file path.
 2. ezDo updates the save location to the given path and returns a confirmation message.
-Use case ends.
+3. Use case ends.
 <br>
 
 **Extensions**
 
 1a. The folder does not exist.
 
-> 1a1. ezDo shows an error message and prompts the user to choose another path.
-Use case resumes at step 1.
+> 1a1. ezDo shows an error message and prompts the user to choose another path.<br>
+> 1a2. Use case resumes at step 1.
 
 1b. The user enters an invalid command.
 
-> 1b1. ezDo shows an error message and prompts the user to try again.
-Use case resumes at step 1.
+> 1b1. ezDo shows an error message and prompts the user to try again.<br>
+> 1b2. Use case resumes at step 1.
 
 <br><br>
 
-## Appendix C : Non Functional Requirements
+## 9. Appendix C : Non-Functional Requirements
 <br>
 
 ezDo should:
-1. Be intuitive so no need to waste time learning.
+1. Be intuitive so users can pick it up quickly.
 2. Come with a very high level of automated testing.
 3. Have user-friendly commands.
 4. Be able to store at least 1000 tasks.
 
 <br><br>
 
-## Appendix D : Glossary
+## 10. Appendix D : Glossary
 <br>
 
 ### ezDo
@@ -536,84 +552,80 @@ ezDo should:
 
 <br><br>
 
-## Appendix E : Product Surveys
+## 11. Appendix E : Product Surveys
 <br>
 
-### Trello
+### 11.1 Trello
 ---
 #### Pros
-- Simple to use because the interface relies on many visual cues and pictures
-- Can tag tasks with different colours to indicate different priority
-- Can tag other Trello users to tasks
-- Has all the functions that a task manager should have and can fulfill Jim's personal needs in a task manager
+- Simple to use because the interface relies on many visual cues.
+- Collaborative - can tag other Trello users to tasks.
 
 #### Cons
-- Need to pay a sum of money monthly to access all features
-- Does not sort tasks in deadline order - tasks must be moved manually
+- Expensive because users need to pay a monthly fee to use Trello.
+- Inflexible - users cannot sort tasks by date.
 
-#### Verdict - NO
+#### Verdict - Not for Jim
 Trello requires most of the work to be done with a mouse (moving of tasks by mouse etc). Moreover, Trello does not sort tasks by deadline or priority. Jim will find it inconvenient if he wishes to view his tasks in a certain order.
 
 <br>
 
-### Sticky Notes
+### 11.2 Sticky Notes
 ---
 #### Pros
-- Comes bundled free with every Microsoft PC. No need to buy
-- Simple to use, like its real-world counterpart - Post-it notes
-- Can rearrange notes on desktop to place at desired position
-- Can resize notes for better visibility
-- Can change color of sticky notes
-- Can change font, font size, and other text options
+- Free with every Microsoft PC.
+- Simple to use, like its real-world counterpart - Post-it notes.
+- Rearrangeable notes.
+- Resizeable notes for better visibility.
+- Colorful - different note colors.
+- Customizeable - font, font size, and other text options.
 
 #### Cons
-- Requires keyboard shortcuts to change font and font options
-- Can clutter up screen with many sticky notes
-- No easy way to differentiate what is most important
-- No reminders (Need Windows 10 Cortana - privacy!)
+- Complicated - keyboard shortcuts only to change options.
+- Messy - screen gets cluttered with many notes.
+- Hard to differentiate notes.
+- Unable to set reminders.
 
-#### Verdict - NO
-Sticky notes is not so good for Jim.
-Jim follows 'Inbox Zero'. He no longer has to worry about an inbox full of emails, because he gets a desktop full of notes now instead.
-Sticky notes require mouse-clicks and Jim prefers typing.
-Doesn't show what has to be done by what deadline.
+#### Verdict - Not for Jim
+Sticky notes is not so good for Jim. Jim follows 'Inbox Zero'. If he uses Sticky Notes, he no longer has to worry about an inbox full of emails, because he gets a desktop full of notes now instead. Sticky notes require mouse-clicks and Jim prefers typing.
+Sticky Notes also doesn't show what has to be done by a certain date.
 
 <br>
 
-### Wunderlist
+### 11.3 Wunderlist
 ---
 #### Pros
-- Has all the features expected from a standard to-do list application and more, such as due dates, notes, attachments, reminders and synchronisation
-- Has a keyboard shortcut to quickly input tasks (Quick Add)
-- Intuitive user experience
+- Featureful - supports most features you would expect to find in a to-do list.
+- Fast adding of tasks using keyboard shortcuts.
+- Intuitive user experience.
 
 
 #### Cons
-- Quick Add still requires mouse input if you wish to specify a due date
-- Does not support tagging of tasks
+- Inflexible - still requires mouse input if you wish to specify a due date.
+- Unable to support tags.
 
 
-#### Verdict - NO
+#### Verdict - Not for Jim
 Wunderlist does not suit Jim's needs.
 Though it supports basic task creation with the keyboard alone, it does not allow Jim to record essential details such as the deadlines or priority without using a mouse.
 
 <br>
 
-### Nirvana for GTD
+### 11.4 Nirvana for GTD
 ---
 #### Pros
-- Android and iOS platforms are available for use
+- Compatible with Android and iOS
 - Simple and clean layout
-- Creating a task can be done using command prompt entry
-- Focus view is available to view tasks or projects that require immediate attention
+- Simple to add tasks by command prompt entry
+- Customizable view to view tasks or projects that require immediate attention
 
 #### Cons
-- Due time cannot be specified for any task
-- Reminders cannot be set for any task
-- Limited commands (e.g. Unable to delete a task)
-- No native apps provided for OS X and Windows platforms
+- Unable to specify due date
+- Unable to set commands
+- Lacking in features
+- Incompatible with OS X and Windows
 
-#### Verdict - NO
+#### Verdict - Not for Jim
 For Jim, the applications allows him to zoom in to tasks or projects that require immediate action. However, this application is restricting  him to add tasks or projects using the command line interface. He has to use the graphical interface to edit or delete a task which will decrease his productivity and therefore it is not suitable for him.
 
 <br><br>

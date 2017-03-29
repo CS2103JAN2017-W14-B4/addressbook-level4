@@ -3,6 +3,7 @@ package seedu.ezdo.logic.parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -133,7 +134,7 @@ public class ArgumentTokenizerTest {
         assertArgumentPresent(tokenizer, dashT, "dashT-Value", "another dashT value", "");
         assertArgumentPresent(tokenizer, hatQ, "", "");
     }
-
+  //@@author A0139248X
     @Test
     public void equalsMethod() {
         Prefix aaa = new Prefix("aaa");
@@ -145,4 +146,9 @@ public class ArgumentTokenizerTest {
         assertNotEquals(aaa, new Prefix("aab"));
     }
 
+    @Test
+    public void getAllValueMethod() {
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(slashP);
+        assertTrue(tokenizer.getAllValue().size() == 1);
+    }
 }

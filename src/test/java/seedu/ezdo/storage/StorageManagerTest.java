@@ -84,7 +84,7 @@ public class StorageManagerTest {
         storage.handleEzDoChangedEvent(new EzDoChangedEvent(new EzDo()));
         assertTrue(eventCollector.get(0) instanceof DataSavingExceptionEvent);
     }
-
+  //@@author A0139248X
     @Test
     public void handleEzDoDirectoryChangedEvent_exceptionThrown_eventRaised() throws IOException {
         Storage storage = new StorageManager(new XmlEzDoStorageExceptionThrowingStub("dummy"),

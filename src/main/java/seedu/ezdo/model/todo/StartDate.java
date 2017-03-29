@@ -1,6 +1,5 @@
 package seedu.ezdo.model.todo;
 
-
 import seedu.ezdo.commons.exceptions.IllegalValueException;
 
 
@@ -24,7 +23,7 @@ public class StartDate extends TaskDate {
             throw new IllegalValueException(MESSAGE_STARTDATE_CONSTRAINTS);
         }
     }
-
+//@@author A0141010L
     /**
      * Validates given start date when user finds by start date
      *
@@ -32,7 +31,7 @@ public class StartDate extends TaskDate {
      */
     public StartDate(String startDate, boolean isFind) throws IllegalValueException {
         super(startDate, isFind);
-        if (!isValidTaskDate(this.value, true)) {
+        if (!isValidTaskDate(this.value)) {
             throw new IllegalValueException(MESSAGE_FIND_DATE_CONSTRAINTS);
         }
     }

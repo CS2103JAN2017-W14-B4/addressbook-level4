@@ -1,0 +1,6 @@
+machine:
+  java:
+    version: oraclejdk8
+test:
+  override:
+    - ./gradlew clean checkstyleMain checkstyleTest headless allTests coverage coveralls

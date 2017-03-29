@@ -69,7 +69,14 @@ public class EzDoTest {
         thrown.expect(AssertionError.class);
         ezDo.resetData(newData);
     }
-
+  //@@author A0139248X
+    @Test
+    public void hashCode_works() {
+        EzDo typicalEzDo = new TypicalTestTasks().getTypicalEzDo();
+        EzDo typicalEzDo2 = new TypicalTestTasks().getTypicalEzDo();
+        assertEquals(typicalEzDo.hashCode(), typicalEzDo2.hashCode());
+    }
+  //@@author
     /**
      * A stub ReadOnlyEzDo whose tasks and tags lists can violate interface constraints.
      */

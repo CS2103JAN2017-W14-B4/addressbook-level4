@@ -75,7 +75,13 @@ public class EditCommandParser implements CommandParser {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    //@@author A0138907W
+    /**
+     * Returns the user-provided value associated with the given prefix.
+     * If no value was given, an empty String is returned.
+     */
     private Optional<String> getOptionalValue(ArgumentTokenizer tokenizer, Prefix prefix) {
+        assert tokenizer != null;
         Optional<String> optionalString;
         if (!tokenizer.getValue(prefix).isPresent()) {
             optionalString = Optional.empty();

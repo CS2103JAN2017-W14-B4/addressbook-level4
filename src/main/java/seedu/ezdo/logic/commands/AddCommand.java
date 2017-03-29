@@ -3,7 +3,10 @@ package seedu.ezdo.logic.commands;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.ezdo.commons.core.EventsCenter;
 import seedu.ezdo.commons.core.Messages;
+import seedu.ezdo.commons.core.UnmodifiableObservableList;
+import seedu.ezdo.commons.events.ui.JumpToListRequestEvent;
 import seedu.ezdo.commons.exceptions.DateException;
 import seedu.ezdo.commons.exceptions.IllegalValueException;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
@@ -12,6 +15,7 @@ import seedu.ezdo.model.tag.UniqueTagList;
 import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
+import seedu.ezdo.model.todo.ReadOnlyTask;
 import seedu.ezdo.model.todo.StartDate;
 import seedu.ezdo.model.todo.Task;
 import seedu.ezdo.model.todo.UniqueTaskList;
@@ -53,12 +57,15 @@ public class AddCommand extends Command {
                 new UniqueTagList(tagSet)
         );
     }
-
+  //@@author A0139248X
     @Override
     public CommandResult execute() throws CommandException {
         assert model != null;
         try {
             model.addTask(toAdd);
+            UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+            int index = lastShownList.lastIndexOf(toAdd);
+            EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniqueTaskList.DuplicateTaskException e) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);

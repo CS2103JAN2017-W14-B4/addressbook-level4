@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import seedu.ezdo.commons.exceptions.DataConversionException;
 import seedu.ezdo.model.ReadOnlyEzDo;
-
+//@@author A0139248X
 /**
  * Represents a storage for {@link seedu.ezdo.model.EzDo}.
  */
@@ -46,6 +46,10 @@ public interface EzDoStorage {
      */
     void saveEzDo(ReadOnlyEzDo ezDo, String filePath) throws IOException;
 
+    /**
+     * Moves the current ezDo at the oldPath to the newPath
+     * @throws IOException if there was a problem moving the file
+     */
     void moveEzDo(String newPath, String oldPath) throws IOException;
 
 }

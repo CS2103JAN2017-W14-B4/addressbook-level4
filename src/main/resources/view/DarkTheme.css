@@ -1,3 +1,5 @@
+/* @@author A0139177W */
+
 .background {
     -fx-background-color: white;
 }
@@ -87,9 +89,14 @@
 }
 
 .list-cell {
+    -fx-background-color: transparent;
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+}
+
+.list-cell:filled:focused {
+    -fx-background-color: cyan;
 }
 
 .list-cell .label {
@@ -102,13 +109,18 @@
 }
 
 .cell_small_label {
-    -fx-font-size: 11px;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
     -fx-text-fill: #010504;
 }
 
 .anchor-pane {
-     -fx-background-color: white;
      -fx-font-size: 12px;
+}
+
+.anchor-pane .priority_number {
+    -fx-font-size: 0px;
+    -fx-text-fill: transparent;
 }
 
 .anchor-pane-with-border {
@@ -121,13 +133,14 @@
 }
 
 .result-display {
-    -fx-background-color: #ffffff;
+    -fx-background-color: grey;
     -fx-text-fill: blue;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 }
 
 .result-display .label {
+    -fx-background-color: lightcyan;
     -fx-text-fill: black !important;
 }
 
@@ -142,7 +155,8 @@
 }
 
 .status-bar-with-border .label {
-    -fx-text-fill: white;
+    -fx-text-fill: brown;
+    -fx-font-weight: bold;
 }
 
 .grid-pane {
@@ -253,7 +267,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: white;
+    -fx-background-color: grey;
     -fx-background-insets: 3;
 }
 

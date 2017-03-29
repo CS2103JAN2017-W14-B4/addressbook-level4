@@ -7,12 +7,11 @@ import seedu.ezdo.commons.core.UnmodifiableObservableList;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
 import seedu.ezdo.model.todo.ReadOnlyTask;
 import seedu.ezdo.model.todo.Task;
-import seedu.ezdo.model.todo.UniqueTaskList.TaskNotFoundException;
-
+//@@author A0141010L
 /**
  * Marks a task as identified using its last displayed index from ezDo as done
  */
-public class DoneCommand extends Command {
+public class DoneCommand extends Command implements MultipleIndexCommand {
 
     public static final String COMMAND_WORD = "done";
     public static final String SHORT_COMMAND_WORD = "d";
@@ -65,15 +64,11 @@ public class DoneCommand extends Command {
             tasksToDone.add(taskToDone);
         }
 
-        try {
-            model.doneTasks(tasksToDone);
-        } catch (TaskNotFoundException tnfe) {
-            assert false : "The target task cannot be missing";
-        }
+        model.doneTasks(tasksToDone);
 
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, tasksToDone));
     }
-
+  //@@author A0139248X
     private boolean isAnyTaskDone(UnmodifiableObservableList<ReadOnlyTask> lastShownList) {
         for (int i = 0; i < targetIndexes.size(); i++) {
             Task taskToDone = (Task) lastShownList.get(targetIndexes.get(i) - 1);
@@ -84,7 +79,8 @@ public class DoneCommand extends Command {
         return false;
     }
 
-    private boolean isIndexValid(UnmodifiableObservableList<ReadOnlyTask> lastShownList) {
+    @Override
+    public boolean isIndexValid(UnmodifiableObservableList<ReadOnlyTask> lastShownList) {
         return targetIndexes.stream().allMatch(index -> index <= lastShownList.size() && index != 0);
     }
 }

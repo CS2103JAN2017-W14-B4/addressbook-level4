@@ -46,6 +46,7 @@ import seedu.ezdo.model.EzDo;
 import seedu.ezdo.model.Model;
 import seedu.ezdo.model.ModelManager;
 import seedu.ezdo.model.ReadOnlyEzDo;
+import seedu.ezdo.model.UserPrefs;
 import seedu.ezdo.model.tag.Tag;
 import seedu.ezdo.model.tag.UniqueTagList;
 import seedu.ezdo.model.todo.DueDate;
@@ -96,7 +97,7 @@ public class LogicManagerTest {
         Config config = new Config();
         String tempEzDoFile = saveFolder.getRoot().getPath() + "TempEzDo.xml";
         String tempPreferencesFile = saveFolder.getRoot().getPath() + "TempPreferences.json";
-        logic = new LogicManager(model, new StorageManager(tempEzDoFile, tempPreferencesFile, config));
+        logic = new LogicManager(model, new StorageManager(tempEzDoFile, tempPreferencesFile, config), new UserPrefs());
         EventsCenter.getInstance().registerHandler(this);
 
         latestSavedEzDo = new EzDo(model.getEzDo()); // last saved assumed to be up to date
@@ -104,7 +105,7 @@ public class LogicManagerTest {
         targetedJumpIndex = -1; // non yet
 
         // sort by a field other than name so that it does not affect the tests
-        model.sortTasks(UniqueTaskList.SortCriteria.PRIORITY);
+        model.sortTasks(UniqueTaskList.SortCriteria.PRIORITY, true);
     }
 
     @After
@@ -341,7 +342,7 @@ public class LogicManagerTest {
         assertEquals(model.getFilteredTaskList().get(1), threeTasks.get(1));
     }
 
-
+  //@@author A0139248X
     @Test
     public void execute_killInvalidArgsFormat_errorMessageShown() throws Exception {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, KillCommand.MESSAGE_USAGE);
@@ -369,7 +370,7 @@ public class LogicManagerTest {
                 expectedEZ,
                 expectedEZ.getTaskList());
     }
-
+  //@@author A0139248X
 
     @Test
     public void execute_find_invalidArgsFormat() {
@@ -434,6 +435,7 @@ public class LogicManagerTest {
                 expectedList);
     }
 
+  //@@author A0139248X
     @Test
     public void execute_save_successful() {
         String directory = "./";
@@ -441,7 +443,7 @@ public class LogicManagerTest {
         assertCommandSuccess("save " + directory, String.format(SaveCommand.MESSAGE_SAVE_TASK_SUCCESS,
                 directory + SaveCommand.DATA_FILE_NAME), new EzDo(), Collections.emptyList());
     }
-
+  //@@author
     /**
      * A utility class to generate test data.
      */

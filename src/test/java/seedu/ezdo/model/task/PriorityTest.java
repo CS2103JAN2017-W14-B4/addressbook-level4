@@ -1,5 +1,6 @@
 package seedu.ezdo.model.task;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -19,7 +20,14 @@ public class PriorityTest {
 
         // valid priority numbers
         assertTrue(Priority.isValidPriority("1"));
-        assertTrue(Priority.isValidPriority("2")); // short priority numbers
-        assertTrue(Priority.isValidPriority("3")); // long priority numbers
+        assertTrue(Priority.isValidPriority("2"));
+        assertTrue(Priority.isValidPriority("3"));
+    }
+
+  //@@author A0139248X
+    @Test
+    public void hashCode_equals() throws Exception {
+        Priority one = new Priority("1");
+        assertEquals(one.hashCode(), one.hashCode());
     }
 }

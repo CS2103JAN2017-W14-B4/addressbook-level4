@@ -1,6 +1,5 @@
 package seedu.ezdo.model.tag;
 
-
 import seedu.ezdo.commons.exceptions.IllegalValueException;
 
 /**

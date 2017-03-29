@@ -1,7 +1,7 @@
 package seedu.ezdo.model;
 
 import java.util.EmptyStackException;
-
+//@@author A0139248X
 /*
  * Array-based implementation for a stack with fixed size. Used for undo & redo stacks.
  * If stack goes past max capacity, the oldest item to be pushed is replaced.

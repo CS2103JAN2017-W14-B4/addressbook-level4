@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- @@author A0139177W -->
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@DarkTheme.css" />
       <URL value="@Extensions.css" />
@@ -20,8 +19,8 @@
    <children>
       <GridPane styleClass="grid-pane">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="400.0" prefWidth="400.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -41,35 +40,32 @@
                   </Menu>
                </menus>
             </MenuBar>
+            <AnchorPane fx:id="statusbarPlaceholder" styleClass="status-bar-with-border" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <AnchorPane fx:id="commandBoxPlaceholder" styleClass="anchor-pane-with-border" VBox.vgrow="NEVER">
          <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>
+         <VBox.margin>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
       </AnchorPane>
-       <AnchorPane fx:id="resultDisplayPlaceholder" maxHeight="120.0" minHeight="120.0" prefHeight="120.0" styleClass="anchor-pane-with-border" VBox.vgrow="NEVER">
+       <AnchorPane fx:id="resultDisplayPlaceholder" maxHeight="120.0" minHeight="120.0" prefHeight="120.0" VBox.vgrow="NEVER">
            <padding>
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
            </padding>
+         <VBox.margin>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </VBox.margin>
        </AnchorPane>
-      <SplitPane id="splitPane" fx:id="splitPane" dividerPositions="1.0" VBox.vgrow="ALWAYS">
-         <items>
-            <VBox fx:id="taskList" minWidth="340" prefWidth="340">
-                <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                </padding>
-               <children>
-                  <AnchorPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
-            <AnchorPane fx:id="browserPlaceholder" maxWidth="0.0">
-                <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-            </AnchorPane>
-         </items>
-      </SplitPane>
-      <AnchorPane fx:id="statusbarPlaceholder" styleClass="status-bar-with-border" />
+      <AnchorPane fx:id="taskCardHeaderPlaceholder">
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+         </VBox.margin></AnchorPane>
+      <AnchorPane fx:id="taskListPanelPlaceholder" styleClass="list-cell" VBox.vgrow="SOMETIMES">
+         <VBox.margin>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </VBox.margin></AnchorPane>
    </children>
 </VBox>

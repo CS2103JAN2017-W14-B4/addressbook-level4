@@ -16,24 +16,17 @@ import seedu.ezdo.commons.exceptions.DataConversionException;
 import seedu.ezdo.commons.util.ConfigUtil;
 import seedu.ezdo.model.ReadOnlyEzDo;
 import seedu.ezdo.model.UserPrefs;
-
+//@@author A0139248X
 /**
  * Manages storage of EzDo data in local storage.
  */
 public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-//    private ConfigStorage configStorage;
+
     private EzDoStorage ezDoStorage;
     private UserPrefsStorage userPrefsStorage;
     private Config config;
-
-//    public StorageManager(EzDoStorage ezDoStorage, UserPrefsStorage userPrefsStorage, ConfigStorage configStorage) {
-//        super();
-//        this.configStorage = configStorage;
-//        this.ezDoStorage = ezDoStorage;
-//        this.userPrefsStorage = userPrefsStorage;
-//    }
 
     public StorageManager(EzDoStorage ezDoStorage, UserPrefsStorage userPrefsStorage, Config config) {
         super();
@@ -45,12 +38,6 @@ public class StorageManager extends ComponentManager implements Storage {
     public StorageManager(String ezDoFilePath, String userPrefsFilePath, Config config) {
         this(new XmlEzDoStorage(ezDoFilePath), new JsonUserPrefsStorage(userPrefsFilePath), config);
     }
-//    public StorageManager(String ezDoFilePath, String userPrefsFilePath, String configFilePath) {
-//        this(new XmlEzDoStorage(ezDoFilePath), new JsonUserPrefsStorage(userPrefsFilePath),
-//    new JsonConfigStorage(configFilePath));
-//    }
-    // ================ UserPrefs methods ==============================
-
 
     // ================ UserPrefs methods ==============================
 

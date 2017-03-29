@@ -39,7 +39,7 @@ allprojects {
         jacksonVersion = '2.7.0'
         jacksonDataTypeVersion = '2.7.4'
         junitVersion = '4.12'
-        testFxVersion = '4.0.+'
+        testFxVersion = '4.0.5-alpha'
         monocleVersion = '1.8.0_20'
         checkstyleVersion = '7.1.2'
 
@@ -64,7 +64,9 @@ allprojects {
         compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDataTypeVersion"
         compile "com.google.guava:guava:$guavaVersion"
         compile "com.joestelmach:natty:0.13"
+        testCompile 'org.jmockit:jmockit:1.31'
         testCompile "org.powermock:powermock-api-mockito:1.6.6"
+        compile group: 'org.powermock', name: 'powermock-api-support', version: '1.6.6'
         testCompile "org.powermock:powermock-module-junit4:1.6.6"
         testCompile "org.mockito:mockito-core:1.+"
         testCompile "junit:junit:$junitVersion"
@@ -159,7 +161,7 @@ task guiTests(type: EzDoTest) {
 
 
 task nonGuiTests(type: EzDoTest) {
-    include 'seedu/address/**'
+    include 'seedu/ezdo/**'
 
     jacoco {
         destinationFile = new File("${buildDir}/jacoco/test.exec")

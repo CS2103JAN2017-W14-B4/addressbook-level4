@@ -2,8 +2,6 @@ package seedu.ezdo.model;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.ezdo.commons.core.UnmodifiableObservableList;
 import seedu.ezdo.commons.exceptions.DateException;
@@ -24,8 +22,11 @@ public interface Model {
     /** Returns the EzDo */
     ReadOnlyEzDo getEzDo();
 
-    void sortTasks(SortCriteria sortCriteria);
+    /** Returns the UserPrefs */
+    UserPrefs getUserPrefs();
 
+    void sortTasks(SortCriteria sortCriteria, Boolean isSortedAscending);
+  //@@author A0139248X
     /** Deletes the given task. */
     void killTasks(ArrayList<ReadOnlyTask> tasksToKill) throws UniqueTaskList.TaskNotFoundException;
 
@@ -40,7 +41,7 @@ public interface Model {
 
     /** Marks a task as done.
      * @throws TaskNotFoundException */
-    void doneTasks(ArrayList<Task> tasksToDone) throws TaskNotFoundException;
+    void doneTasks(ArrayList<Task> tasksToDone);
 
     /** Undo the previous undoable command
      * @throws EmptyStackException */
@@ -53,6 +54,7 @@ public interface Model {
     /** Update stack when new command is executed
      * @throws EmptyStackException */
     void updateStacks() throws EmptyStackException;
+  //@@author A0139248X
 
     /**
      * Updates the task located at {@code filteredTaskListIndex} with {@code editedTask}.
@@ -71,8 +73,7 @@ public interface Model {
     void updateFilteredListToShowAll();
 
     /** Updates the filter of the filtered task list to filter by multiple fields*/
-    void updateFilteredTaskList(Set<String> keywords, Optional toMatch1,
-            Optional toMatch2, Optional toMatch3, Set<String> toMatchTag);
+    void updateFilteredTaskList(ArrayList<Object> listToCompare, ArrayList<Boolean> searchIndicatorList);
 
     /** Updates the filter of the filtered task list to show done tasks*/
     void updateFilteredDoneList();

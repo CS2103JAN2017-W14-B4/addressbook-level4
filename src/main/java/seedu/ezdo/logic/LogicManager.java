@@ -10,6 +10,7 @@ import seedu.ezdo.logic.commands.CommandResult;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
 import seedu.ezdo.logic.parser.Parser;
 import seedu.ezdo.model.Model;
+import seedu.ezdo.model.UserPrefs;
 import seedu.ezdo.model.todo.ReadOnlyTask;
 import seedu.ezdo.storage.Storage;
 
@@ -22,9 +23,9 @@ public class LogicManager extends ComponentManager implements Logic {
     private final Model model;
     private final Parser parser;
 
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage, UserPrefs prefs) {
         this.model = model;
-        this.parser = new Parser();
+        this.parser = new Parser(prefs.getCommandAliases());
     }
 
     @Override

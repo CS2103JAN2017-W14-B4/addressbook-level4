@@ -6,7 +6,9 @@ import static seedu.ezdo.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.ezdo.logic.CommandAliases;
 import seedu.ezdo.logic.commands.AddCommand;
+import seedu.ezdo.logic.commands.AliasCommand;
 import seedu.ezdo.logic.commands.ClearCommand;
 import seedu.ezdo.logic.commands.Command;
 import seedu.ezdo.logic.commands.DoneCommand;
@@ -32,6 +34,13 @@ public class Parser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    private CommandAliases commandAliases;
+
+
+    public Parser(CommandAliases commandAliases) {
+        this.commandAliases = commandAliases;
+    }
 
     /**
      * Parses user input into command for execution.
@@ -103,7 +112,15 @@ public class Parser {
         case RedoCommand.SHORT_COMMAND_WORD:
             return new RedoCommand();
 
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
+
         default:
+            if (commandAliases.checkIfAlias(commandWord)) {
+                String mappedCommand = commandAliases.getCommandFromAlias(commandWord);
+                String properInput = mappedCommand + arguments; // change the alias to the default command word
+                return parseCommand(properInput); // parse the command again
+            }
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
     }

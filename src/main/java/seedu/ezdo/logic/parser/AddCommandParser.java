@@ -43,7 +43,13 @@ public class AddCommandParser implements CommandParser {
         }
     }
 
+    //@@author A0138907W
+    /**
+     * Returns the user-provided value associated with the given prefix.
+     * If no value was given, an empty String is returned.
+     */
     private static String getOptionalValue(ArgumentTokenizer tokenizer, Prefix prefix) {
+        assert tokenizer != null;
         if (!tokenizer.getValue(prefix).isPresent()) {
             return "";
         } else {

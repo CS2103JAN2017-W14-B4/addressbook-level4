@@ -21,9 +21,6 @@ public class HelpWindowTest extends EzDoGuiTest {
         taskListPanel.clickOnListView();
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingAccelerator());
 
-        browserPanel.clickOnWebView();
-        assertHelpWindowNotOpen(mainMenu.openHelpWindowUsingAccelerator());
-
         //use menu button
         assertHelpWindowOpen(mainMenu.openHelpWindowUsingMenu());
 

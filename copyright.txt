@@ -2,3 +2,6 @@
 
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png
+
+Copyright by ezDo™
+- ezDo_32.png

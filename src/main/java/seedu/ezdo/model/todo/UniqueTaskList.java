@@ -114,7 +114,7 @@ public class UniqueTaskList implements Iterable<Task> {
      *
      * @param sortCriteria A constant that represents the sorting criteria.
      */
-    public void sortTasks(SortCriteria sortCriteria) {
+    public void sortTasks(SortCriteria sortCriteria, Boolean isSortedAscending) {
         Comparator<Task> taskComparator = null;
         switch (sortCriteria) {
         case NAME:
@@ -123,7 +123,8 @@ public class UniqueTaskList implements Iterable<Task> {
                 public int compare(Task taskOne, Task taskTwo) {
                     String taskOneName = taskOne.getName().toString();
                     String taskTwoName = taskTwo.getName().toString();
-                    return taskOneName.compareToIgnoreCase(taskTwoName);
+                    int result = taskOneName.compareToIgnoreCase(taskTwoName);
+                    return isSortedAscending ? result : -result;
                 }
             };
             break;
@@ -133,7 +134,8 @@ public class UniqueTaskList implements Iterable<Task> {
                 public int compare(Task taskOne, Task taskTwo) {
                     String taskOneStartDate = taskOne.getStartDate().toString();
                     String taskTwoStartDate = taskTwo.getStartDate().toString();
-                    return compareDateStrings(taskOneStartDate, taskTwoStartDate);
+
+                    return compareDateStrings(taskOneStartDate, taskTwoStartDate, isSortedAscending);
                 }
             };
             break;
@@ -143,7 +145,7 @@ public class UniqueTaskList implements Iterable<Task> {
                 public int compare(Task taskOne, Task taskTwo) {
                     String taskOneDueDate = taskOne.getDueDate().toString();
                     String taskTwoDueDate = taskTwo.getDueDate().toString();
-                    return compareDateStrings(taskOneDueDate, taskTwoDueDate);
+                    return compareDateStrings(taskOneDueDate, taskTwoDueDate, isSortedAscending);
                 }
             };
             break;
@@ -164,7 +166,8 @@ public class UniqueTaskList implements Iterable<Task> {
                         return -1;
                     }
 
-                    return taskOnePriority.compareTo(taskTwoPriority);
+                    int result = taskOnePriority.compareTo(taskTwoPriority);
+                    return isSortedAscending ? result : -result;
                 }
             };
             break;
@@ -198,7 +201,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Signals that an operation would have violated the 'no duplicates' property of the list.
      */
     public static class DuplicateTaskException extends DuplicateDataException {
-        protected DuplicateTaskException() {
+        public DuplicateTaskException() {
             super("Operation would result in duplicate tasks");
         }
     }

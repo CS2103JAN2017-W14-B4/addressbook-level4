@@ -1,5 +1,7 @@
 package seedu.ezdo.ui;
 
+import java.util.HashMap;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -10,7 +12,24 @@ import seedu.ezdo.model.todo.ReadOnlyTask;
 
 public class TaskCard extends UiPart<Region> {
 
+    private String priorityInString;
+
+    private static final String DEFAULT_PRIORITY_NUMBER = "";
+    private static final String DEFAULT_PRIORITY_COLOR = "transparent";
+
+    private static final String HIGH_PRIORITY_NUMBER = "1";
+    private static final String HIGH_PRIORITY_COLOR = "red";
+
+    private static final String MEDIUM_PRIORITY_NUMBER = "2";
+    private static final String MEDIUM_PRIORITY_COLOR = "orange";
+
+    private static final String LOW_PRIORITY_NUMBER = "3";
+    private static final String LOW_PRIORITY_COLOR = "green";
+
     private static final String FXML = "TaskListCard.fxml";
+    private static final String CSS_BACKGROUND_COLOR = "-fx-background-color: ";
+
+    public static final HashMap<String, String> PRIORITY_COLOR_HASHMAP = new HashMap<>();
 
     @FXML
     private HBox cardPane;
@@ -31,6 +50,7 @@ public class TaskCard extends UiPart<Region> {
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
+        setPriorityColorHashMap();
         name.setText(task.getName().fullName);
         id.setText(displayedIndex + ". ");
         setPriority(task);
@@ -39,25 +59,22 @@ public class TaskCard extends UiPart<Region> {
         initTags(task);
     }
 
+    public void setPriorityInString(String priorityInString) {
+        this.priorityInString = priorityInString;
+    }
+
+    private void setPriorityColorHashMap() {
+        PRIORITY_COLOR_HASHMAP.put(DEFAULT_PRIORITY_NUMBER, DEFAULT_PRIORITY_COLOR);
+        PRIORITY_COLOR_HASHMAP.put(LOW_PRIORITY_NUMBER, LOW_PRIORITY_COLOR);
+        PRIORITY_COLOR_HASHMAP.put(MEDIUM_PRIORITY_NUMBER, MEDIUM_PRIORITY_COLOR);
+        PRIORITY_COLOR_HASHMAP.put(HIGH_PRIORITY_NUMBER, HIGH_PRIORITY_COLOR);
+    }
+
     private void setPriority(ReadOnlyTask task) {
-        String priorityInString = task.getPriority().value;
-        priority.setText(priorityInString);
-
-        switch (priorityInString) {
-
-        case "1":
-            priorityColor.setStyle("-fx-background-color: green");
-            break;
-        case "2":
-            priorityColor.setStyle("-fx-background-color: orange");
-            break;
-        case "3":
-            priorityColor.setStyle("-fx-background-color: red");
-            break;
-        default:
-
-        }
-
+        setPriorityInString(task.getPriority().value);
+        priority.setText(priorityInString); // Invisible in UI (for testing
+                                            // purposes)
+        priorityColor.setStyle(CSS_BACKGROUND_COLOR + PRIORITY_COLOR_HASHMAP.get(priorityInString));
     }
 
     private void initTags(ReadOnlyTask task) {

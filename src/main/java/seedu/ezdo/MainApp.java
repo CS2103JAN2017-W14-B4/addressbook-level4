@@ -14,6 +14,8 @@ import seedu.ezdo.commons.core.Config;
 import seedu.ezdo.commons.core.EventsCenter;
 import seedu.ezdo.commons.core.LogsCenter;
 import seedu.ezdo.commons.core.Version;
+import seedu.ezdo.commons.events.model.IsSortedAscendingChangedEvent;
+import seedu.ezdo.commons.events.model.SortCriteriaChangedEvent;
 import seedu.ezdo.commons.events.ui.ExitAppRequestEvent;
 import seedu.ezdo.commons.exceptions.DataConversionException;
 import seedu.ezdo.commons.util.ConfigUtil;
@@ -61,7 +63,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, storage, userPrefs);
 
         ui = new UiManager(logic, config, userPrefs);
 
@@ -184,6 +186,18 @@ public class MainApp extends Application {
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         this.stop();
+    }
+  //@@author A0139248X
+    @Subscribe
+    public void handleSortCriteriaChangedEvent(SortCriteriaChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        this.userPrefs.updateLastUsedSortCriteria(event.getNewSortCriteria());
+    }
+  //@@author
+    @Subscribe
+    public void handleIsSortedAscendingChangedEvent(IsSortedAscendingChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        this.userPrefs.updateLastUsedIsSortedAscending(event.getNewIsSortedAscending());
     }
 
     public static void main(String[] args) {

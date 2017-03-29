@@ -1,9 +1,11 @@
+//@@author A0138907W
 package guitests;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import seedu.ezdo.commons.core.Messages;
 import seedu.ezdo.logic.commands.SortCommand;
 import seedu.ezdo.model.EzDo;
 import seedu.ezdo.model.todo.Task;
@@ -13,6 +15,7 @@ import seedu.ezdo.testutil.TypicalTestTasks;
 
 public class SortCommandTest extends EzDoGuiTest {
 
+    @Override
     protected EzDo getInitialData() {
         EzDo ez = new EzDo();
         TypicalTestTasks.loadEzDoWithSampleData(ez);
@@ -32,31 +35,41 @@ public class SortCommandTest extends EzDoGuiTest {
 
         // sort by start date
         commandBox.runCommand("sort s");
-        expectedList = new TestTask[]{td.elle, td.george, td.daniel, td.carl, td.benson, td.fiona, td.alice, td.kappa,
-                                      td.leroy, td.megan};
+        expectedList = new TestTask[] {td.elle, td.george, td.daniel, td.carl, td.benson, td.fiona, td.alice, td.kappa,
+                                       td.leroy, td.megan};
+        assertTrue(taskListPanel.isListMatching(expectedList));
+
+        // sort by start date in descending order
+        commandBox.runCommand("s s d");
+        expectedList = new TestTask[] {td.alice, td.fiona, td.benson, td.carl, td.daniel, td.george, td.elle, td.kappa,
+                                       td.leroy, td.megan};
         assertTrue(taskListPanel.isListMatching(expectedList));
 
         // sort by due date
         commandBox.runCommand("s d");
-        expectedList = new TestTask[]{td.carl, td.elle, td.george, td.daniel, td.fiona, td.benson, td.alice, td.kappa,
-                                      td.leroy, td.megan};
+        expectedList = new TestTask[] {td.carl, td.elle, td.george, td.daniel, td.fiona, td.benson, td.alice, td.kappa,
+                                       td.leroy, td.megan};
         assertTrue(taskListPanel.isListMatching(expectedList));
 
         // sort by name
-        commandBox.runCommand("sort n");
-        expectedList = new TestTask[]{td.alice, td.benson, td.carl, td.daniel, td.elle, td.fiona, td.george, td.kappa,
-                                      td.leroy, td.megan};
+        commandBox.runCommand("sort n a");
+        expectedList = new TestTask[] {td.alice, td.benson, td.carl, td.daniel, td.elle, td.fiona, td.george, td.kappa,
+                                       td.leroy, td.megan};
         assertTrue(taskListPanel.isListMatching(expectedList));
 
         // sort by priority
         commandBox.runCommand("s p");
-        expectedList = new TestTask[]{td.alice, td.benson, td.carl, td.daniel, td.fiona, td.elle, td.george, td.kappa,
-                                      td.leroy, td.megan};
+        expectedList = new TestTask[] {td.alice, td.benson, td.carl, td.daniel, td.fiona, td.elle, td.george, td.kappa,
+                                       td.leroy, td.megan};
         assertTrue(taskListPanel.isListMatching(expectedList));
 
         //invalid command
-        commandBox.runCommand("sort blah");
+        commandBox.runCommand("sort z");
         assertResultMessage(SortCommand.MESSAGE_INVALID_FIELD);
+
+        //invalid command
+        commandBox.runCommand("sort");
+        assertResultMessage(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -67,8 +80,8 @@ public class SortCommandTest extends EzDoGuiTest {
 
         // check that Jack is in the right place after adding him
         commandBox.runCommand(td.jack.getAddCommand(false));
-        expectedList = new TestTask[]{td.carl, td.elle, td.george, td.jack, td.daniel, td.fiona, td.benson, td.alice,
-                                      td.kappa, td.leroy, td.megan};
+        expectedList = new TestTask[] {td.carl, td.elle, td.george, td.jack, td.daniel, td.fiona, td.benson, td.alice,
+                                       td.kappa, td.leroy, td.megan};
         assertTrue(taskListPanel.isListMatching(expectedList));
 
         // check that Carl is in the right place after editing his due date

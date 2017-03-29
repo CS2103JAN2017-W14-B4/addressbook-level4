@@ -8,7 +8,7 @@ import seedu.ezdo.commons.events.storage.EzDoDirectoryChangedEvent;
 import seedu.ezdo.commons.exceptions.IllegalValueException;
 import seedu.ezdo.commons.util.FileUtil;
 import seedu.ezdo.logic.commands.exceptions.CommandException;
-
+//@@author A0139248X
 /**
  * Changes the save location of ezDo.
  */
@@ -23,7 +23,8 @@ public class SaveCommand extends Command {
 
     public static final String DATA_FILE_NAME = "/ezDo.xml";
     public static final String MESSAGE_DIRECTORY_PATH_DOES_NOT_EXIST = "The directory path given does not exist.";
-    public static final String MESSAGE_DIRECTORY_PATH_INVALID = "The directory path given is invalid.";
+    public static final String MESSAGE_DIRECTORY_PATH_INVALID = "The directory path is invalid or"
+            + " you do not have administrative permissions.";
     public static final String MESSAGE_SAVE_TASK_SUCCESS = "New Save Location: %1$s";
 
     private final String directoryPath;

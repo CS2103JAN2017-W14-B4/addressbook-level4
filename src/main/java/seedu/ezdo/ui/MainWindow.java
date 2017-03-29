@@ -16,7 +16,6 @@ import seedu.ezdo.commons.events.ui.ExitAppRequestEvent;
 import seedu.ezdo.commons.util.FxViewUtil;
 import seedu.ezdo.logic.Logic;
 import seedu.ezdo.model.UserPrefs;
-import seedu.ezdo.model.todo.ReadOnlyTask;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -26,19 +25,15 @@ public class MainWindow extends UiPart<Region> {
 
     private static final String ICON = "/images/ezDo_32.png";
     private static final String FXML = "MainWindow.fxml";
-    private static final int MIN_HEIGHT = 900;
-    private static final int MIN_WIDTH = 1200;
+    private static final int MIN_HEIGHT = 820;
+    private static final int MIN_WIDTH = 1400;
 
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BrowserPanel browserPanel;
     private TaskListPanel taskListPanel;
     private Config config;
-
-    @FXML
-    private AnchorPane browserPlaceholder;
 
     @FXML
     private AnchorPane commandBoxPlaceholder;
@@ -48,6 +43,9 @@ public class MainWindow extends UiPart<Region> {
 
     @FXML
     private AnchorPane taskListPanelPlaceholder;
+
+    @FXML
+    private AnchorPane taskCardHeaderPlaceholder;
 
     @FXML
     private AnchorPane resultDisplayPlaceholder;
@@ -113,8 +111,8 @@ public class MainWindow extends UiPart<Region> {
     }
 
     protected void fillInnerParts() {
-        browserPanel = new BrowserPanel(browserPlaceholder);
         taskListPanel = new TaskListPanel(getTaskListPlaceholder(), logic.getFilteredTaskList());
+        new TaskCardHeader(getTaskCardHeaderPlaceholder());
         new ResultDisplay(getResultDisplayPlaceholder());
         new StatusBarFooter(getStatusbarPlaceholder(), config.getEzDoFilePath());
         new CommandBox(getCommandBoxPlaceholder(), logic);
@@ -134,6 +132,10 @@ public class MainWindow extends UiPart<Region> {
 
     private AnchorPane getTaskListPlaceholder() {
         return taskListPanelPlaceholder;
+    }
+
+    private AnchorPane getTaskCardHeaderPlaceholder() {
+        return taskCardHeaderPlaceholder;
     }
 
     protected void hide() {
@@ -197,14 +199,6 @@ public class MainWindow extends UiPart<Region> {
 
     public TaskListPanel getTaskListPanel() {
         return this.taskListPanel;
-    }
-
-    protected void loadTaskPage(ReadOnlyTask task) {
-        browserPanel.loadTaskPage(task);
-    }
-
-    protected void releaseResources() {
-        browserPanel.freeResources();
     }
 
 }
