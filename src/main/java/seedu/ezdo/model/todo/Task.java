@@ -44,7 +44,7 @@ public class Task implements ReadOnlyTask {
         assert name != null;
         this.name = name;
     }
-
+    //@@author A0141010L
     public void setDone(boolean doneStatus) {
         this.done = doneStatus;
     }
@@ -52,7 +52,7 @@ public class Task implements ReadOnlyTask {
     public void setDone() {
         this.done = true;
     }
-
+    //@@author 
     @Override
     public Name getName() {
         return name;
@@ -72,12 +72,12 @@ public class Task implements ReadOnlyTask {
         assert startDate != null;
         this.startDate = startDate;
     }
-
+    //@@author A0141010L
     @Override
     public boolean getDone() {
         return this.done;
     }
-
+    //@@author
     @Override
     public TaskDate getStartDate() {
         return startDate;

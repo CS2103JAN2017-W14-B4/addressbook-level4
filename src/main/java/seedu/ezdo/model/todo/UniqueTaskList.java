@@ -23,7 +23,7 @@ import seedu.ezdo.commons.util.CollectionUtil;
 public class UniqueTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
-
+    //@@author A0141010L
     /**
      * Returns true if the list contains an equivalent task that is not done as the given argument.
      */
@@ -37,7 +37,7 @@ public class UniqueTaskList implements Iterable<Task> {
         }
         return containsDuplicate;
     }
-
+    //@@author
     /**
      * Adds a task to the list.
      *

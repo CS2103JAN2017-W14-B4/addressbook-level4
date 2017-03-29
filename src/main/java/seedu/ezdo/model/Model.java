@@ -54,8 +54,8 @@ public interface Model {
     /** Update stack when new command is executed
      * @throws EmptyStackException */
     void updateStacks() throws EmptyStackException;
-  //@@author A0139248X
-
+  //@@author
+  //@@author A0141010L
     /**
      * Updates the task located at {@code filteredTaskListIndex} with {@code editedTask}.
      *

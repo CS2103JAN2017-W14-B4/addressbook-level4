@@ -22,14 +22,14 @@ public abstract class TaskDate {
         DateParser dateParser = new DateParser(taskDate);
         this.value = dateParser.value;
     }
-
+    //@@author A0141010L
     public TaskDate(String taskDate, boolean isFind) throws IllegalValueException {
         String trimmedDate = taskDate.trim();
         assert trimmedDate != null;
         DateParser dateParser = new DateParser(taskDate);
         this.value = dateParser.value;
     }
-
+    //@@author
     @Override
     public String toString() {
         return value;
