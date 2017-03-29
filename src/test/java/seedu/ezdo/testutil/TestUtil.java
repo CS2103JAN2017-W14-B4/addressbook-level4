@@ -71,19 +71,20 @@ public class TestUtil {
                 String.format("Expected %s to be thrown, but nothing was thrown.", expected.getName()));
     }
 
+    //@@author A0139177W
     private static Task[] getSampleTaskData() {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-                new Task(new Name("Complete CS2103T project"), new Priority("1"), new StartDate("01/01/2001"), new DueDate("02/02/2002"), new UniqueTagList()),
-                new Task(new Name("Attend Comp Club meeting"), new Priority("1"), new StartDate("02/02/2002"), new DueDate("03/03/2003"), new UniqueTagList()),
-                new Task(new Name("Discuss MA1101R Assignment 1"), new Priority("1"), new StartDate("03/03/2003"), new DueDate("04/04/2004"), new UniqueTagList()),
-                new Task(new Name("Wash clothes"), new Priority("1"), new StartDate("04/04/2004"), new DueDate("05/05/2005"), new UniqueTagList()),
-                new Task(new Name("Pay school fees"), new Priority("1"), new StartDate("05/05/2005"), new DueDate("06/06/2006"), new UniqueTagList()),
-                new Task(new Name("Buy dinner"), new Priority("1"), new StartDate("06/06/2006"), new DueDate("07/07/2007"), new UniqueTagList()),
-                new Task(new Name("Repair my computer"), new Priority("1"), new StartDate("07/07/2007"), new DueDate("08/08/2008"), new UniqueTagList()),
-                new Task(new Name("Study for ST2334 test"), new Priority("1"), new StartDate("08/08/2008"), new DueDate("09/09/2009"), new UniqueTagList()),
-                new Task(new Name("Dream about getting A+ for CS2103T"), new Priority("1"), new StartDate("09/09/2009"), new DueDate("10/10/2010"), new UniqueTagList())
+                new Task(new Name("Complete CS2103T project"), new Priority("1"), new StartDate("01/01/2001 12:34"), new DueDate("02/02/2002 21:21"), new UniqueTagList()),
+                new Task(new Name("Attend Comp Club meeting"), new Priority("1"), new StartDate("02/02/2002 01:01"), new DueDate("03/03/2003 02:02"), new UniqueTagList()),
+                new Task(new Name("Discuss MA1101R Assignment 1"), new Priority("1"), new StartDate("03/03/2003 03:04"), new DueDate("04/04/2004 04:05"), new UniqueTagList()),
+                new Task(new Name("Wash clothes"), new Priority("1"), new StartDate("04/04/2004 06:04"), new DueDate("05/05/2005 07:07"), new UniqueTagList()),
+                new Task(new Name("Pay school fees"), new Priority("1"), new StartDate("05/05/2005 10:12"), new DueDate("06/06/2006 11:12"), new UniqueTagList()),
+                new Task(new Name("Buy dinner"), new Priority("1"), new StartDate("06/06/2006 13:12"), new DueDate("07/07/2007 12:21"), new UniqueTagList()),
+                new Task(new Name("Repair my computer"), new Priority("1"), new StartDate("07/07/2007 21:21"), new DueDate("08/08/2008 21:22"), new UniqueTagList()),
+                new Task(new Name("Study for ST2334 test"), new Priority("1"), new StartDate("08/08/2008 23:23"), new DueDate("09/09/2009 24:24"), new UniqueTagList()),
+                new Task(new Name("Dream about getting A+ for CS2103T"), new Priority("1"), new StartDate("09/09/2009 23:24"), new DueDate("10/10/2010 21:21"), new UniqueTagList())
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
