@@ -29,7 +29,6 @@ public class Recur {
     public Recur(String recur) throws IllegalValueException {
         initialiseRecurIntervals();
         assert recur != null;
-        System.out.println(recur);
         String trimmedRecur = recur.trim();
         if (!isValidRecur(trimmedRecur)) {
             throw new IllegalValueException(MESSAGE_RECUR_CONSTRAINTS);
