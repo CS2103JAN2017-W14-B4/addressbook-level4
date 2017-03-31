@@ -3,6 +3,7 @@ package seedu.ezdo.model.todo;
 import java.util.ArrayList;
 
 import seedu.ezdo.commons.exceptions.IllegalValueException;
+
 //@@author A0139177W
 /**
  * Represents a Task's recurring interval in ezDo.
@@ -37,13 +38,12 @@ public class Recur {
     }
 
     private void initialiseRecurIntervals() {
-      recurIntervals.add(INTERVAL_NONE);
-      recurIntervals.add(INTERVAL_DAILY);
-      recurIntervals.add(INTERVAL_WEEKLY);
-      recurIntervals.add(INTERVAL_MONTHLY);
-      recurIntervals.add(INTERVAL_YEARLY);
+        recurIntervals.add(INTERVAL_NONE);
+        recurIntervals.add(INTERVAL_DAILY);
+        recurIntervals.add(INTERVAL_WEEKLY);
+        recurIntervals.add(INTERVAL_MONTHLY);
+        recurIntervals.add(INTERVAL_YEARLY);
     }
-
 
     /**
      * Returns true if a given string is a valid recurring time interval.

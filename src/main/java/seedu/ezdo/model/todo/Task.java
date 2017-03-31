@@ -6,8 +6,8 @@ import seedu.ezdo.commons.util.CollectionUtil;
 import seedu.ezdo.model.tag.UniqueTagList;
 
 /**
- * Represents a Task in ezDo.
- * Guarantees: details are present and not null, field values are validated.
+ * Represents a Task in ezDo. Guarantees: details are present and not null,
+ * field values are validated.
  */
 public class Task implements ReadOnlyTask {
 
@@ -30,7 +30,8 @@ public class Task implements ReadOnlyTask {
         this.startDate = startDate;
         this.dueDate = dueDate;
         this.recur = recur;
-        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.tags = new UniqueTagList(tags); // protect internal tags from
+                                             // changes in the arg list
         this.done = false;
     }
 
@@ -38,8 +39,8 @@ public class Task implements ReadOnlyTask {
      * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getPriority(),
-                source.getStartDate(), source.getDueDate(), source.getRecur(), source.getTags());
+        this(source.getName(), source.getPriority(), source.getStartDate(), source.getDueDate(), source.getRecur(),
+                source.getTags());
     }
 
     public void setName(Name name) {
@@ -96,14 +97,14 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDueDate(TaskDate dueDate) {
-      assert dueDate != null;
-      this.dueDate = dueDate;
-  }
+        assert dueDate != null;
+        this.dueDate = dueDate;
+    }
 
-  @Override
-  public TaskDate getDueDate() {
-      return dueDate;
-  }
+    @Override
+    public TaskDate getDueDate() {
+        return dueDate;
+    }
 
     @Override
     public UniqueTagList getTags() {
@@ -135,12 +136,13 @@ public class Task implements ReadOnlyTask {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ReadOnlyTask // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyTask) other));
+                        && this.isSameStateAs((ReadOnlyTask) other));
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
+        // use this method for custom fields hashing instead of implementing
+        // your own
         return Objects.hash(name, priority, startDate, tags);
     }
 

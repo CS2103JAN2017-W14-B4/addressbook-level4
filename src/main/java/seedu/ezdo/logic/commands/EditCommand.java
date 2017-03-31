@@ -53,7 +53,7 @@ public class EditCommand extends Command {
 
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
-  //@@author A0139248X-reused
+    //@@author A0139248X-reused
     @Override
     public CommandResult execute() throws CommandException {
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
@@ -79,13 +79,13 @@ public class EditCommand extends Command {
         EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
-  //@@author
+    //@@author
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
-                                             EditTaskDescriptor editTaskDescriptor) {
+            EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(this.name, this.priority,
-                this.startDate, this.dueDate, this.recur, this.tags);
+                    this.startDate, this.dueDate, this.recur, this.tags);
         }
 
         public void setName(Optional<Name> name) {
@@ -166,8 +166,8 @@ public class EditCommand extends Command {
         }
 
         public void setRecur(Optional<Recur> recur) {
-          assert recur != null;
-          this.recur = recur;
+            assert recur != null;
+            this.recur = recur;
         }
 
         public Optional<Recur> getRecur() {
