@@ -66,7 +66,7 @@ public class TestTask implements ReadOnlyTask {
     }
 
     public void setRecur(Recur recur) {
-      this.recur = recur;
+        this.recur = recur;
     }
 
     public void setTags(UniqueTagList tags) {
