@@ -16,18 +16,20 @@ public class Task implements ReadOnlyTask {
     private TaskDate startDate;
     private TaskDate dueDate;
     private boolean done;
+    private Recur recur;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Priority priority, TaskDate startDate, TaskDate dueDate, UniqueTagList tags) {
+    public Task(Name name, Priority priority, TaskDate startDate, TaskDate dueDate, Recur recur, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, priority, startDate, tags);
         this.name = name;
         this.priority = priority;
         this.startDate = startDate;
         this.dueDate = dueDate;
+        this.recur = recur;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
         this.done = false;
     }
@@ -37,7 +39,7 @@ public class Task implements ReadOnlyTask {
      */
     public Task(ReadOnlyTask source) {
         this(source.getName(), source.getPriority(),
-                source.getStartDate(), source.getDueDate(), source.getTags());
+                source.getStartDate(), source.getDueDate(), source.getRecur(), source.getTags());
     }
 
     public void setName(Name name) {
@@ -83,15 +85,25 @@ public class Task implements ReadOnlyTask {
         return startDate;
     }
 
-    public void setDueDate(TaskDate dueDate) {
-        assert dueDate != null;
-        this.dueDate = dueDate;
+    public void setRecur(Recur recur) {
+        assert recur != null;
+        this.recur = recur;
     }
 
     @Override
-    public TaskDate getDueDate() {
-        return dueDate;
+    public Recur getRecur() {
+        return this.recur;
     }
+    
+    public void setDueDate(TaskDate dueDate) {
+      assert dueDate != null;
+      this.dueDate = dueDate;
+  }
+
+  @Override
+  public TaskDate getDueDate() {
+      return dueDate;
+  }
 
     @Override
     public UniqueTagList getTags() {
@@ -115,6 +127,7 @@ public class Task implements ReadOnlyTask {
         this.setPriority(replacement.getPriority());
         this.setStartDate(replacement.getStartDate());
         this.setDueDate(replacement.getDueDate());
+        this.setRecur(replacement.getRecur());
         this.setTags(replacement.getTags());
     }
 
