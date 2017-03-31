@@ -12,6 +12,7 @@ public interface ReadOnlyTask {
     Priority getPriority();
     TaskDate getStartDate();
     TaskDate getDueDate();
+    Recur getRecur();
     boolean getDone();
 
     /**
@@ -33,7 +34,7 @@ public interface ReadOnlyTask {
     }
   //@@author A0139248X
     /**
-     * Formats the task as text, showing all contact details.
+     * Formats the task as text, showing all task details.
      */
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
@@ -46,6 +47,9 @@ public interface ReadOnlyTask {
         }
         if (!getDueDate().toString().isEmpty()) {
             builder.append(" DueDate: ").append(getDueDate());
+        }
+        if (!getRecur().toString().isEmpty()) {
+          builder.append(" Recur: ").append(getRecur());
         }
         if (!getTags().toSet().isEmpty()) {
             builder.append(" Tags: ");
