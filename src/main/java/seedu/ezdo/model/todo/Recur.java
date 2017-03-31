@@ -11,14 +11,15 @@ import seedu.ezdo.commons.exceptions.IllegalValueException;
  */
 public class Recur {
 
-    public static final String MESSAGE_RECUR_CONSTRAINTS = "Recurring time interval should be 'daily', 'weekly', 'monthly' or 'yearly'.";
+    public static final String MESSAGE_RECUR_CONSTRAINTS = 
+            "Recurring time interval should be 'daily', 'weekly', 'monthly' or 'yearly'.";
     public static final String INTERVAL_NONE = "";
     public static final String INTERVAL_DAILY = "daily";
     public static final String INTERVAL_WEEKLY = "weekly";
     public static final String INTERVAL_MONTHLY = "monthly";
     public static final String INTERVAL_YEARLY = "yearly";
 
-    public static final ArrayList<String> recurIntervals = new ArrayList<>();
+    public static final ArrayList<String> RECUR_INTERVALS = new ArrayList<>();
 
     public final String value;
 
@@ -38,18 +39,18 @@ public class Recur {
     }
 
     private void initialiseRecurIntervals() {
-        recurIntervals.add(INTERVAL_NONE);
-        recurIntervals.add(INTERVAL_DAILY);
-        recurIntervals.add(INTERVAL_WEEKLY);
-        recurIntervals.add(INTERVAL_MONTHLY);
-        recurIntervals.add(INTERVAL_YEARLY);
+        RECUR_INTERVALS.add(INTERVAL_NONE);
+        RECUR_INTERVALS.add(INTERVAL_DAILY);
+        RECUR_INTERVALS.add(INTERVAL_WEEKLY);
+        RECUR_INTERVALS.add(INTERVAL_MONTHLY);
+        RECUR_INTERVALS.add(INTERVAL_YEARLY);
     }
 
     /**
      * Returns true if a given string is a valid recurring time interval.
      */
     public static boolean isValidRecur(String test) {
-        return recurIntervals.contains(test);
+        return RECUR_INTERVALS.contains(test);
     }
 
     @Override
