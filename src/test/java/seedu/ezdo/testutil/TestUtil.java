@@ -36,6 +36,7 @@ import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.ReadOnlyTask;
+import seedu.ezdo.model.todo.Recur;
 import seedu.ezdo.model.todo.StartDate;
 import seedu.ezdo.model.todo.Task;
 import seedu.ezdo.storage.XmlSerializableEzDo;
@@ -75,15 +76,15 @@ public class TestUtil {
         try {
             //CHECKSTYLE.OFF: LineLength
             return new Task[]{
-                new Task(new Name("Complete CS2103T project"), new Priority("1"), new StartDate("01/01/2001"), new DueDate("02/02/2002"), new UniqueTagList()),
-                new Task(new Name("Attend Comp Club meeting"), new Priority("1"), new StartDate("02/02/2002"), new DueDate("03/03/2003"), new UniqueTagList()),
-                new Task(new Name("Discuss MA1101R Assignment 1"), new Priority("1"), new StartDate("03/03/2003"), new DueDate("04/04/2004"), new UniqueTagList()),
-                new Task(new Name("Wash clothes"), new Priority("1"), new StartDate("04/04/2004"), new DueDate("05/05/2005"), new UniqueTagList()),
-                new Task(new Name("Pay school fees"), new Priority("1"), new StartDate("05/05/2005"), new DueDate("06/06/2006"), new UniqueTagList()),
-                new Task(new Name("Buy dinner"), new Priority("1"), new StartDate("06/06/2006"), new DueDate("07/07/2007"), new UniqueTagList()),
-                new Task(new Name("Repair my computer"), new Priority("1"), new StartDate("07/07/2007"), new DueDate("08/08/2008"), new UniqueTagList()),
-                new Task(new Name("Study for ST2334 test"), new Priority("1"), new StartDate("08/08/2008"), new DueDate("09/09/2009"), new UniqueTagList()),
-                new Task(new Name("Dream about getting A+ for CS2103T"), new Priority("1"), new StartDate("09/09/2009"), new DueDate("10/10/2010"), new UniqueTagList())
+                new Task(new Name("Complete CS2103T project"), new Priority("1"), new StartDate("01/01/2001"), new DueDate("02/02/2002"), new Recur("daily"), new UniqueTagList()),
+                new Task(new Name("Attend Comp Club meeting"), new Priority("1"), new StartDate("02/02/2002"), new DueDate("03/03/2003"), new Recur("weekly"), new UniqueTagList()),
+                new Task(new Name("Discuss MA1101R Assignment 1"), new Priority("1"), new StartDate("03/03/2003"), new DueDate("04/04/2004"), new Recur("monthly"), new UniqueTagList()),
+                new Task(new Name("Wash clothes"), new Priority("1"), new StartDate("04/04/2004"), new DueDate("05/05/2005"), new Recur("yearly"), new UniqueTagList()),
+                new Task(new Name("Pay school fees"), new Priority("1"), new StartDate("05/05/2005"), new DueDate("06/06/2006"), new Recur("daily"), new UniqueTagList()),
+                new Task(new Name("Buy dinner"), new Priority("1"), new StartDate("06/06/2006"), new DueDate("07/07/2007"), new Recur("daily"), new UniqueTagList()),
+                new Task(new Name("Repair my computer"), new Priority("1"), new StartDate("07/07/2007"), new DueDate("08/08/2008"), new Recur("monthly"), new UniqueTagList()),
+                new Task(new Name("Study for ST2334 test"), new Priority("1"), new StartDate("08/08/2008"), new DueDate("09/09/2009"), new Recur("yearly"), new UniqueTagList()),
+                new Task(new Name("Dream about getting A+ for CS2103T"), new Priority("1"), new StartDate("09/09/2009"), new DueDate("10/10/2010"), new Recur("weekly"), new UniqueTagList())
             };
             //CHECKSTYLE.ON: LineLength
         } catch (IllegalValueException e) {
