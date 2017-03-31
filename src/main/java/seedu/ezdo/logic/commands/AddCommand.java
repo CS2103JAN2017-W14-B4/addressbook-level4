@@ -16,6 +16,7 @@ import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.ReadOnlyTask;
+import seedu.ezdo.model.todo.Recur;
 import seedu.ezdo.model.todo.StartDate;
 import seedu.ezdo.model.todo.Task;
 import seedu.ezdo.model.todo.UniqueTaskList;
@@ -43,7 +44,7 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String name, String priority, String startDate, String dueDate, Set<String> tags)
+    public AddCommand(String name, String priority, String startDate, String dueDate, String recur, Set<String> tags)
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
@@ -54,6 +55,7 @@ public class AddCommand extends Command {
                 new Priority(priority),
                 new StartDate(startDate),
                 new DueDate(dueDate),
+                new Recur(recur),
                 new UniqueTagList(tagSet)
         );
     }

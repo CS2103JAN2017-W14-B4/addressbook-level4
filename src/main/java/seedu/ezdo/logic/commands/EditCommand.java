@@ -13,6 +13,7 @@ import seedu.ezdo.model.tag.UniqueTagList;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.ReadOnlyTask;
+import seedu.ezdo.model.todo.Recur;
 import seedu.ezdo.model.todo.Task;
 import seedu.ezdo.model.todo.TaskDate;
 import seedu.ezdo.model.todo.UniqueTaskList;
@@ -91,9 +92,10 @@ public class EditCommand extends Command {
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
         TaskDate updatedStartDate = editTaskDescriptor.getStartDate().orElseGet(taskToEdit::getStartDate);
         TaskDate updatedDueDate = editTaskDescriptor.getDueDate().orElseGet(taskToEdit::getDueDate);
+        Recur updatedRecur = editTaskDescriptor.getRecur().orElseGet(taskToEdit::getRecur);
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
 
-        return new Task(updatedName, updatedPriority, updatedStartDate, updatedDueDate, updatedTags);
+        return new Task(updatedName, updatedPriority, updatedStartDate, updatedDueDate, updatedRecur, updatedTags);
     }
 
     /**
@@ -105,6 +107,7 @@ public class EditCommand extends Command {
         private Optional<Priority> priority = Optional.empty();
         private Optional<TaskDate> startDate = Optional.empty();
         private Optional<TaskDate> dueDate = Optional.empty();
+        private Optional<Recur> recur = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
         public EditTaskDescriptor() {}
@@ -114,6 +117,7 @@ public class EditCommand extends Command {
             this.priority = toCopy.getPriority();
             this.startDate = toCopy.getStartDate();
             this.dueDate = toCopy.getDueDate();
+            this.recur = toCopy.getRecur();
             this.tags = toCopy.getTags();
         }
 
@@ -159,6 +163,15 @@ public class EditCommand extends Command {
 
         public Optional<TaskDate> getDueDate() {
             return dueDate;
+        }
+
+        public void setRecur(Optional<Recur> recur) {
+          assert recur != null;
+          this.recur = recur;
+        }
+
+        public Optional<Recur> getRecur() {
+            return recur;
         }
 
         public void setTags(Optional<UniqueTagList> tags) {
