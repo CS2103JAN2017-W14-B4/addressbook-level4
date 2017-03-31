@@ -11,7 +11,7 @@ import seedu.ezdo.commons.exceptions.IllegalValueException;
  */
 public class Recur {
 
-    public static final String MESSAGE_RECUR_CONSTRAINTS = 
+    public static final String MESSAGE_RECUR_CONSTRAINTS =
             "Recurring time interval should be 'daily', 'weekly', 'monthly' or 'yearly'.";
     public static final String INTERVAL_NONE = "";
     public static final String INTERVAL_DAILY = "daily";
