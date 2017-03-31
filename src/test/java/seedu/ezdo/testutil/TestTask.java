@@ -64,7 +64,7 @@ public class TestTask implements ReadOnlyTask {
     public void setDone() {
         this.done = true;
     }
-    
+
     public void setRecur(Recur recur) {
       this.recur = recur;
     }
@@ -92,7 +92,7 @@ public class TestTask implements ReadOnlyTask {
     public TaskDate getDueDate() {
         return dueDate;
     }
-    
+
     @Override
     public Recur getRecur() {
         return recur;

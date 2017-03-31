@@ -16,7 +16,7 @@ public class Recur {
     public static final String INTERVAL_WEEKLY = "weekly";
     public static final String INTERVAL_MONTHLY = "monthly";
     public static final String INTERVAL_YEARLY = "yearly";
-    
+
     public static final ArrayList<String> recurIntervals = new ArrayList<>();
 
     public final String value;

@@ -94,7 +94,7 @@ public class Task implements ReadOnlyTask {
     public Recur getRecur() {
         return this.recur;
     }
-    
+
     public void setDueDate(TaskDate dueDate) {
       assert dueDate != null;
       this.dueDate = dueDate;
