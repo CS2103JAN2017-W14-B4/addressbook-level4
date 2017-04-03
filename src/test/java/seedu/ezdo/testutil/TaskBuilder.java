@@ -6,6 +6,7 @@ import seedu.ezdo.model.tag.UniqueTagList;
 import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
+import seedu.ezdo.model.todo.Recur;
 import seedu.ezdo.model.todo.StartDate;
 
 /**
@@ -51,6 +52,11 @@ public class TaskBuilder {
 
     public TaskBuilder withPriority(String priority) throws IllegalValueException {
         this.task.setPriority(new Priority(priority));
+        return this;
+    }
+
+    public TaskBuilder withRecur(String recur) throws IllegalValueException {
+        this.task.setRecur(new Recur(recur));
         return this;
     }
 

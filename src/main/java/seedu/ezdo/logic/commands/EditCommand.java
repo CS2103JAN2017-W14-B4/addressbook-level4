@@ -13,6 +13,7 @@ import seedu.ezdo.model.tag.UniqueTagList;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.ReadOnlyTask;
+import seedu.ezdo.model.todo.Recur;
 import seedu.ezdo.model.todo.Task;
 import seedu.ezdo.model.todo.TaskDate;
 import seedu.ezdo.model.todo.UniqueTaskList;
@@ -52,7 +53,7 @@ public class EditCommand extends Command {
 
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
-  //@@author A0139248X-reused
+    //@@author A0139248X-reused
     @Override
     public CommandResult execute() throws CommandException {
         List<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
@@ -78,22 +79,23 @@ public class EditCommand extends Command {
         EventsCenter.getInstance().post(new JumpToListRequestEvent(index));
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit));
     }
-  //@@author
+    //@@author
     /**
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(ReadOnlyTask taskToEdit,
-                                             EditTaskDescriptor editTaskDescriptor) {
+            EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElseGet(taskToEdit::getName);
         Priority updatedPriority = editTaskDescriptor.getPriority().orElseGet(taskToEdit::getPriority);
         TaskDate updatedStartDate = editTaskDescriptor.getStartDate().orElseGet(taskToEdit::getStartDate);
         TaskDate updatedDueDate = editTaskDescriptor.getDueDate().orElseGet(taskToEdit::getDueDate);
+        Recur updatedRecur = editTaskDescriptor.getRecur().orElseGet(taskToEdit::getRecur);
         UniqueTagList updatedTags = editTaskDescriptor.getTags().orElseGet(taskToEdit::getTags);
 
-        return new Task(updatedName, updatedPriority, updatedStartDate, updatedDueDate, updatedTags);
+        return new Task(updatedName, updatedPriority, updatedStartDate, updatedDueDate, updatedRecur, updatedTags);
     }
 
     /**
@@ -105,6 +107,7 @@ public class EditCommand extends Command {
         private Optional<Priority> priority = Optional.empty();
         private Optional<TaskDate> startDate = Optional.empty();
         private Optional<TaskDate> dueDate = Optional.empty();
+        private Optional<Recur> recur = Optional.empty();
         private Optional<UniqueTagList> tags = Optional.empty();
 
         public EditTaskDescriptor() {}
@@ -114,6 +117,7 @@ public class EditCommand extends Command {
             this.priority = toCopy.getPriority();
             this.startDate = toCopy.getStartDate();
             this.dueDate = toCopy.getDueDate();
+            this.recur = toCopy.getRecur();
             this.tags = toCopy.getTags();
         }
 
@@ -122,7 +126,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyPresent(this.name, this.priority,
-                this.startDate, this.dueDate, this.tags);
+                    this.startDate, this.dueDate, this.recur, this.tags);
         }
 
         public void setName(Optional<Name> name) {
@@ -159,6 +163,15 @@ public class EditCommand extends Command {
 
         public Optional<TaskDate> getDueDate() {
             return dueDate;
+        }
+
+        public void setRecur(Optional<Recur> recur) {
+            assert recur != null;
+            this.recur = recur;
+        }
+
+        public Optional<Recur> getRecur() {
+            return recur;
         }
 
         public void setTags(Optional<UniqueTagList> tags) {

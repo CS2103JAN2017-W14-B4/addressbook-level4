@@ -3,6 +3,7 @@ package seedu.ezdo.logic.parser;
 import static seedu.ezdo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_DUEDATE;
 import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_RECUR;
 import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -32,7 +33,7 @@ public class EditCommandParser implements CommandParser {
     public Command parse(String args) {
         assert args != null;
         ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_PRIORITY, PREFIX_STARTDATE, PREFIX_DUEDATE, PREFIX_TAG);
+                new ArgumentTokenizer(PREFIX_PRIORITY, PREFIX_STARTDATE, PREFIX_DUEDATE, PREFIX_RECUR, PREFIX_TAG);
         argsTokenizer.tokenize(args);
         List<Optional<String>> preambleFields = ParserUtil.splitPreamble(argsTokenizer.getPreamble().orElse(""), 2);
 
@@ -48,6 +49,7 @@ public class EditCommandParser implements CommandParser {
             editTaskDescriptor.setStartDate(ParserUtil.parseStartDate(getOptionalValue(argsTokenizer,
                 PREFIX_STARTDATE)));
             editTaskDescriptor.setDueDate(ParserUtil.parseDueDate(getOptionalValue(argsTokenizer, PREFIX_DUEDATE)));
+            editTaskDescriptor.setRecur(ParserUtil.parseRecur(getOptionalValue(argsTokenizer, PREFIX_RECUR)));
             editTaskDescriptor.setTags(parseTagsForEdit(ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());

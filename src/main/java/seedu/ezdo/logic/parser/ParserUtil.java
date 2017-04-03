@@ -19,6 +19,7 @@ import seedu.ezdo.model.tag.UniqueTagList;
 import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
+import seedu.ezdo.model.todo.Recur;
 import seedu.ezdo.model.todo.StartDate;
 import seedu.ezdo.model.todo.TaskDate;
 
@@ -176,6 +177,17 @@ public class ParserUtil {
         return dueDate.isPresent() ? Optional.of(new DueDate(dueDate.get(), isFind)) : Optional.empty();
     }
 //@@author
+
+    //@@author A0139177W
+    /**
+     * Parses a {@code Optional<String> recur} into an {@code Optional<Recur>} if {@code recur} is present.
+     */
+    public static Optional<Recur> parseRecur(Optional<String> recur) throws IllegalValueException {
+        assert recur != null;
+        return recur.isPresent() ? Optional.of(new Recur(recur.get())) : Optional.empty();
+    }
+    //@@author
+
     /**
      * Parses {@code Collection<String> tags} into an {@code UniqueTagList}.
      */

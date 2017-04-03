@@ -3,6 +3,7 @@ package seedu.ezdo.logic.parser;
 import static seedu.ezdo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_DUEDATE;
 import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_RECUR;
 import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.ezdo.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -26,7 +27,7 @@ public class AddCommandParser implements CommandParser {
     @Override
     public Command parse(String args) {
         ArgumentTokenizer argsTokenizer =
-                new ArgumentTokenizer(PREFIX_PRIORITY, PREFIX_STARTDATE, PREFIX_DUEDATE, PREFIX_TAG);
+                new ArgumentTokenizer(PREFIX_PRIORITY, PREFIX_STARTDATE, PREFIX_DUEDATE, PREFIX_RECUR, PREFIX_TAG);
         argsTokenizer.tokenize(args);
         try {
             return new AddCommand(
@@ -34,6 +35,7 @@ public class AddCommandParser implements CommandParser {
                     getOptionalValue(argsTokenizer, PREFIX_PRIORITY),
                     getOptionalValue(argsTokenizer, PREFIX_STARTDATE),
                     getOptionalValue(argsTokenizer, PREFIX_DUEDATE),
+                    getOptionalValue(argsTokenizer, PREFIX_RECUR),
                     ParserUtil.toSet(argsTokenizer.getAllValues(PREFIX_TAG))
             );
         } catch (NoSuchElementException nsee) {

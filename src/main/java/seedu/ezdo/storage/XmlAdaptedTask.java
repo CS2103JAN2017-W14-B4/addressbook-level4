@@ -12,6 +12,7 @@ import seedu.ezdo.model.todo.DueDate;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.ReadOnlyTask;
+import seedu.ezdo.model.todo.Recur;
 import seedu.ezdo.model.todo.StartDate;
 import seedu.ezdo.model.todo.Task;
 import seedu.ezdo.model.todo.TaskDate;
@@ -31,6 +32,8 @@ public class XmlAdaptedTask {
     private String startDate;
     @XmlElement(required = true)
     private String dueDate;
+    @XmlElement(required = true)
+    private String recur;
     @XmlElement(required = true)
     private boolean done;
     @XmlElement
@@ -53,6 +56,7 @@ public class XmlAdaptedTask {
         priority = source.getPriority().value;
         startDate = source.getStartDate().value;
         dueDate = source.getDueDate().value;
+        recur = source.getRecur().value;
         done = source.getDone();
 
         tagged = new ArrayList<>();
@@ -75,8 +79,9 @@ public class XmlAdaptedTask {
         final Priority priority = new Priority(this.priority);
         final TaskDate startDate = new StartDate(this.startDate);
         final TaskDate dueDate = new DueDate(this.dueDate);
+        final Recur recur = new Recur(this.recur);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        Task toAdd = new Task(name, priority, startDate, dueDate, tags);
+        Task toAdd = new Task(name, priority, startDate, dueDate, recur, tags);
         toAdd.setDone(this.done);
         return toAdd;
     }

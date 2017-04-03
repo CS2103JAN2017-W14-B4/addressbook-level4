@@ -4,6 +4,7 @@ import seedu.ezdo.model.tag.UniqueTagList;
 import seedu.ezdo.model.todo.Name;
 import seedu.ezdo.model.todo.Priority;
 import seedu.ezdo.model.todo.ReadOnlyTask;
+import seedu.ezdo.model.todo.Recur;
 import seedu.ezdo.model.todo.TaskDate;
 
 /**
@@ -19,6 +20,7 @@ public class TestTask implements ReadOnlyTask {
     private TaskDate startDate;
     private TaskDate dueDate;
     private Priority priority;
+    private Recur recur;
     private boolean done;
     private UniqueTagList tags;
 
@@ -34,6 +36,7 @@ public class TestTask implements ReadOnlyTask {
         this.priority = taskToCopy.getPriority();
         this.startDate = taskToCopy.getStartDate();
         this.dueDate = taskToCopy.getDueDate();
+        this.recur = taskToCopy.getRecur();
         this.done = taskToCopy.getDone();
         this.tags = taskToCopy.getTags();
     }
@@ -62,6 +65,10 @@ public class TestTask implements ReadOnlyTask {
         this.done = true;
     }
 
+    public void setRecur(Recur recur) {
+        this.recur = recur;
+    }
+
     public void setTags(UniqueTagList tags) {
         this.tags = tags;
     }
@@ -84,6 +91,11 @@ public class TestTask implements ReadOnlyTask {
     @Override
     public TaskDate getDueDate() {
         return dueDate;
+    }
+
+    @Override
+    public Recur getRecur() {
+        return recur;
     }
 
     @Override

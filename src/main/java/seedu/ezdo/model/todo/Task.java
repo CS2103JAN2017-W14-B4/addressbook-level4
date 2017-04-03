@@ -6,8 +6,8 @@ import seedu.ezdo.commons.util.CollectionUtil;
 import seedu.ezdo.model.tag.UniqueTagList;
 
 /**
- * Represents a Task in ezDo.
- * Guarantees: details are present and not null, field values are validated.
+ * Represents a Task in ezDo. Guarantees: details are present and not null,
+ * field values are validated.
  */
 public class Task implements ReadOnlyTask {
 
@@ -16,19 +16,22 @@ public class Task implements ReadOnlyTask {
     private TaskDate startDate;
     private TaskDate dueDate;
     private boolean done;
+    private Recur recur;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Priority priority, TaskDate startDate, TaskDate dueDate, UniqueTagList tags) {
+    public Task(Name name, Priority priority, TaskDate startDate, TaskDate dueDate, Recur recur, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(name, priority, startDate, tags);
         this.name = name;
         this.priority = priority;
         this.startDate = startDate;
         this.dueDate = dueDate;
-        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.recur = recur;
+        this.tags = new UniqueTagList(tags); // protect internal tags from
+                                             // changes in the arg list
         this.done = false;
     }
 
@@ -36,8 +39,8 @@ public class Task implements ReadOnlyTask {
      * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getName(), source.getPriority(),
-                source.getStartDate(), source.getDueDate(), source.getTags());
+        this(source.getName(), source.getPriority(), source.getStartDate(), source.getDueDate(), source.getRecur(),
+                source.getTags());
     }
 
     public void setName(Name name) {
@@ -87,6 +90,16 @@ public class Task implements ReadOnlyTask {
         return startDate;
     }
 
+    public void setRecur(Recur recur) {
+        assert recur != null;
+        this.recur = recur;
+    }
+
+    @Override
+    public Recur getRecur() {
+        return this.recur;
+    }
+
     public void setDueDate(TaskDate dueDate) {
         assert dueDate != null;
         this.dueDate = dueDate;
@@ -119,6 +132,7 @@ public class Task implements ReadOnlyTask {
         this.setPriority(replacement.getPriority());
         this.setStartDate(replacement.getStartDate());
         this.setDueDate(replacement.getDueDate());
+        this.setRecur(replacement.getRecur());
         this.setTags(replacement.getTags());
     }
 
@@ -126,12 +140,13 @@ public class Task implements ReadOnlyTask {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ReadOnlyTask // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyTask) other));
+                        && this.isSameStateAs((ReadOnlyTask) other));
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
+        // use this method for custom fields hashing instead of implementing
+        // your own
         return Objects.hash(name, priority, startDate, tags);
     }
 
