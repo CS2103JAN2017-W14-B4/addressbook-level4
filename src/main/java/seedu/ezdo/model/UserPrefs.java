@@ -6,7 +6,6 @@ import seedu.ezdo.commons.core.GuiSettings;
 import seedu.ezdo.commons.exceptions.AliasAlreadyInUseException;
 import seedu.ezdo.commons.exceptions.CommandDoesNotExistException;
 import seedu.ezdo.logic.CommandAliases;
-import seedu.ezdo.model.todo.UniqueTaskList;
 import seedu.ezdo.model.todo.UniqueTaskList.SortCriteria;
 
 /**
@@ -29,7 +28,7 @@ public class UserPrefs {
 
     public UserPrefs() {
         this.setGuiSettings(500, 500, 0, 0);
-        this.sortCriteria = UniqueTaskList.SortCriteria.NAME;
+        this.sortCriteria = SortCriteria.DUE_DATE;
         this.isSortedAscending = true;
         this.commandAliases = new CommandAliases();
     }
