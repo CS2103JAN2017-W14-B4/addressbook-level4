@@ -15,19 +15,22 @@ public class AliasCommand extends Command {
                                                + "Parameters: COMMAND SHORTCUT\n"
                                                + "Example: " + COMMAND_WORD
                                                + " kill z";
-    public static final String MESSAGE_SUCCESS = "Successfully aliased command";
+    public static final String MESSAGE_ADD_SUCCESS = "Successfully aliased command";
+    public static final String MESSAGE_RESET_SUCCESS = "Successfully reset aliases";
     public static final String MESSAGE_ALIAS_ALREADY_IN_USE = "The alias you specified is reserved for other commands";
     public static final String MESSAGE_COMMAND_DOES_NOT_EXIST = "The command you specified does not exist";
 
     private String command;
     private String alias;
+    private boolean hasResetIntention;
 
     /**
      * Creates an AliasCommand using raw values.
      */
-    public AliasCommand(String command, String alias) {
+    public AliasCommand(String command, String alias, boolean hasResetIntention) {
         this.command = command;
         this.alias = alias;
+        this.hasResetIntention = hasResetIntention;
     }
 
     /**
@@ -36,13 +39,18 @@ public class AliasCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         assert model != null;
-        try {
-            model.getUserPrefs().addCommandAlias(command, alias);
-            return new CommandResult(MESSAGE_SUCCESS);
-        } catch (AliasAlreadyInUseException aaiue) {
-            throw new CommandException(MESSAGE_ALIAS_ALREADY_IN_USE);
-        } catch (CommandDoesNotExistException cdnee) {
-            throw new CommandException(MESSAGE_COMMAND_DOES_NOT_EXIST);
+        if (hasResetIntention) {
+            model.getUserPrefs().clearCommandAliases();
+            return new CommandResult(MESSAGE_RESET_SUCCESS);
+        } else {
+            try {
+                model.getUserPrefs().addCommandAlias(command, alias);
+                return new CommandResult(MESSAGE_ADD_SUCCESS);
+            } catch (AliasAlreadyInUseException aaiue) {
+                throw new CommandException(MESSAGE_ALIAS_ALREADY_IN_USE);
+            } catch (CommandDoesNotExistException cdnee) {
+                throw new CommandException(MESSAGE_COMMAND_DOES_NOT_EXIST);
+            }
         }
     }
 

@@ -23,6 +23,7 @@ public class KillCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_KILL_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String MESSAGE_TASK_NOT_FOUND = "Task was not found in list.";
 
     public final ArrayList<Integer> targetIndexes;
     public final ArrayList<ReadOnlyTask> tasksToKill;
@@ -50,7 +51,7 @@ public class KillCommand extends Command {
         try {
             model.killTasks(tasksToKill);
         } catch (TaskNotFoundException tnfe) {
-            assert false : "The target task cannot be missing";
+            throw new CommandException(MESSAGE_TASK_NOT_FOUND);
         }
 
         return new CommandResult(String.format(MESSAGE_KILL_TASK_SUCCESS, tasksToKill));

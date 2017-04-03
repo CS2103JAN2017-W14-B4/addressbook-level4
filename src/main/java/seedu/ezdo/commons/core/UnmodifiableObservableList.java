@@ -309,5 +309,4 @@ public class UnmodifiableObservableList<E> implements ObservableList<E> {
     public final void forEach(Consumer<? super E> action) {
         backingList.forEach(action);
     }
-
 }

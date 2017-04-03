@@ -434,12 +434,13 @@ _**Maps a command to the shortcut specified.**_<br>
 
 #### Format:
 
-**`alias COMMAND SHORTCUT`**
+**`alias COMMAND SHORTCUT`** OR **`alias reset`**
 
 <br>
 
 > - `COMMAND` can only be a valid ezDo command.<br><br>
-> -	 `SHORTCUT` must not be an ezDo command.
+> - `SHORTCUT` must not be an ezDo command. <br><br>
+> - `alias reset` can be used to reset all aliases.
 
 <br>
 
@@ -447,7 +448,10 @@ _**Maps a command to the shortcut specified.**_<br>
 
 *  Map the **`quit`** command to the shortcut **`boom`**: <br>
 **`alias quit boom`** <br><br>
-Now you can quit ezDo by entering **`boom`**<br>
+Now you can quit ezDo by entering **`boom`**<br><br>
+*  Reset all aliases:<br>
+**`alias reset`** <br><br>
+Now all previously added aliases will be removed.
 
 <br>
 

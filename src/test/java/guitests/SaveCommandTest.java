@@ -49,6 +49,5 @@ public class SaveCommandTest extends EzDoGuiTest {
         };
         commandBox.runCommand("save " + validDirectory);
         assertResultMessage(String.format(SaveCommand.MESSAGE_DIRECTORY_PATH_INVALID));
-
     }
 }

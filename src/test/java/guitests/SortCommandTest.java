@@ -57,9 +57,15 @@ public class SortCommandTest extends EzDoGuiTest {
                                        td.leroy, td.megan};
         assertTrue(taskListPanel.isListMatching(expectedList));
 
-        // sort by priority
+        // sort by priority ascending
         commandBox.runCommand("s p");
-        expectedList = new TestTask[] {td.alice, td.benson, td.carl, td.daniel, td.fiona, td.elle, td.george, td.kappa,
+        expectedList = new TestTask[] {td.alice, td.carl, td.daniel, td.fiona, td.elle, td.george, td.benson, td.kappa,
+                                       td.leroy, td.megan};
+        assertTrue(taskListPanel.isListMatching(expectedList));
+
+        // sort by priority descending
+        commandBox.runCommand("s p d");
+        expectedList = new TestTask[] {td.elle, td.george, td.carl, td.daniel, td.fiona, td.alice, td.benson, td.kappa,
                                        td.leroy, td.megan};
         assertTrue(taskListPanel.isListMatching(expectedList));
 
@@ -88,5 +94,13 @@ public class SortCommandTest extends EzDoGuiTest {
         commandBox.runCommand("edit 1 d/12/12/2099");
         String expectedName = taskListPanel.getTask(7).getName().toString();
         assertTrue(expectedName.equals(td.carl.getName().toString()));
+    }
+
+    //@@author A0139248X
+    @Test
+    public void sort_invalidOrder() {
+        commandBox.runCommand("sort p s");
+        assertResultMessage(String.format(SortCommand.MESSAGE_INVALID_ORDER, SortCommand.MESSAGE_USAGE))
+        ;
     }
 }

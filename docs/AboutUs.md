@@ -40,7 +40,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Aspects/tools in charge of: Testing, Task comparision and searching
 * Features implemented:
    * [Done task index](https://github.com/CS2103JAN2017-W14-B4/main/blob/master/docs/UserGuide.md#3-marking-a-task-as-done-done--d)
-   * [Delete person](https://github.com/CS2103JAN2017-W14-B4/main/blob/master/docs/UserGuide.md#6-finding-tasks-find--f)
+   * [Find task](https://github.com/CS2103JAN2017-W14-B4/main/blob/master/docs/UserGuide.md#6-finding-tasks-find--f)
 * Code written: [[functional code](https://github.com/CS2103JAN2017-W14-B4/main/blob/v0.4/collated/main/A0141010L.md)][[test code](https://github.com/CS2103JAN2017-W14-B4/main/blob/v0.4/collated/main/A0141010L.md)]
 * Other major contributions:
   * Did the initial refactoring of Person's Email to Task's Priority

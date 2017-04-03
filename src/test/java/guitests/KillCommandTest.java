@@ -7,7 +7,12 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import mockit.Mock;
+import mockit.MockUp;
+import seedu.ezdo.logic.commands.KillCommand;
+import seedu.ezdo.model.ModelManager;
 import seedu.ezdo.model.todo.ReadOnlyTask;
+import seedu.ezdo.model.todo.UniqueTaskList.TaskNotFoundException;
 import seedu.ezdo.testutil.TestTask;
 import seedu.ezdo.testutil.TestUtil;
 //@@author A0139248X
@@ -36,14 +41,24 @@ public class KillCommandTest extends EzDoGuiTest {
         targetIndex = currentList.length / 2;
         assertKillSuccess(false, targetIndex, currentList);
 
-
-
         //invalid index
         commandBox.runCommand("kill " + currentList.length + 1);
         assertResultMessage("The task index provided is invalid.");
-
     }
 
+    @Test
+    public void kill_taskNotFound_throwsAssertion() {
+        new MockUp<ModelManager>()
+        {
+            @Mock
+            void killTasks(ArrayList<ReadOnlyTask> tasksToKill) throws TaskNotFoundException
+            {
+                throw new TaskNotFoundException();
+            }
+        };
+        commandBox.runCommand("kill 1");
+        assertResultMessage(String.format(KillCommand.MESSAGE_TASK_NOT_FOUND));
+    }
     /**
      * Runs the kill command to delete the task at specified index and confirms the result is correct.
      * @param usesShortCommand Whether to use the short or long version of the command

@@ -206,9 +206,6 @@ public class ModelManager extends ComponentManager implements Model {
 
     interface Expression {
         boolean satisfies(ReadOnlyTask task);
-
-        @Override
-        String toString();
     }
 
     private class PredicateExpression implements Expression {
@@ -223,18 +220,10 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean satisfies(ReadOnlyTask task) {
             return qualifier.run(task);
         }
-
-        @Override
-        public String toString() {
-            return qualifier.toString();
-        }
     }
 
     interface Qualifier {
         boolean run(ReadOnlyTask task);
-
-        @Override
-        String toString();
     }
 
     private class DoneQualifier implements Qualifier {
@@ -247,12 +236,6 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyTask task) {
             return task.getDone();
         }
-
-        @Override
-        public String toString() {
-            return "";
-        }
-
     }
 
     private class NotDoneQualifier implements Qualifier {
@@ -265,12 +248,6 @@ public class ModelManager extends ComponentManager implements Model {
         public boolean run(ReadOnlyTask task) {
             return !task.getDone();
         }
-
-        @Override
-        public String toString() {
-            return "";
-        }
-
     }
 
     private class NameQualifier implements Qualifier {
@@ -315,11 +292,6 @@ public class ModelManager extends ComponentManager implements Model {
                             || (dueAfter && compareAfterDue(task.getDueDate())))
                     && (taskTagStringSet.containsAll(tags));
 
-        }
-
-        @Override
-        public String toString() {
-            return "name=" + String.join(", ", nameKeyWords);
         }
 
         private Set<String> convertToTagStringSet(Set<Tag> tags) {

@@ -90,7 +90,7 @@ public class StorageManagerTest {
         Storage storage = new StorageManager(new XmlEzDoStorageExceptionThrowingStub("dummy"),
                 new JsonUserPrefsStorage("dummy"), config);
         EventsCollector eventCollector = new EventsCollector();
-        storage.handleEzDoDirectoryChangedEvent(new EzDoDirectoryChangedEvent(new EzDo(), "dummy path"));
+        storage.handleEzDoDirectoryChangedEvent(new EzDoDirectoryChangedEvent("dummy path"));
         assertTrue(eventCollector.get(0) instanceof DataSavingExceptionEvent);
     }
 

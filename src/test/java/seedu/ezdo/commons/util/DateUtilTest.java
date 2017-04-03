@@ -1,25 +1,24 @@
 package seedu.ezdo.commons.util;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
+import mockit.Mock;
+import mockit.MockUp;
+import mockit.integration.junit4.JMockit;
 import seedu.ezdo.testutil.TaskBuilder;
 import seedu.ezdo.testutil.TestTask;
+
 //@@author A0139248X
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({DateUtil.class, SimpleDateFormat.class})
+@RunWith(JMockit.class)
 public class DateUtilTest {
 
     @Rule
@@ -28,12 +27,16 @@ public class DateUtilTest {
     @Test
     public void dateFormat_parseException() throws Exception {
         thrown.expect(AssertionError.class);
-        SimpleDateFormat mock = mock(SimpleDateFormat.class);
-        PowerMockito.whenNew(SimpleDateFormat.class).
-        withAnyArguments().thenReturn(mock);
+        new MockUp<SimpleDateFormat>()
+        {
+            @Mock
+            Date parse(String date) throws ParseException
+            {
+                throw new ParseException("parse exception", 1);
+            }
+        };
         String dateString1 = "omg";
         String dateString2 = "asdf";
-        when(mock.parse(dateString1)).thenThrow(new ParseException("parse exception", 1));
         DateUtil.compareDateStrings(dateString1, dateString2, true);
     }
 
@@ -71,6 +74,8 @@ public class DateUtilTest {
     }
 
     //@@author
+
+    //@@author A0139248X
     @Test
     public void twoDates_equal_pass() throws Exception {
         TestTask task = new TaskBuilder().withName("Alson").withPriority("3")

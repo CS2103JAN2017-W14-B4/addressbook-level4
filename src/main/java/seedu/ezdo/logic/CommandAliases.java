@@ -69,6 +69,13 @@ public class CommandAliases implements Serializable {
     }
 
     /**
+     * Clears all existing aliases.
+     */
+    public void clearAliases() {
+        commandAliasesMap = new HashMap<>();
+    }
+
+    /**
      * Checks if the given string is an alias for a command in ezDo.
      */
     public boolean checkIfAlias(String alias) {

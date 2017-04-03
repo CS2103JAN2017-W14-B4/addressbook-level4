@@ -30,7 +30,13 @@ public class ParserUtil {
     private static final Pattern INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
     private static final Pattern SORT_CRITERIA_ARGS_FORMAT = Pattern.compile("(?<sortCriteria>.) ?(?<sortOrder>.)?");
     private static final Pattern INDEXES_ARGS_FORMAT = Pattern.compile("^([0-9]*\\s+)*[0-9]*$");
-    private static final Pattern COMMAND_ALIAS_ARGS_FORMAT = Pattern.compile("(?<command>.+) (?<alias>.+)");;
+
+    private static final int ALIAS_COMMAND_ADD_EXPECTED_ARGS = 2;
+    private static final int ALIAS_COMMAND_RESET_EXPECTED_ARGS = 1;
+    private static final int ALIAS_COMMAND_ARGS_COMMAND_INDEX = 0;
+    private static final int ALIAS_COMMAND_ARGS_ALIAS_INDEX = 1;
+    private static final String ALIAS_COMMAND_RESET_KEYWORD = "reset";
+
 
     /**
      * Returns the specified index in the {@code command} if it is a positive unsigned integer
@@ -85,16 +91,20 @@ public class ParserUtil {
 
     /**
      * Returns a string array of the specified command and alias in the {@code command} if both are present.
-     * Returns an empty String {@code Array} otherwise.
+     * Returns an {@code Optional.empty()} otherwise.
      */
-    public static String[] parseCommandAlias(String command) {
-        final Matcher matcher = COMMAND_ALIAS_ARGS_FORMAT.matcher(command.trim());
-        if (!matcher.matches()) {
-            return new String[0];
+    public static Optional<String[]> parseCommandAlias(String command) {
+        String[] args = command.trim().split("\\s+");
+        if (args.length == ALIAS_COMMAND_RESET_EXPECTED_ARGS
+            && args[ALIAS_COMMAND_ARGS_COMMAND_INDEX].equals(ALIAS_COMMAND_RESET_KEYWORD)) {
+            return Optional.of(new String[] {ALIAS_COMMAND_RESET_KEYWORD});
         }
-        String commandToAlias = matcher.group("command");
-        String alias = matcher.group("alias");
-        return new String[] {commandToAlias, alias};
+        if (args.length == ALIAS_COMMAND_ADD_EXPECTED_ARGS) {
+            String commandToAlias = args[ALIAS_COMMAND_ARGS_COMMAND_INDEX];
+            String alias = args[ALIAS_COMMAND_ARGS_ALIAS_INDEX];
+            return Optional.of(new String[] {commandToAlias, alias});
+        }
+        return Optional.empty();
     }
 
     //@@author
