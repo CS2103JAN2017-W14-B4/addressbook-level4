@@ -77,6 +77,7 @@ public abstract class EzDoGuiTest {
         FxToolkit.showStage();
         while (!stage.isShowing());
         mainGui.focusOnMainApp();
+        commandBox.runCommand("sort n");
     }
 
     /**
